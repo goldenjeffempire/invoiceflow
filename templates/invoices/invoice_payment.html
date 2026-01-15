@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-container">
+    <h2>Pay Invoice #{{ invoice.id }}</h2>
+    <p>Client: {{ invoice.client.name }} | Total: {{ total_amount }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        <label>
+            <input type="radio" name="provider" value="stripe" checked> Pay with Stripe
+        </label>
+        <label>
+            <input type="radio" name="provider" value="paystack"> Pay with Paystack
+        </label>
+        <button type="submit" class="cta-btn">Pay Now</button>
+    </form>
+</div>
+{% endblock %}

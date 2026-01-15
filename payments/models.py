@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from invoices.models import Invoice
+from django.conf import settings
 
 class UserPaymentSettings(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='payment_settings')
@@ -22,3 +24,15 @@ class UserPaymentSettings(models.Model):
     
     def __str__(self):
         return f"{self.user.username}'s Payment Settings"
+
+class Payment(models.Model):
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, related_name='payments')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    provider = models.CharField(max_length=50)  # 'stripe' or 'paystack'
+    payment_id = models.CharField(max_length=255)  # Stripe/Paystack transaction ID
+    status = models.CharField(max_length=50, default='pending')  # pending, succeeded, failed
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.provider} - {self.invoice.id} - {self.status}"
