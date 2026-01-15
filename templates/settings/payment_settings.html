@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-container">
+    <h2>Payment & Bank Settings</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <h3>Stripe Settings</h3>
+        {{ form.stripe_public_key|as_crispy_field }}
+        {{ form.stripe_secret_key|as_crispy_field }}
+
+        <h3>Paystack Settings</h3>
+        {{ form.paystack_public_key|as_crispy_field }}
+        {{ form.paystack_secret_key|as_crispy_field }}
+        {{ form.paystack_webhook_url|as_crispy_field }}
+
+        <h3>Bank Account</h3>
+        {{ form.bank_name|as_crispy_field }}
+        {{ form.account_number|as_crispy_field }}
+        {{ form.account_name|as_crispy_field }}
+
+        <button type="submit" class="cta-btn">Save Settings</button>
+    </form>
+</div>
+{% endblock %}
