@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<header class="hero">
+    <nav class="navbar">
+        <div class="logo">InvoiceFlow</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="/auth/login/">Login</a>
+            <a href="/auth/signup/" class="cta-btn">Get Started</a>
+        </div>
+    </nav>
+    <div class="hero-content">
+        <h1>Smart, Simple, Secure Invoicing</h1>
+        <p>Manage invoices, accept payments, automate reminders, and track expenses effortlessly.</p>
+        <a href="/auth/signup/" class="cta-btn hero-cta">Get Started</a>
+    </div>
+</header>
+
+<section id="features" class="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">Create & Send Invoices</div>
+        <div class="feature-card">Accept Payments via Stripe & Paystack</div>
+        <div class="feature-card">Automated Payment Reminders</div>
+        <div class="feature-card">Sales & Expense Analytics</div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="contact">
+        <p>Email: support@invoiceflow.com.ng | info@invoiceflow.com.ng | hello@invoiceflow.com.ng</p>
+    </div>
+    <div class="socials">
+        <a href="https://facebook.com/InvoiceFlow">Facebook</a>
+        <a href="https://instagram.com/invoiceflow.com.ng">Instagram</a>
+        <a href="https://tiktok.com/invoiceflow.com.ng">TikTok</a>
+    </div>
+</footer>
+
+{% endblock %}
