@@ -2,13 +2,16 @@ import stripe
 from django.shortcuts import render, redirect, get_object_or_404
 from invoices.models import Invoice
 from django.contrib.auth.decorators import login_required
-from .models import UserPaymentSettings
+from django.http import HttpResponse, JsonResponse
+from .models import UserPaymentSettings, Payment
 from .forms import PaymentSettingsForm
 from django.conf import settings
 from django.contrib import messages
 from .models import Payment
 from paystackapi.transaction import Transaction
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.crypto import get_random_string
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -78,3 +81,73 @@ def payment_success(request, invoice_id, provider):
     )
     messages.success(request, "Payment successful! Invoice marked as Paid.")
     return redirect('invoices:invoices_list')
+
+# ---------------- STRIPE WEBHOOK ----------------
+@csrf_exempt
+def stripe_webhook(request):
+    payload = request.body
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
+    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+
+    try:
+        event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
+    except ValueError:
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError:
+        return HttpResponse(status=400)
+
+    # Handle the checkout.session.completed event
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        invoice_id = session['metadata'].get('invoice_id')
+        invoice = Invoice.objects.filter(id=invoice_id).first()
+        if invoice:
+            # Idempotent: prevent double updates
+            if not invoice.payments.filter(payment_id=session['id']).exists():
+                Payment.objects.create(
+                    invoice=invoice,
+                    user=invoice.user,
+                    amount=invoice.total_amount(),
+                    provider='stripe',
+                    payment_id=session['id'],
+                    status='succeeded'
+                )
+                invoice.status = 'paid'
+                invoice.save()
+    return HttpResponse(status=200)
+
+# ---------------- PAYSTACK WEBHOOK ----------------
+@csrf_exempt
+def paystack_webhook(request):
+    from paystackapi.paystack import Paystack
+    import json
+
+    paystack = Paystack(secret_key=settings.PAYSTACK_SECRET_KEY)
+    payload = json.loads(request.body)
+    reference = payload.get('data', {}).get('reference')
+    status = payload.get('data', {}).get('status')
+
+    payment = Payment.objects.filter(payment_id=reference).first()
+    if payment:
+        return HttpResponse(status=200)  # idempotent: already processed
+
+    # Retrieve invoice using reference pattern: "INV-{invoice_id}-{user_id}"
+    try:
+        parts = reference.split('-')
+        invoice_id = int(parts[1])
+        invoice = Invoice.objects.get(id=invoice_id)
+    except Exception:
+        return HttpResponse(status=400)
+
+    if status == 'success':
+        Payment.objects.create(
+            invoice=invoice,
+            user=invoice.user,
+            amount=invoice.total_amount(),
+            provider='paystack',
+            payment_id=reference,
+            status='succeeded'
+        )
+        invoice.status = 'paid'
+        invoice.save()
+    return HttpResponse(status=200)
