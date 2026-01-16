@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero glass-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-up">Invoicing Made <span class="gradient-text">Elegant</span></h1>
+                <p class="hero-lead animate-up delay-1">The enterprise-grade financial platform for modern businesses. Manage invoices, track expenses, and get paid faster.</p>
+                <div class="hero-actions animate-up delay-2">
+                    <a href="{% url 'auth:signup' %}" class="btn btn-primary btn-lg">Get Started Free</a>
+                    <a href="#features" class="btn btn-secondary btn-lg">Explore Features</a>
+                </div>
+                <div class="trust-bar animate-up delay-3">
+                    <span>Trusted by 500+ businesses</span>
+                    <div class="trust-logos">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" class="trust-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Paystack_Logo.png" alt="Paystack" class="trust-logo">
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual animate-fade-in">
+                <div class="visual-wrapper">
+                    <img src="{% static 'stock_images/modern_office_minima_1d4e654a.jpg' %}" alt="Dashboard Preview" class="hero-img glass-border">
+                    <div class="floating-card revenue-card glass-card">
+                        <span class="card-icon">📈</span>
+                        <div class="card-info">
+                            <small>Monthly Revenue</small>
+                            <strong>₦2,450,000</strong>
+                        </div>
+                    </div>
+                    <div class="floating-card status-card glass-card">
+                        <span class="status-dot paid"></span>
+                        <div class="card-info">
+                            <small>Invoice #042</small>
+                            <strong>Paid</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="gradient-text">Built for Growth</h2>
+                <p>Everything you need to manage your business finances in one place.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>Smart Invoicing</h3>
+                    <p>Create professional PDF invoices in seconds with custom branding.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>Global Payments</h3>
+                    <p>Integrated Stripe and Paystack for seamless international collections.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Detailed sales and expense reports to track your profit margins.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Enterprise-grade security with encrypted data and robust backups.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Showcase -->
+    <section class="showcase-section">
+        <div class="container split-layout">
+            <div class="showcase-image">
+                <img src="{% static 'stock_images/professional_busines_8a6313d6.jpg' %}" alt="Team Collaboration" class="glass-border">
+            </div>
+            <div class="showcase-text">
+                <h2>Collaborate with <span class="gradient-text">Ease</span></h2>
+                <p>Manage clients and team members in a unified workspace. InvoiceFlow streamlines your workflow so you can focus on what matters most.</p>
+                <ul class="check-list">
+                    <li>Multi-currency support</li>
+                    <li>Automated payment reminders</li>
+                    <li>Expense tracking & categorization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container text-center glass-card gradient-bg">
+            <h2>Ready to transform your business?</h2>
+            <p>Join thousands of freelancers and small businesses worldwide.</p>
+            <a href="{% url 'auth:signup' %}" class="btn btn-white btn-lg">Create Your Account</a>
+        </div>
+    </section>
+</div>
+
+<style>
+    .landing-page { overflow-x: hidden; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .text-center { text-align: center; }
+    
+    /* Hero */
+    .hero { padding: 8rem 0 4rem; position: relative; }
+    .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .hero h1 { font-size: 4rem; font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.04em; }
+    .hero-lead { font-size: 1.25rem; color: #64748b; margin-bottom: 2.5rem; max-width: 500px; }
+    .hero-actions { display: flex; gap: 1rem; margin-bottom: 3rem; }
+    
+    .gradient-text { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gradient-bg { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; }
+    
+    .trust-bar { border-top: 1px solid var(--glass-border); pt: 2rem; }
+    .trust-bar span { font-size: 0.875rem; color: #94a3b8; display: block; margin-bottom: 1rem; }
+    .trust-logos { display: flex; gap: 2rem; align-items: center; }
+    .trust-logo { height: 24px; filter: grayscale(1) opacity(0.6); transition: all 0.3s; }
+    .trust-logo:hover { filter: grayscale(0) opacity(1); }
+    
+    .hero-visual { position: relative; }
+    .visual-wrapper { position: relative; padding: 2rem; }
+    .hero-img { width: 100%; border-radius: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    
+    .floating-card { position: absolute; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; z-index: 10; animation: float 6s infinite ease-in-out; }
+    .revenue-card { top: 10%; left: -5%; }
+    .status-card { bottom: 15%; right: -5%; animation-delay: -3s; }
+    .card-icon { font-size: 1.5rem; }
+    .card-info small { display: block; color: #64748b; font-size: 0.75rem; }
+    .card-info strong { font-size: 1.125rem; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .status-dot.paid { background: #22c55e; box-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
+    
+    /* Features */
+    .features-section { padding: 8rem 0; }
+    .section-header { margin-bottom: 4rem; }
+    .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    .feature-card { padding: 3rem 2rem; text-align: left; }
+    .feature-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    .feature-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+    .feature-card p { color: #64748b; font-size: 0.9375rem; }
+    
+    /* Showcase */
+    .showcase-section { padding: 4rem 0 8rem; }
+    .split-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6rem; align-items: center; }
+    .showcase-image img { width: 100%; border-radius: 2.5rem; }
+    .showcase-text h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; }
+    .showcase-text p { font-size: 1.125rem; color: #64748b; margin-bottom: 2rem; line-height: 1.8; }
+    .check-list { list-style: none; padding: 0; }
+    .check-list li { margin-bottom: 1rem; font-weight: 600; display: flex; align-items: center; gap: 0.75rem; }
+    .check-list li::before { content: "✓"; color: var(--primary-color); font-weight: 900; }
+    
+    /* CTA */
+    .cta-section { padding: 4rem 0; }
+    .cta-section .container { padding: 5rem 2rem; border-radius: 3rem; }
+    .cta-section h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1.5rem; }
+    .cta-section p { font-size: 1.25rem; opacity: 0.9; margin-bottom: 2.5rem; }
+    .btn-white { background: white; color: var(--primary-color); }
+    .btn-white:hover { background: #f8fafc; transform: scale(1.05); }
+    
+    /* Animations */
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+    .animate-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
+    .animate-fade-in { opacity: 0; animation: fadeIn 1.2s forwards; }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    
+    @keyframes fadeInUp {
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+    
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .hero .container, .split-layout { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
+        .hero h1 { font-size: 3rem; }
+        .hero-lead { margin-left: auto; margin-right: auto; }
+        .hero-actions { justify-content: center; }
+        .trust-logos { justify-content: center; }
+        .showcase-image { order: 2; }
+    }
+</style>
+{% endblock %}
