@@ -4,6 +4,7 @@ from .models import Expense, ExpenseCategory
 from .forms import ExpenseForm, ExpenseCategoryForm
 from django.db.models import Sum
 
+# type: ignore
 @login_required
 def expense_list(request):
     expenses = Expense.objects.filter(user=request.user).order_by('-date')

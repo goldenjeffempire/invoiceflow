@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Sale
 from .forms import SaleForm
 
+# type: ignore
 @login_required
 def sale_list(request):
     sales = Sale.objects.filter(user=request.user).order_by('-date')

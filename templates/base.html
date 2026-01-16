@@ -20,6 +20,7 @@
             {% if user.is_authenticated %}
                 <a href="{% url 'dashboard:home' %}" class="nav-link {% if request.resolver_match.app_name == 'dashboard' %}active{% endif %}">Dashboard</a>
                 <a href="{% url 'invoices:invoices_list' %}" class="nav-link {% if request.resolver_match.app_name == 'invoices' %}active{% endif %}">Invoices</a>
+                <a href="{% url 'sales:sale_list' %}" class="nav-link {% if request.resolver_match.app_name == 'sales' %}active{% endif %}">Sales</a>
                 <a href="{% url 'expenses:expense_list' %}" class="nav-link {% if request.resolver_match.app_name == 'expenses' %}active{% endif %}">Expenses</a>
                 <a href="{% url 'reports:summary' %}" class="nav-link {% if request.resolver_match.app_name == 'reports' %}active{% endif %}">Reports</a>
                 <a href="{% url 'payments:payment_settings' %}" class="nav-link">Settings</a>

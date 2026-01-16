@@ -19,6 +19,7 @@ except ImportError:
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+# type: ignore
 @login_required
 def payment_settings_view(request):
     settings_obj, created = UserPaymentSettings.objects.get_or_create(user=request.user)
