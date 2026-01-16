@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-container" style="text-align: center; padding: 100px 20px;">
+    <h1 style="font-size: 4rem; color: var(--primary-color);">500</h1>
+    <h2>Internal Server Error</h2>
+    <p>Something went wrong on our end. We've been notified and are looking into it.</p>
+    <a href="{% url 'landing' %}" class="btn btn-primary" style="margin-top: 2rem;">Back to Safety</a>
+</div>
+{% endblock %}
