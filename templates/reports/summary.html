@@ -25,7 +25,14 @@
 
     <div class="charts-section" style="margin-bottom: 3rem; background: var(--card-bg, #fff); padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
         <h2>Monthly Financial Trends</h2>
-        <canvas id="reportsChart" height="100"></canvas>
+        {% if has_data %}
+            <canvas id="reportsChart" height="100"></canvas>
+        {% else %}
+            <div style="padding: 3rem; text-align: center; color: #6b7280; border: 2px dashed #e5e7eb; border-radius: 0.5rem;">
+                <p>No financial data available for the selected period.</p>
+                <p style="font-size: 0.875rem;">Start by adding some <a href="{% url 'invoices:invoices_list' %}">invoices</a> or <a href="{% url 'expenses:expense_list' %}">expenses</a>.</p>
+            </div>
+        {% endif %}
     </div>
 
     <div class="actions-section" style="display: flex; gap: 1rem; margin-top: 2rem;">

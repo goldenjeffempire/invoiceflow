@@ -39,8 +39,9 @@ def report_summary(request):
         'total_sales': total_sales,
         'total_expenses': total_expenses,
         'net_profit': net_profit,
-        'chart_labels': json.dumps(months),
-        'chart_sales': json.dumps(sales_data),
-        'chart_expenses': json.dumps(expenses_data),
+        'chart_labels': json.dumps(months) if months else json.dumps(["No Data"]),
+        'chart_sales': json.dumps(sales_data) if sales_data else json.dumps([0]),
+        'chart_expenses': json.dumps(expenses_data) if expenses_data else json.dumps([0]),
+        'has_data': len(months) > 0
     }
     return render(request, 'reports/summary.html', context)
