@@ -14,11 +14,11 @@
                 <div class="badge-pill animate-pulse">
                     <span class="badge-icon">✨</span> Trusted by 5,000+ Enterprises Globally
                 </div>
-                <h1 class="hero-title">Invoicing for the <br><span class="gradient-text">Modern Enterprise</span></h1>
+                <h1 class="hero-title">Invoicing for the <br><span class="gradient-text">Digital Era</span></h1>
                 <p class="hero-description">The all-in-one financial ecosystem for high-growth teams. Automate invoicing, reconcile expenses, and master your cash flow with institutional-grade security.</p>
                 <div class="hero-buttons">
-                    <a href="{% url 'auth:signup' %}" class="btn btn-primary btn-lg btn-glow">Start Free Trial</a>
-                    <a href="#solutions" class="btn btn-secondary btn-lg">View Solutions</a>
+                    <a href="{% url 'auth:signup' %}" class="btn btn-primary btn-lg btn-glow">Get Started Free</a>
+                    <a href="#solutions" class="btn btn-secondary btn-lg">Explore Solutions</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
@@ -104,27 +104,27 @@
     <section id="solutions" class="solutions-section">
         <div class="container">
             <div class="section-header text-center" data-aos="fade-up">
-                <h2 class="section-title">A Unified Suite for <span class="gradient-text">Financial Excellence</span></h2>
-                <p class="section-subtitle">Scale your business globally with our integrated financial infrastructure.</p>
+                <h2 class="section-title">A Unified Suite for <span class="gradient-text">Financial Mastery</span></h2>
+                <p class="section-subtitle">Scale your business globally with our integrated financial infrastructure designed for speed and reliability.</p>
             </div>
             <div class="solutions-grid">
                 <div class="solution-card glass-card" data-aos="fade-up">
-                    <div class="solution-icon">✨</div>
+                    <div class="solution-icon">⚡</div>
                     <h3>Automated Invoicing</h3>
-                    <p>Dynamic PDF generation with intelligent tax calculation and multi-language support.</p>
-                    <a href="#" class="solution-link">Learn more →</a>
+                    <p>Dynamic PDF generation with intelligent tax calculation and multi-language support. Send professional invoices in seconds.</p>
+                    <a href="{% url 'invoices:invoices_list' %}" class="solution-link">Explore Invoicing →</a>
                 </div>
                 <div class="solution-card glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="solution-icon">🌍</div>
+                    <div class="solution-icon">💎</div>
                     <h3>Global Payments</h3>
-                    <p>Accept 135+ currencies natively through Stripe and Paystack with instant reconciliation.</p>
-                    <a href="#" class="solution-link">Learn more →</a>
+                    <p>Accept 135+ currencies natively through Stripe and Paystack with instant reconciliation and low transaction fees.</p>
+                    <a href="{% url 'payments:payment_settings' %}" class="solution-link">Setup Payments →</a>
                 </div>
                 <div class="solution-card glass-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="solution-icon">📊</div>
                     <h3>Advanced Reporting</h3>
-                    <p>Institutional-grade analytics and sales forecasting powered by real-time data ingestion.</p>
-                    <a href="#" class="solution-link">Learn more →</a>
+                    <p>Institutional-grade analytics and sales forecasting powered by real-time data ingestion for smarter decisions.</p>
+                    <a href="{% url 'reports:summary' %}" class="solution-link">View Reports →</a>
                 </div>
             </div>
         </div>
