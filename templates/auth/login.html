@@ -1,12 +1,85 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="auth-container">
-    <h2>Login</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="cta-btn">Login</button>
-    </form>
-    <p>Don't have an account? <a href="{% url 'auth:signup' %}">Sign Up</a></p>
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p>Please enter your credentials to access your dashboard</p>
+        </div>
+        <form method="POST" class="auth-form">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {% for error in form.non_field_errors %}
+                        <p class="error-msg">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="form-group">
+                <label for="id_username">Username</label>
+                <div class="input-wrapper">
+                    <span class="icon">👤</span>
+                    {{ form.username }}
+                </div>
+                {% if form.username.errors %}
+                    <p class="field-error">{{ form.username.errors.0 }}</p>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_password">Password</label>
+                <div class="input-wrapper">
+                    <span class="icon">🔒</span>
+                    {{ form.password }}
+                </div>
+                {% if form.password.errors %}
+                    <p class="field-error">{{ form.password.errors.0 }}</p>
+                {% endif %}
+            </div>
+            <div class="form-footer">
+                <a href="{% url 'auth:password_reset' %}" class="link-sm">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        </form>
+        <div class="auth-divider">
+            <span>Don't have an account?</span>
+            <a href="{% url 'auth:signup' %}" class="link-bold">Create Account</a>
+        </div>
+    </div>
 </div>
+
+<style>
+    .auth-container { min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 2rem; background: #f9fafb; }
+    [data-theme="dark"] .auth-container { background: #111827; }
+
+    .auth-card { background: white; padding: 3rem; border-radius: 1.5rem; width: 100%; max-width: 480px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+    [data-theme="dark"] .auth-card { background: #1f2937; border: 1px solid #374151; }
+
+    .auth-header { text-align: center; margin-bottom: 2.5rem; }
+    .auth-header h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .auth-header p { color: #6b7280; }
+
+    .auth-form { display: flex; flex-direction: column; gap: 1.5rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group label { font-size: 0.875rem; font-weight: 600; color: #374151; }
+    [data-theme="dark"] .form-group label { color: #d1d5db; }
+
+    .input-wrapper { position: relative; display: flex; align-items: center; }
+    .input-wrapper .icon { position: absolute; left: 1rem; color: #9ca3af; z-index: 10; }
+    .input-wrapper input { width: 100%; padding: 0.875rem 1rem 0.875rem 2.75rem; border: 1px solid #e5e7eb; border-radius: 0.75rem; font-size: 1rem; transition: all 0.2s; }
+    [data-theme="dark"] .input-wrapper input { background: #111827; border-color: #374151; color: white; }
+    .input-wrapper input:focus { border-color: var(--primary-color); outline: none; box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1); }
+
+    .form-errors { background: #fee2e2; border: 1px solid #fecaca; padding: 0.75rem; border-radius: 0.5rem; }
+    .error-msg { color: #b91c1c; font-size: 0.875rem; margin: 0; }
+    .field-error { color: #ef4444; font-size: 0.75rem; margin-top: 0.25rem; }
+
+    .btn-block { width: 100%; padding: 1rem; font-weight: 600; border-radius: 0.75rem; border: none; cursor: pointer; transition: all 0.2s; }
+    .btn-primary { background: var(--primary-color); color: white; }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .auth-divider { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #f3f4f6; text-align: center; font-size: 0.875rem; color: #6b7280; }
+    [data-theme="dark"] .auth-divider { border-color: #374151; }
+    .link-bold { color: var(--primary-color); font-weight: 700; text-decoration: none; margin-left: 0.5rem; }
+    .link-sm { color: #6b7280; font-size: 0.875rem; text-decoration: none; }
+</style>
 {% endblock %}
