@@ -4,7 +4,7 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
-packages = ["cacert", "cairo", "cargo", "gdk-pixbuf", "libffi", "libiconv", "libxcrypt", "openssl", "pango", "pgadmin4", "pkg-config", "postgresql", "python312Packages.pycairo", "rustc"]
+packages = ["cacert", "cairo", "cargo", "freetype", "gdk-pixbuf", "glibcLocales", "libffi", "libiconv", "libxcrypt", "openssl", "pango", "pgadmin4", "pkg-config", "postgresql", "python312Packages.pycairo", "rustc"]
 
 [workflows]
 runButton = "Project"
