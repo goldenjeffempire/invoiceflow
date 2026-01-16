@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Client, Invoice, InvoiceItem
 from .forms import ClientForm, InvoiceForm, InvoiceItemForm
+from payments.utils import send_email
+from .utils import generate_invoice_pdf
+from django.utils.timezone import now, timedelta
 
 # -------- CLIENTS --------
 @login_required
@@ -40,3 +43,34 @@ def invoice_create(request):
         return redirect('invoices:invoices_list')
     
     return render(request, 'invoices/invoice_form.html', {'invoice_form': invoice_form, 'formset': formset})
+
+def send_invoice_email(invoice):
+    pdf_bytes = generate_invoice_pdf(invoice)
+    payment_link = f"{settings.SITE_URL}/payments/invoice/{invoice.id}/pay/"
+    html_content = render_to_string('emails/invoice_email.html', {
+        'client_name': invoice.client.name,
+        'invoice_id': invoice.id,
+        'user_name': invoice.user.username,
+        'total_amount': invoice.total_amount(),
+        'due_date': invoice.due_date,
+        'payment_link': payment_link
+    })
+    send_email(invoice.client.email, f"Invoice #{invoice.id}", html_content)
+
+def send_payment_confirmation(invoice):
+    html_content = render_to_string('emails/payment_confirmation.html', {
+        'invoice_id': invoice.id,
+        'total_amount': invoice.total_amount(),
+    })
+    send_email(invoice.client.email, f"Payment Received - Invoice #{invoice.id}", html_content)
+
+def send_reminders():
+    upcoming = Invoice.objects.filter(due_date__lte=now().date() + timedelta(days=3), auto_reminder=True, status='sent')
+    for invoice in upcoming:
+        payment_link = f"{settings.SITE_URL}/payments/invoice/{invoice.id}/pay/"
+        html_content = render_to_string('emails/payment_reminder.html', {
+            'invoice_id': invoice.id,
+            'due_date': invoice.due_date,
+            'payment_link': payment_link
+        })
+        send_email(invoice.client.email, f"Reminder: Invoice #{invoice.id} Due Soon", html_content)

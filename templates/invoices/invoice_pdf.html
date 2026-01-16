@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'Helvetica', sans-serif; }
+        header { text-align: center; margin-bottom: 2rem; }
+        h1 { color: #4f46e5; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background-color: #f3f4f6; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Invoice #{{ invoice.id }}</h1>
+        <p>{{ invoice.user.username }} | {{ invoice.user.email }}</p>
+    </header>
+    <p>Client: {{ invoice.client.name }} | Email: {{ invoice.client.email }}</p>
+    <p>Status: {{ invoice.get_status_display }}</p>
+    <table>
+        <thead>
+            <tr><th>Description</th><th>Quantity</th><th>Unit Price</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+            {% for item in invoice.items.all %}
+            <tr>
+                <td>{{ item.description }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.unit_price }}</td>
+                <td>{{ item.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><strong>Total Amount: {{ invoice.total_amount }}</strong></p>
+</body>
+</html>
