@@ -25,4 +25,4 @@ def invoice_pdf_view(request, invoice_id):
         response = HttpResponse(pdf_content, content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="invoice_{invoice.id}.pdf"'
         return response
-    return HttpResponse(b"Error generating PDF", status=500)
+    return HttpResponse(b"Error generating PDF", status=500) # type: ignore

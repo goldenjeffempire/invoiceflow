@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-container">
+    <div class="card glass-card">
+        <h1>Profile Settings</h1>
+        <p>Manage your account settings and preferences here.</p>
+        <hr>
+        <div class="settings-section">
+            <h3>Account Information</h3>
+            <p>Username: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+        </div>
+        <div class="settings-section" style="margin-top: 2rem;">
+            <a href="{% url 'payments:payment_settings' %}" class="btn btn-primary">Payment Integration Settings</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

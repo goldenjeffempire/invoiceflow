@@ -29,4 +29,5 @@ urlpatterns = [
     path('sales/', include('sales.urls', namespace='sales')),
     path('expenses/', include('expenses.urls', namespace='expenses')),
     path('reports/', include('reports.urls', namespace='reports')),
+    path('settings/', include('settings.urls', namespace='settings')),
 ]

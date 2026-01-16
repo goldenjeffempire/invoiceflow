@@ -27,10 +27,10 @@ INSTALLED_APPS = [
     "invoices",
     "payments",
     "dashboard",
-    "settings",
     "sales",
     "expenses",
     "reports",
+    "settings",
     "crispy_forms",
     "crispy_bootstrap5",
 ]
