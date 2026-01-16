@@ -51,7 +51,7 @@ def invoice_payment_page(request, invoice_id):
                     mode='payment',
                     success_url=request.build_absolute_uri(f'/payments/success/{invoice.id}/stripe/'),
                     cancel_url=request.build_absolute_uri(f'/payments/cancel/{invoice.id}/stripe/'),
-                    metadata={'invoice_id': invoice.id}
+                    metadata={'invoice_id': str(invoice.id)}
                 )
                 return redirect(session.url)
             except Exception as e:
@@ -59,15 +59,18 @@ def invoice_payment_page(request, invoice_id):
         elif provider == 'paystack':
             if Transaction:
                 try:
-                    paystack_secret = invoice.user.payment_settings.paystack_secret_key
-                    Transaction.secret_key = paystack_secret
-                    transaction = Transaction.initialize(
-                        reference=f"INV-{invoice.id}-{invoice.user.id}",
-                        amount=int(total_amount * 100),
-                        email=invoice.client.email,
-                        callback_url=request.build_absolute_uri(f'/payments/success/{invoice.id}/paystack/')
-                    )
-                    return redirect(transaction['data']['authorization_url'])
+                    paystack_settings = getattr(invoice.user, 'payment_settings', None)
+                    if paystack_settings and paystack_settings.paystack_secret_key:
+                        Transaction.secret_key = paystack_settings.paystack_secret_key
+                        transaction = Transaction.initialize(
+                            reference=f"INV-{invoice.id}-{invoice.user.id}",
+                            amount=int(total_amount * 100),
+                            email=invoice.client.email,
+                            callback_url=request.build_absolute_uri(f'/payments/success/{invoice.id}/paystack/')
+                        )
+                        return redirect(transaction['data']['authorization_url'])
+                    else:
+                        messages.error(request, "Paystack is not configured for this user.")
                 except Exception as e:
                     messages.error(request, f"Paystack error: {e}")
             else:
@@ -122,10 +125,13 @@ def stripe_webhook(request):
 
 @csrf_exempt
 def paystack_webhook(request):
-    payload = json.loads(request.body)
-    data = payload.get('data', {})
-    reference = data.get('reference')
-    status = data.get('status')
+    try:
+        payload = json.loads(request.body)
+        data = payload.get('data', {})
+        reference = data.get('reference')
+        status = data.get('status')
+    except (json.JSONDecodeError, AttributeError):
+        return HttpResponse(status=400)
 
     if Payment.objects.filter(payment_id=reference).exists():
         return HttpResponse(status=200)

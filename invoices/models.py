@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from decimal import Decimal
 
 class Client(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='clients')
@@ -44,7 +45,6 @@ class InvoiceItem(models.Model):
     unit_price = models.DecimalField(max_digits=12, decimal_places=2)
 
     def total(self):
-        from decimal import Decimal
         return Decimal(self.quantity) * self.unit_price
 
     def __str__(self):
