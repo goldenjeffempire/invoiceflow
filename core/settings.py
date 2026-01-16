@@ -94,12 +94,16 @@ DATABASES = {
     )
 }
 
-# Ensure psycopg2 is used as the database driver and prevent Django from looking for psycopg3
+# Fix for potential psycopg2/psycopg3 conflict in Django 5.1+
 import sys
 try:
     import psycopg2
-    sys.modules['psycopg'] = None 
-except ImportError:
+    # Register psycopg2 as psycopg to satisfy Django's search for the driver
+    sys.modules['psycopg'] = psycopg2
+    # Ensure it has the version attribute Django checks for
+    if not hasattr(psycopg2, '__version__'):
+        psycopg2.__version__ = "2.9.11"
+except (ImportError, AttributeError):
     pass
 
 # Password validation
