@@ -1,4 +1,9 @@
-# InvoiceFlow
+## Recent Changes (January 2026)
+- **Standardized App Configuration**: Updated `INSTALLED_APPS` to use explicit `AppConfig` paths for production stability.
+- **Security Hardening**: Enforced HSTS, secure cookies, and CSRF protection; implemented a complete password reset flow.
+- **Enterprise Logging**: Added centralized logging and global error handling middleware with custom 500 error templates.
+- **UI/UX Modernization**: Redesigned navigation and dashboard with a premium glassmorphism aesthetic and responsive layouts.
+- **Production Automation**: Fully optimized `render.yaml` and `build.sh` for seamless one-click deployments.
 
 ## Overview
 

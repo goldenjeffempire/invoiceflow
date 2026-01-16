@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     "dashboard.apps.DashboardConfig",
     "sales.apps.SalesConfig",
     "expenses.apps.ExpensesConfig",
-    "reports.apps.ReportsConfig",
+    "reports",
     "settings.apps.SettingsConfig",
     "crispy_forms",
     "crispy_bootstrap5",
