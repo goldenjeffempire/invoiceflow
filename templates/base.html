@@ -30,9 +30,10 @@
                     <a href="{% url 'expenses:expense_list' %}" class="nav-link {% if request.resolver_match.app_name == 'expenses' %}active{% endif %}">Expenses</a>
                     <a href="{% url 'reports:summary' %}" class="nav-link {% if request.resolver_match.app_name == 'reports' %}active{% endif %}">Reports</a>
                 {% else %}
-                    <a href="#features" class="nav-link">Features</a>
                     <a href="#solutions" class="nav-link">Solutions</a>
+                    <a href="#features" class="nav-link">Features</a>
                     <a href="#pricing" class="nav-link">Pricing</a>
+                    <a href="#about" class="nav-link">About</a>
                 {% endif %}
             </nav>
             <div class="header-actions">
@@ -49,8 +50,9 @@
                     </div>
                 {% else %}
                     <a href="{% url 'auth:login' %}" class="btn btn-sm btn-ghost">Login</a>
-                    <a href="{% url 'auth:signup' %}" class="btn btn-sm btn-primary">Sign Up</a>
+                    <a href="{% url 'auth:signup' %}" class="btn btn-sm btn-primary btn-glow">Get Started</a>
                 {% endif %}
+                <button class="mobile-menu-toggle icon-btn" aria-label="Menu">☰</button>
             </div>
         </div>
     </header>
