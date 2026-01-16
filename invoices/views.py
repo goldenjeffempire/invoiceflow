@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from django.db.models import Sum
 
+# type: ignore
 # -------- CLIENTS --------
 @login_required
 def clients_list(request):
