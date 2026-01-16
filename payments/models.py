@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from invoices.models import Invoice
-from django.conf import settings
 
 class UserPaymentSettings(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='payment_settings')

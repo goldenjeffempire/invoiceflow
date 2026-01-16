@@ -5,6 +5,9 @@ from .forms import ClientForm, InvoiceForm, InvoiceItemForm
 from payments.utils import send_email
 from .utils import generate_invoice_pdf
 from django.utils.timezone import now, timedelta
+from django import forms
+from django.template.loader import render_to_string
+from django.conf import settings
 
 # -------- CLIENTS --------
 @login_required
