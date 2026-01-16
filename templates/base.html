@@ -74,7 +74,11 @@
         
         @media (max-width: 1024px) {
             .desktop-nav { display: none; }
+            .desktop-nav.mobile-active { display: flex !important; flex-direction: column; position: absolute; top: calc(100% + 1rem); left: 0; width: 100%; background: var(--nav-bg); padding: 2rem; border-radius: 1.5rem; backdrop-filter: blur(24px); border: 1px solid var(--glass-border); box-shadow: var(--card-shadow); z-index: 1001; }
+            .nav-link { padding: 1rem; width: 100%; border-bottom: 1px solid var(--glass-border); }
+            .nav-link:last-child { border-bottom: none; }
         }
+        .main-header.scrolled { background: var(--nav-bg); backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
     </style>
 
     {% block content %}{% endblock %}
