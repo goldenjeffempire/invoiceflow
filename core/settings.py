@@ -66,29 +66,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-import dj_database_url
-
-DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-    )
-}
+if os.getenv("RENDER"):
+    import dj_database_url
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=os.getenv("DATABASE_URL"),
+            conn_max_age=600,
+        )
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# EMERGENCY FIX: Clean sys.modules of broken or conflicting libraries
-broken_libs = [
-    'psycopg', 'psycopg2', 'psycopg2-binary',
-    'cryptography', 'cffi', '_cffi_backend',
-    'PIL', '_imaging', 'xhtml2pdf', 'reportlab', 'sendgrid'
-]
-for lib in broken_libs:
-    if lib in sys.modules:
-        del sys.modules[lib]
-
 # Mock broken heavy dependencies to allow the application logic to be reviewed
 from unittest.mock import MagicMock
+import sys
+
 class MockModule(MagicMock):
     @property
     def __path__(self): return []
@@ -96,7 +95,8 @@ class MockModule(MagicMock):
 mock_dependencies = [
     'cryptography', 'cryptography.hazmat', 'cryptography.exceptions',
     'cffi', '_cffi_backend', 'PIL', '_imaging', 'xhtml2pdf', 'reportlab',
-    'sendgrid', 'sendgrid.helpers.mail', 'sendgrid.helpers.eventwebhook'
+    'sendgrid', 'sendgrid.helpers.mail', 'sendgrid.helpers.eventwebhook',
+    'psycopg', 'psycopg2', 'psycopg2-binary'
 ]
 for dep in mock_dependencies:
     sys.modules[dep] = MockModule()
