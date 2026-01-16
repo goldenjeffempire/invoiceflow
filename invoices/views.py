@@ -13,7 +13,7 @@ from django.db.models import Sum
 # type: ignore
 @login_required
 def clients_list(request):
-    clients = Client.objects.filter(user=request.user)
+    clients = Client.objects.filter(user=request.user) # type: ignore
     return render(request, 'invoices/clients.html', {'clients': clients})
 
 @login_required
@@ -32,7 +32,7 @@ def client_create(request):
 # -------- INVOICES --------
 @login_required
 def invoices_list(request):
-    invoices = Invoice.objects.filter(user=request.user)
+    invoices = Invoice.objects.filter(user=request.user) # type: ignore
     return render(request, 'invoices/invoices.html', {'invoices': invoices})
 
 @login_required
@@ -79,7 +79,7 @@ def send_payment_confirmation(invoice):
 
 # type: ignore
 def send_reminders():
-    upcoming = Invoice.objects.filter(due_date__lte=now().date() + timedelta(days=3), auto_reminder=True, status='sent')
+    upcoming = Invoice.objects.filter(due_date__lte=now().date() + timedelta(days=3), auto_reminder=True, status='sent') # type: ignore
     for invoice in upcoming:
         payment_link = f"{settings.SITE_URL}/payments/invoice/{invoice.id}/pay/"
         html_content = render_to_string('emails/payment_reminder.html', {

@@ -22,11 +22,12 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 # type: ignore
 @login_required
 def payment_settings_view(request):
-    settings_obj, created = UserPaymentSettings.objects.get_or_create(user=request.user)
+    settings_obj, created = UserPaymentSettings.objects.get_or_create(user=request.user) # type: ignore
     form = PaymentSettingsForm(request.POST or None, instance=settings_obj)
     
     if form.is_valid():
         form.save()
+        messages.success(request, "Payment settings updated successfully.")
         return redirect('payments:payment_settings')
     
     return render(request, 'settings/payment_settings.html', {'form': form})
@@ -109,10 +110,10 @@ def stripe_webhook(request):
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
         invoice_id = session['metadata'].get('invoice_id')
-        invoice = Invoice.objects.filter(id=invoice_id).first()
+        invoice = Invoice.objects.filter(id=invoice_id).first() # type: ignore
         if invoice:
-            if not Payment.objects.filter(payment_id=session['id']).exists():
-                Payment.objects.create(
+            if not Payment.objects.filter(payment_id=session['id']).exists(): # type: ignore
+                Payment.objects.create( # type: ignore
                     invoice=invoice,
                     user=invoice.user,
                     amount=invoice.total_amount(),
@@ -134,18 +135,18 @@ def paystack_webhook(request):
     except (json.JSONDecodeError, AttributeError):
         return HttpResponse(status=400)
 
-    if Payment.objects.filter(payment_id=reference).exists():
+    if Payment.objects.filter(payment_id=reference).exists(): # type: ignore
         return HttpResponse(status=200)
 
     try:
         parts = reference.split('-')
         invoice_id = int(parts[1])
-        invoice = Invoice.objects.get(id=invoice_id)
+        invoice = Invoice.objects.get(id=invoice_id) # type: ignore
     except Exception:
         return HttpResponse(status=400)
 
     if status == 'success':
-        Payment.objects.create(
+        Payment.objects.create( # type: ignore
             invoice=invoice,
             user=invoice.user,
             amount=invoice.total_amount(),
