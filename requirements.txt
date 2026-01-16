@@ -36,3 +36,16 @@ pyHanko[image]
 reportlab
 svglib
 xhtml2pdf
+dj-database-url
+Django
+gunicorn
+paystackapi
+psycopg2-binary
+python-dotenv
+reportlab
+requests
+sendgrid
+stripe
+svglib
+whitenoise
+xhtml2pdf
