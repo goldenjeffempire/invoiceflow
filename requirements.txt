@@ -49,3 +49,5 @@ stripe
 svglib
 whitenoise
 xhtml2pdf
+crispy-bootstrap5
+django-crispy-forms
