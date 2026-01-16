@@ -21,6 +21,8 @@
                 <a href="{% url 'dashboard:home' %}">Dashboard</a>
                 <a href="{% url 'invoices:invoices_list' %}">Invoices</a>
                 <a href="{% url 'invoices:clients_list' %}">Clients</a>
+                <a href="{% url 'expenses:expense_list' %}">Expenses</a>
+                <a href="{% url 'reports:summary' %}">Reports</a>
                 <a href="{% url 'payments:payment_settings' %}">Settings</a>
                 <form action="{% url 'auth:logout' %}" method="POST" style="display:inline;">
                     {% csrf_token %}

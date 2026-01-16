@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Financial Report Summary</h1>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white p-3">
+                <h3>Total Sales</h3>
+                <p class="h2">₦{{ total_sales|floatformat:2 }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-danger text-white p-3">
+                <h3>Total Expenses</h3>
+                <p class="h2">₦{{ total_expenses|floatformat:2 }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card {% if net_profit >= 0 %}bg-success{% else %}bg-warning{% endif %} text-white p-3">
+                <h3>Net Profit</h3>
+                <p class="h2">₦{{ net_profit|floatformat:2 }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
