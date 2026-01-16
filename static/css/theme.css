@@ -1,18 +1,40 @@
-/* Light Theme */
+/* Modern SaaS Theme & Glassmorphism */
 :root {
-    --bg-color: #f9fafb;
-    --text-color: #111827;
-    --primary-color: #4f46e5;
-    --secondary-color: #3b82f6;
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --primary-color: #6366f1;
+    --secondary-color: #8b5cf6;
+    --accent-color: #f43f5e;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
-/* Dark Theme */
 [data-theme="dark"] {
-    --bg-color: #1f2937;
-    --text-color: #f9fafb;
-    --primary-color: #6366f1;
-    --secondary-color: #60a5fa;
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --primary-color: #818cf8;
+    --secondary-color: #a78bfa;
+    --glass-bg: rgba(15, 23, 42, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.5rem;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
+}
+
 
 /* Base Styles */
 body {

@@ -7,15 +7,15 @@
     </div>
 
     <div class="stats-grid">
-        <div class="stat-card">
+        <div class="stat-card glass-card">
             <h3>Total Sales</h3>
             <p class="amount">₦{{ total_sales|floatformat:2 }}</p>
         </div>
-        <div class="stat-card">
+        <div class="stat-card glass-card">
             <h3>Total Expenses</h3>
             <p class="amount" style="color: #ef4444;">₦{{ total_expenses|floatformat:2 }}</p>
         </div>
-        <div class="stat-card">
+        <div class="stat-card glass-card">
             <h3>Net Profit</h3>
             <p class="amount {% if net_profit >= 0 %}positive{% else %}negative{% endif %}">
                 ₦{{ net_profit|floatformat:2 }}
@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <div class="charts-section" style="margin-bottom: 3rem; background: var(--card-bg, #fff); padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    <div class="charts-section glass-card" style="margin-bottom: 3rem; padding: 1.5rem;">
         <h2>Monthly Financial Trends</h2>
         {% if has_data %}
             <canvas id="reportsChart" height="100"></canvas>
