@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Sales Dashboard</h2>
+<p>Weekly Total: {{ weekly }}</p>
+<p>Monthly Total: {{ monthly }}</p>
+<canvas id="salesChart"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('salesChart').getContext('2d');
+const salesChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [{% for s in sales %}'{{ s.date }}',{% endfor %}],
+        datasets: [{
+            label: 'Sales Over Time',
+            data: [{% for s in sales %}{{ s.amount }},{% endfor %}],
+            borderColor: '#4f46e5',
+            backgroundColor: 'rgba(79,70,229,0.2)',
+            fill: true
+        }]
+    },
+    options: { responsive:true, plugins:{legend:{display:true}}}
+});
+</script>
+{% endblock %}
