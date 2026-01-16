@@ -58,13 +58,13 @@ def invoice_payment_page(request, invoice_id):
                 return redirect(session.url)
             except Exception as e:
                 messages.error(request, f"Stripe error: {e}")
-        elif provider == 'paystack':
-            if Transaction:
+        if provider == 'paystack':
+            if Transaction: # type: ignore
                 try:
                     paystack_settings = getattr(invoice.user, 'payment_settings', None)
                     if paystack_settings and paystack_settings.paystack_secret_key:
-                        Transaction.secret_key = paystack_settings.paystack_secret_key
-                        transaction = Transaction.initialize(
+                        Transaction.secret_key = paystack_settings.paystack_secret_key # type: ignore
+                        transaction = Transaction.initialize( # type: ignore
                             reference=f"INV-{invoice.id}-{invoice.user.id}",
                             amount=int(total_amount * 100),
                             email=invoice.client.email,
@@ -85,7 +85,7 @@ def payment_success(request, invoice_id, provider):
     invoice = get_object_or_404(Invoice, id=invoice_id)
     invoice.status = 'paid'
     invoice.save()
-    Payment.objects.create(
+    Payment.objects.create( # type: ignore
         invoice=invoice,
         user=invoice.user,
         amount=invoice.total_amount(),
