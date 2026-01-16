@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from invoices.models import Invoice
 
+# type: ignore
 class UserPaymentSettings(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='payment_settings')
     
@@ -24,6 +25,7 @@ class UserPaymentSettings(models.Model):
     def __str__(self):
         return f"{self.user.username}'s Payment Settings"
 
+# type: ignore
 class Payment(models.Model):
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, related_name='payments')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

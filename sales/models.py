@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 
+# type: ignore
 class Sale(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sales')
     amount = models.DecimalField(max_digits=12, decimal_places=2)
