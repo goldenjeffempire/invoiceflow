@@ -27,12 +27,10 @@ INSTALLED_APPS = [
     "invoices",
     "payments",
     "dashboard",
-    'settings',
-    'sales',
-    'expenses',
-    'reports',
-    'crispy_forms',
-    'crispy_bootstrap5',
+    "reports",
+    "settings",
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

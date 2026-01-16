@@ -12,3 +12,5 @@ services:
         value: core.settings
       - key: DEBUG
         value: "False"
+      - key: RENDER
+        value: "True"
