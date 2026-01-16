@@ -1,9 +1,11 @@
 from django.urls import path
-from .views import expenses_dashboard, expense_add
+from . import views
 
 app_name = 'expenses'
 
 urlpatterns = [
-    path('', expenses_dashboard, name='dashboard'),
-    path('add/', expense_add, name='add')
+    path('', views.expense_list, name='expense_list'),
+    path('add/', views.expense_create, name='expense_create'),
+    path('categories/', views.category_list, name='category_list'),
+    path('categories/add/', views.category_create, name='category_create'),
 ]

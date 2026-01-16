@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import sales_dashboard, sale_add
+from . import views
 
 app_name = 'sales'
 
 urlpatterns = [
-    path('', sales_dashboard, name='dashboard'),
-    path('add/', sale_add, name='add')
+    path('', views.sale_list, name='sale_list'),
+    path('add/', views.sale_create, name='sale_create'),
 ]
