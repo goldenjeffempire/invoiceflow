@@ -73,9 +73,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('performanceChart').getContext('2d');
-        const labels = {{ chart_labels|safe }};
-        const salesData = {{ chart_sales|safe }};
-        const expensesData = {{ chart_expenses|safe }};
+        const labels = JSON.parse('{{ chart_labels|safe }}');
+        const salesData = JSON.parse('{{ chart_sales|safe }}');
+        const expensesData = JSON.parse('{{ chart_expenses|safe }}');
 
         new Chart(ctx, {
             type: 'line',
