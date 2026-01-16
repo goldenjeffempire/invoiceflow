@@ -35,10 +35,10 @@ class Invoice(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def total_amount(self):
-        return sum(item.total() for item in self.items.all())
+        return sum(item.total() for item in self.items.all()) # type: ignore
 
     def __str__(self):
-        return f"Invoice #{self.id} - {self.client.name}"
+        return f"Invoice #{self.id} - {self.client.name}" # type: ignore
 
 # type: ignore
 class InvoiceItem(models.Model):
@@ -48,7 +48,7 @@ class InvoiceItem(models.Model):
     unit_price = models.DecimalField(max_digits=12, decimal_places=2)
 
     def total(self):
-        return Decimal(self.quantity) * self.unit_price
+        return Decimal(self.quantity) * self.unit_price # type: ignore
 
     def __str__(self):
         return f"{self.description} ({self.quantity} x {self.unit_price})"
