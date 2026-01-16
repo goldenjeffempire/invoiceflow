@@ -84,34 +84,13 @@ else:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Mock broken heavy dependencies to allow the application logic to be reviewed
-from unittest.mock import MagicMock
-import sys
+REPLIT_DEV_DOMAIN = os.getenv("REPLIT_DEV_DOMAIN", "")
+SITE_URL = os.getenv("SITE_URL", "http://localhost:5000")
+if REPLIT_DEV_DOMAIN:
+    SITE_URL = f"https://{REPLIT_DEV_DOMAIN}"
 
-class MockModule(MagicMock):
-    @property
-    def __path__(self): return []
-
-mock_dependencies = [
-    'cryptography', 'cryptography.hazmat', 'cryptography.exceptions',
-    'cffi', '_cffi_backend', 'PIL', '_imaging', 'xhtml2pdf', 'reportlab',
-    'sendgrid', 'sendgrid.helpers.mail', 'sendgrid.helpers.eventwebhook',
-    'psycopg', 'psycopg2', 'psycopg2-binary'
-]
-for dep in mock_dependencies:
-    sys.modules[dep] = MockModule()
-
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
-]
-
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = '/static/'
@@ -142,3 +121,5 @@ PAYSTACK_SECRET_KEY = os.getenv("PAYSTACK_SECRET_KEY", "")
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", "")
 
 LOGIN_URL = 'auth:login'
+LOGIN_REDIRECT_URL = 'dashboard:home'
+LOGOUT_REDIRECT_URL = 'landing'
