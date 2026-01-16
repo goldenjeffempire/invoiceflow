@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Welcome, {{ user.username }}</h1>
+        <p>Overview of your business performance</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>Total Sales</h3>
+            <p class="amount">₦{{ total_sales|floatformat:2 }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Total Expenses</h3>
+            <p class="amount">₦{{ total_expenses|floatformat:2 }}</p>
+        </div>
+        <div class="stat-card">
+            <h3>Net Profit</h3>
+            <p class="amount {% if net_profit >= 0 %}positive{% else %}negative{% endif %}">
+                ₦{{ net_profit|floatformat:2 }}
+            </p>
+        </div>
+        <div class="stat-card">
+            <h3>Clients</h3>
+            <p class="count">{{ clients_count }}</p>
+        </div>
+    </div>
+
+    <div class="recent-activity">
+        <h2>Recent Invoices</h2>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Client</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for invoice in recent_invoices %}
+                    <tr>
+                        <td>{{ invoice.id }}</td>
+                        <td>{{ invoice.client.name }}</td>
+                        <td>{{ invoice.title }}</td>
+                        <td><span class="status-badge {{ invoice.status }}">{{ invoice.get_status_display }}</span></td>
+                        <td>₦{{ invoice.total_amount|floatformat:2 }}</td>
+                        <td>
+                            <a href="{% url 'invoices:invoices_list' %}" class="btn-sm">View</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6">No recent invoices.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dashboard-container { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+    .dashboard-header { margin-bottom: 2rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+    .stat-card { background: var(--card-bg, #fff); padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); text-align: center; }
+    .stat-card h3 { margin: 0 0 0.5rem; color: #6b7280; font-size: 0.875rem; text-transform: uppercase; }
+    .amount { font-size: 1.5rem; font-weight: bold; margin: 0; }
+    .positive { color: #10b981; }
+    .negative { color: #ef4444; }
+    .status-badge { padding: 0.25rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }
+    .status-badge.draft { background: #fef3c7; color: #92400e; }
+    .status-badge.sent { background: #dbeafe; color: #1e40af; }
+    .status-badge.paid { background: #d1fae5; color: #065f46; }
+    .status-badge.overdue { background: #fee2e2; color: #991b1b; }
+    .btn-sm { font-size: 0.875rem; color: var(--primary-color); text-decoration: none; }
+</style>
+{% endblock %}

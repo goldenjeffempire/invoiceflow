@@ -14,9 +14,32 @@
     <script src="{% static 'js/ui.js' %}" defer></script>
 </head>
 <body>
-    <header>
-        <button id="theme-toggle" aria-label="Toggle theme">🌗</button>
+    <header class="main-header">
+        <div class="logo">InvoiceFlow</div>
+        <nav>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dashboard:home' %}">Dashboard</a>
+                <a href="{% url 'invoices:invoices_list' %}">Invoices</a>
+                <a href="{% url 'invoices:clients_list' %}">Clients</a>
+                <a href="{% url 'payments:payment_settings' %}">Settings</a>
+                <form action="{% url 'auth:logout' %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link-btn">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'auth:login' %}">Login</a>
+                <a href="{% url 'auth:signup' %}">Sign Up</a>
+            {% endif %}
+            <button id="theme-toggle" aria-label="Toggle theme">🌗</button>
+        </nav>
     </header>
+
+    <style>
+        .main-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: var(--bg-color); border-bottom: 1px solid #e5e7eb; }
+        [data-theme="dark"] .main-header { border-color: #374151; }
+        .main-header nav a, .nav-link-btn { margin-left: 1.5rem; text-decoration: none; color: var(--text-color); font-weight: 500; background:none; border:none; padding:0; cursor:pointer; font-size:1rem; font-family:inherit; }
+        .logo { font-size: 1.25rem; font-weight: bold; color: var(--primary-color); }
+    </style>
 
     {% block content %}{% endblock %}
 </body>
