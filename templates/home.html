@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="landing-page">
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="badge">Enterprise Ready</span>
+            <h1>Financial Management <span class="gradient-text">Redefined</span></h1>
+            <p>InvoiceFlow is the all-in-one financial operating system for modern businesses. Automate invoicing, track global expenses, and unlock real-time financial intelligence.</p>
+            <div class="hero-actions">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard:home' %}" class="btn btn-primary btn-lg">Go to Workspace</a>
+                {% else %}
+                    <a href="{% url 'auth:signup' %}" class="btn btn-primary btn-lg">Start Free Trial</a>
+                    <a href="#features" class="btn btn-outline btn-lg">View Demo</a>
+                {% endif %}
+            </div>
+            <div class="hero-metrics">
+                <div class="metric">
+                    <span class="m-val">99.9%</span>
+                    <span class="m-label">Uptime</span>
+                </div>
+                <div class="metric">
+                    <span class="m-val">256-bit</span>
+                    <span class="m-label">Encryption</span>
+                </div>
+                <div class="metric">
+                    <span class="m-val">24/7</span>
+                    <span class="m-label">Support</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="glass-card main-dashboard-preview">
+                <div class="browser-ui">
+                    <div class="ui-dots"><span></span><span></span><span></span></div>
+                    <div class="ui-address">secure.invoiceflow.com</div>
+                </div>
+                <div class="preview-layout">
+                    <div class="p-sidebar"></div>
+                    <div class="p-main">
+                        <div class="p-stats">
+                            <div class="p-stat"></div>
+                            <div class="p-stat"></div>
+                        </div>
+                        <div class="p-graph"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features-grid">
+        <div class="section-header">
+            <h2>Built for <span class="gradient-text">Performance</span></h2>
+            <p>Everything you need to manage your business at scale.</p>
+        </div>
+        <div class="feature-card">
+            <div class="f-icon">⚡</div>
+            <h3>Instant Invoicing</h3>
+            <p>Generate compliant PDF invoices in milliseconds with automated tax calculation.</p>
+        </div>
+        <div class="feature-card">
+            <div class="f-icon">🌍</div>
+            <h3>Multi-Currency</h3>
+            <p>Accept payments from anywhere in the world with integrated Stripe and Paystack support.</p>
+        </div>
+        <div class="feature-card">
+            <div class="f-icon">🔒</div>
+            <h3>Vault Security</h3>
+            <p>Your financial data is protected by enterprise-grade security and automated backups.</p>
+        </div>
+    </section>
+
+    <footer class="enterprise-footer">
+        <div class="footer-top">
+            <div class="f-brand">
+                <span class="logo-text">InvoiceFlow</span>
+                <p>The standard for business finance.</p>
+            </div>
+            <div class="f-links">
+                <div class="f-col">
+                    <h5>Platform</h5>
+                    <a href="#">Security</a>
+                    <a href="#">Infrastructure</a>
+                    <a href="#">Status</a>
+                </div>
+                <div class="f-col">
+                    <h5>Company</h5>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">GDPR</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 InvoiceFlow. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+
+<style>
+    .landing-page { padding: 4rem 2rem; max-width: 1400px; margin: 0 auto; }
+    .hero-section { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; min-height: 70vh; }
+    
+    .badge { display: inline-block; padding: 0.4rem 1rem; background: rgba(99, 102, 241, 0.1); color: var(--primary-color); border-radius: 100px; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 2rem; }
+    
+    .hero-content h1 { font-size: 5rem; font-weight: 900; line-height: 1; letter-spacing: -0.03em; margin-bottom: 2rem; }
+    .gradient-text { background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    .hero-content p { font-size: 1.4rem; color: #6b7280; line-height: 1.6; margin-bottom: 3rem; max-width: 90%; }
+    .hero-actions { display: flex; gap: 1.5rem; margin-bottom: 4rem; }
+    
+    .btn-lg { padding: 1.2rem 3rem; font-size: 1.1rem; border-radius: 1rem; font-weight: 700; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .btn-primary { background: var(--primary-color); color: white; box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 30px -10px rgba(99, 102, 241, 0.5); }
+    
+    .hero-metrics { display: flex; gap: 4rem; border-top: 1px solid #f3f4f6; padding-top: 2rem; }
+    .metric { display: flex; flex-direction: column; }
+    .m-val { font-size: 1.5rem; font-weight: 800; color: var(--text-color); }
+    .m-label { font-size: 0.9rem; color: #9ca3af; }
+
+    .hero-visual { position: relative; }
+    .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 2rem; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.15); overflow: hidden; }
+    [data-theme="dark"] .glass-card { background: rgba(31, 41, 55, 0.8); border-color: rgba(255, 255, 255, 0.1); }
+
+    .browser-ui { background: #f9fafb; padding: 0.8rem 1.5rem; display: flex; align-items: center; gap: 1.5rem; border-bottom: 1px solid #f3f4f6; }
+    [data-theme="dark"] .browser-ui { background: #111827; border-color: #374151; }
+    .ui-dots { display: flex; gap: 0.4rem; }
+    .ui-dots span { width: 10px; height: 10px; border-radius: 50%; background: #e5e7eb; }
+    .ui-address { flex: 1; background: white; border-radius: 0.5rem; padding: 0.2rem 1rem; font-size: 0.75rem; color: #9ca3af; text-align: center; }
+    [data-theme="dark"] .ui-address { background: #1f2937; }
+
+    .preview-layout { display: flex; height: 350px; }
+    .p-sidebar { width: 60px; background: #f3f4f6; opacity: 0.5; }
+    [data-theme="dark"] .p-sidebar { background: #111827; }
+    .p-main { flex: 1; padding: 2rem; }
+    .p-stats { display: flex; gap: 1rem; margin-bottom: 2rem; }
+    .p-stat { flex: 1; height: 60px; background: #eff6ff; border-radius: 1rem; }
+    .p-graph { height: 180px; background: linear-gradient(to top, #f5f3ff, #ffffff); border-radius: 1.5rem; }
+    [data-theme="dark"] .p-graph { background: linear-gradient(to top, #1e1b4b, #111827); }
+
+    .features-grid { padding: 12rem 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+    .section-header { grid-column: 1 / -1; text-align: center; margin-bottom: 6rem; }
+    .section-header h2 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; }
+    .section-header p { font-size: 1.25rem; color: #6b7280; }
+
+    .feature-card { padding: 4rem; border-radius: 2.5rem; background: white; border: 1px solid #f3f4f6; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    [data-theme="dark"] .feature-card { background: #1f2937; border-color: #374151; }
+    .feature-card:hover { transform: translateY(-15px); border-color: var(--primary-color); box-shadow: 0 30px 60px -15px rgba(0,0,0,0.1); }
+    
+    .f-icon { width: 80px; height: 80px; background: #f5f3ff; border-radius: 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin-bottom: 2.5rem; }
+    .feature-card h3 { font-size: 1.75rem; font-weight: 800; margin-bottom: 1.5rem; }
+    .feature-card p { font-size: 1.1rem; color: #6b7280; line-height: 1.6; }
+
+    .enterprise-footer { margin-top: 10rem; padding: 6rem 0 3rem; border-top: 1px solid #f3f4f6; }
+    [data-theme="dark"] .enterprise-footer { border-color: #374151; }
+    .footer-top { display: flex; justify-content: space-between; margin-bottom: 6rem; }
+    .f-brand p { color: #6b7280; margin-top: 1rem; font-size: 1.1rem; }
+    .f-links { display: flex; gap: 8rem; }
+    .f-col h5 { font-size: 1rem; font-weight: 800; margin-bottom: 2rem; }
+    .f-col a { display: block; color: #6b7280; text-decoration: none; margin-bottom: 1rem; font-size: 1.1rem; transition: color 0.2s; }
+    .f-col a:hover { color: var(--primary-color); }
+    .footer-bottom { border-top: 1px solid #f3f4f6; padding-top: 3rem; text-align: center; color: #9ca3af; }
+    [data-theme="dark"] .footer-bottom { border-color: #374151; }
+
+    @media (max-width: 1200px) {
+        .hero-section { grid-template-columns: 1fr; text-align: center; gap: 6rem; }
+        .hero-content h1 { font-size: 4rem; }
+        .hero-actions { justify-content: center; }
+        .hero-metrics { justify-content: center; }
+        .hero-content p { margin-left: auto; margin-right: auto; }
+        .features-grid { grid-template-columns: 1fr; }
+        .footer-top { flex-direction: column; gap: 4rem; align-items: center; text-align: center; }
+        .f-links { gap: 4rem; }
+    }
+</style>
+{% endblock %}
