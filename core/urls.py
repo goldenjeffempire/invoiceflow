@@ -17,10 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.views.generic import TemplateView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('accounts.urls', namespace='auth')),
-    path('', include('dashboard.urls', namespace='dashboard')),
+    path('', TemplateView.as_view(template_name='home.html'), name='landing'),
+    path('dashboard/', include('dashboard.urls', namespace='dashboard')),
     path('invoices/', include('invoices.urls', namespace='invoices')),
     path('payments/', include('payments.urls', namespace='payments')),
     path('sales/', include('sales.urls', namespace='sales')),
