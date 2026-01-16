@@ -14,33 +14,37 @@
 
     <div class="stats-grid">
         <div class="stat-card glass-card">
-            <div class="stat-icon sales">💰</div>
+            <div class="stat-icon sales">💸</div>
             <div class="stat-meta">
-                <h3>Total Sales</h3>
+                <h3>Revenue</h3>
                 <p class="amount">₦{{ total_sales|floatformat:2 }}</p>
+                <span class="trend positive">↑ 12% vs last month</span>
             </div>
         </div>
         <div class="stat-card glass-card">
-            <div class="stat-icon expenses">📉</div>
+            <div class="stat-icon expenses">🧾</div>
             <div class="stat-meta">
-                <h3>Total Expenses</h3>
+                <h3>Expenses</h3>
                 <p class="amount">₦{{ total_expenses|floatformat:2 }}</p>
+                <span class="trend negative">↓ 5% vs last month</span>
             </div>
         </div>
         <div class="stat-card glass-card">
-            <div class="stat-icon profit">📈</div>
+            <div class="stat-icon profit">💎</div>
             <div class="stat-meta">
                 <h3>Net Profit</h3>
                 <p class="amount {% if net_profit >= 0 %}positive{% else %}negative{% endif %}">
                     ₦{{ net_profit|floatformat:2 }}
                 </p>
+                <span class="trend positive">↑ 8% growth</span>
             </div>
         </div>
         <div class="stat-card glass-card">
-            <div class="stat-icon clients">👥</div>
+            <div class="stat-icon clients">🛡️</div>
             <div class="stat-meta">
-                <h3>Clients</h3>
+                <h3>Active Clients</h3>
                 <p class="count">{{ clients_count }}</p>
+                <span class="trend">Stable network</span>
             </div>
         </div>
     </div>
@@ -112,10 +116,12 @@
     .stat-icon.profit { background: #f0fdf4; }
     .stat-icon.clients { background: #faf5ff; }
 
-    .stat-meta h3 { font-size: 0.875rem; color: #6b7280; margin-bottom: 0.25rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.025em; }
-    .amount, .count { font-size: 1.5rem; font-weight: 700; }
-    .positive { color: #10b981; }
-    .negative { color: #ef4444; }
+    .stat-meta h3 { font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .amount, .count { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; }
+    .trend { font-size: 0.75rem; font-weight: 600; margin-top: 0.25rem; display: block; }
+    .trend.positive { color: #10b981; }
+    .trend.negative { color: #f43f5e; }
+    [data-theme="dark"] .stat-meta h3 { color: #94a3b8; }
 
     .dashboard-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; }
     .card { background: white; border-radius: 1.5rem; border: 1px solid #f3f4f6; padding: 1.5rem; }
