@@ -32,24 +32,46 @@
     <section class="features-section">
         <div class="feature-card">
             <div class="feature-icon">📝</div>
-            <h3>Easy Invoicing</h3>
-            <p>Create and send professional invoices in seconds. Track when they're opened and paid.</p>
+            <h3>Professional Invoices</h3>
+            <p>Generate beautiful PDF invoices in seconds. Customize with your branding and track payment status in real-time.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">💸</div>
-            <h3>Expense Tracking</h3>
-            <p>Keep track of your business spending. Categorize expenses and see where your money goes.</p>
+            <h3>Smart Expenses</h3>
+            <p>Capture every business expense. Categorize them automatically and monitor your spending habits effortlessly.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">📊</div>
-            <h3>Financial Reports</h3>
-            <p>Get a bird's-eye view of your business performance with interactive charts and summaries.</p>
+            <h3>Insightful Reporting</h3>
+            <p>Powerful analytics at your fingertips. Visualize your cash flow with interactive charts and export summaries for tax season.</p>
         </div>
     </section>
+
+    <footer class="landing-footer" style="margin-top: 6rem; padding: 4rem 0 2rem; border-top: 1px solid #e5e7eb;">
+        <div class="footer-grid" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem;">
+            <div class="footer-brand">
+                <div class="logo">InvoiceFlow</div>
+                <p style="color: #6b7280; margin-top: 1rem;">Streamlining finance for the modern entrepreneur.</p>
+            </div>
+            <div class="footer-links">
+                <h4 style="margin-bottom: 1.5rem; color: var(--text-color);">Product</h4>
+                <a href="#features" style="display: block; margin-bottom: 0.75rem; color: #6b7280; text-decoration: none;">Features</a>
+                <a href="{% url 'auth:signup' %}" style="display: block; margin-bottom: 0.75rem; color: #6b7280; text-decoration: none;">Pricing</a>
+            </div>
+            <div class="footer-links">
+                <h4 style="margin-bottom: 1.5rem; color: var(--text-color);">Support</h4>
+                <a href="#" style="display: block; margin-bottom: 0.75rem; color: #6b7280; text-decoration: none;">Help Center</a>
+                <a href="#" style="display: block; margin-bottom: 0.75rem; color: #6b7280; text-decoration: none;">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom" style="border-top: 1px solid #f3f4f6; padding-top: 2rem; text-align: center; color: #9ca3af; font-size: 0.875rem;">
+            <p>&copy; 2026 InvoiceFlow. All rights reserved.</p>
+        </div>
+    </footer>
 </div>
 
 <style>
-    .landing-page { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .landing-page { padding: 4rem 2rem 0; max-width: 1200px; margin: 0 auto; }
     .hero-section { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 6rem; }
     .hero-content h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--text-color); }
     .hero-content p { font-size: 1.25rem; color: #6b7280; margin-bottom: 2rem; line-height: 1.6; }
@@ -83,11 +105,15 @@
     [data-theme="dark"] .mockup-item { background: #374151; }
     [data-theme="dark"] .btn-outline { border-color: #374151; color: white; }
     [data-theme="dark"] .btn-outline:hover { background: #374151; }
+    [data-theme="dark"] .landing-footer { border-color: #374151; }
+    [data-theme="dark"] .footer-bottom { border-color: #374151; }
 
     @media (max-width: 1024px) {
         .hero-section { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
         .hero-actions { justify-content: center; }
         .features-section { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
     }
 </style>
+{% endblock %}
 {% endblock %}
