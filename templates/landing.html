@@ -135,7 +135,7 @@
         <div class="container showcase-grid">
             <div class="showcase-media" data-aos="fade-right">
                 <div class="media-stack">
-                    <img src="{% static 'stock_images/professional_busines_19f7187d.jpg' %}" alt="Team Productivity" class="media-main glass-border">
+                    <img src="{% static 'stock_images/modern_professional_b_57576594.jpg' %}" alt="Team Productivity" class="media-main glass-border">
                     <div class="media-overlay glass-card" data-aos="zoom-in" data-aos-delay="300">
                         <div class="overlay-header">
                             <strong>Security Protocol</strong>
@@ -153,16 +153,47 @@
                         <div class="item-check">✓</div>
                         <div class="item-body">
                             <strong>Global Webhook Security</strong>
-                            <p>End-to-end cryptographic validation for all external API callbacks.</p>
+                            <p>End-to-end cryptographic validation for all external API callbacks ensuring data integrity.</p>
                         </div>
                     </div>
                     <div class="list-item">
                         <div class="item-check">✓</div>
                         <div class="item-body">
                             <strong>Centralized Audit Logging</strong>
-                            <p>Real-time activity monitoring across all environment nodes.</p>
+                            <p>Real-time activity monitoring across all environment nodes for complete transparency.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Dashboard Preview Section -->
+    <section class="dashboard-preview-section">
+        <div class="container">
+            <div class="preview-grid" data-aos="fade-up">
+                <div class="preview-content">
+                    <h2 class="section-title">Master Your <span class="gradient-text">Cash Flow</span></h2>
+                    <p class="section-subtitle text-left">Get a bird's-eye view of your business performance with real-time analytics and intelligent forecasting.</p>
+                    <div class="preview-features">
+                        <div class="p-feat">
+                            <span class="p-feat-icon">📉</span>
+                            <div class="p-feat-text">
+                                <strong>Expense Tracking</strong>
+                                <p>Categorize and reconcile expenses automatically.</p>
+                            </div>
+                        </div>
+                        <div class="p-feat">
+                            <span class="p-feat-icon">📈</span>
+                            <div class="p-feat-text">
+                                <strong>Revenue Growth</strong>
+                                <p>Monitor sales trends with interactive Chart.js visualizations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-image-container">
+                    <img src="{% static 'stock_images/clean_professional_bus_31168128.jpg' %}" alt="Financial Analytics Dashboard" class="preview-main-img glass-border">
                 </div>
             </div>
         </div>
@@ -438,6 +469,17 @@
     .btn-white { background: white; color: var(--primary-color); border: none; }
     .btn-white:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(255,255,255,0.2); }
     .btn-outline-white { border: 2px solid white; color: white; background: transparent; }
+
+    /* Dashboard Preview Styles */
+    .dashboard-preview-section { padding: 120px 0; border-top: 1px solid var(--glass-border); }
+    .preview-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+    .preview-main-img { width: 100%; border-radius: 24px; box-shadow: 0 40px 80px rgba(0,0,0,0.2); }
+    .preview-features { display: grid; gap: 32px; margin-top: 48px; }
+    .p-feat { display: flex; gap: 20px; align-items: flex-start; }
+    .p-feat-icon { font-size: 1.5rem; background: var(--glass-border); padding: 12px; border-radius: 12px; }
+    .p-feat-text strong { display: block; font-size: 1.125rem; margin-bottom: 4px; }
+    .p-feat-text p { color: var(--text-muted); font-size: 0.9375rem; }
+    .text-left { text-align: left !important; }
 
     /* Footer */
     .main-footer { padding: 100px 0 40px; border-top: 1px solid var(--glass-border); }
