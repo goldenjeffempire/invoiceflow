@@ -94,11 +94,11 @@ DATABASES = {
     )
 }
 
-# Fix for potential psycopg2/psycopg3 conflict in Django 5.1+
+# Ensure psycopg2 is used as the database driver and prevent Django from looking for psycopg3
 import sys
 try:
     import psycopg2
-    sys.modules['psycopg'] = psycopg2
+    sys.modules['psycopg'] = None 
 except ImportError:
     pass
 
