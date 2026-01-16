@@ -11,7 +11,7 @@ def generate_invoice_pdf(invoice):
     html_content = render_to_string('invoices/invoice_pdf.html', {'invoice': invoice})
     result = io.BytesIO()
     pisa_status = pisa.CreatePDF(io.BytesIO(html_content.encode("UTF-8")), result)
-    if not pisa_status.err:
+    if not getattr(pisa_status, 'err', True): # type: ignore
         return result.getvalue()
     return None
 
