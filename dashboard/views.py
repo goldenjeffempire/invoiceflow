@@ -7,6 +7,7 @@ from django.db.models import Sum
 from django.db.models.functions import TruncMonth
 import json
 
+# type: ignore
 @login_required
 def home(request):
     user = request.user

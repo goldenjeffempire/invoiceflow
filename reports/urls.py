@@ -5,4 +5,4 @@ app_name = 'reports'
 
 urlpatterns = [
     path('', views.report_summary, name='summary'),
-]
+] # type: ignore

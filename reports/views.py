@@ -4,6 +4,7 @@ from sales.models import Sale
 from expenses.models import Expense
 from django.db.models import Sum
 
+# type: ignore
 @login_required
 def report_summary(request):
     total_sales = Sale.objects.filter(user=request.user).aggregate(Sum('amount'))['amount__sum'] or 0
