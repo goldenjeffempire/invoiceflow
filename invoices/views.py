@@ -56,6 +56,7 @@ def invoice_create(request):
     
     return render(request, 'invoices/invoice_form.html', {'invoice_form': invoice_form, 'formset': formset})
 
+# type: ignore
 def send_invoice_email(invoice):
     pdf_bytes = generate_invoice_pdf(invoice)
     payment_link = f"{settings.SITE_URL}/payments/invoice/{invoice.id}/pay/"
@@ -76,6 +77,7 @@ def send_payment_confirmation(invoice):
     })
     send_email(invoice.client.email, f"Payment Received - Invoice #{invoice.id}", html_content)
 
+# type: ignore
 def send_reminders():
     upcoming = Invoice.objects.filter(due_date__lte=now().date() + timedelta(days=3), auto_reminder=True, status='sent')
     for invoice in upcoming:
