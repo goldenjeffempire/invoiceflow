@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils import timezone
 from decimal import Decimal
 
+# type: ignore
 class Client(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='clients')
     name = models.CharField(max_length=255)

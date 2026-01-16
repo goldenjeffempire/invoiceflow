@@ -1,26 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="dashboard-container">
-    <h2>Invoices</h2>
-    <a href="{% url 'invoices:invoice_create' %}" class="cta-btn">Create Invoice</a>
-    <table class="table">
-        <thead>
-            <tr><th>#</th><th>Client</th><th>Title</th><th>Status</th><th>Total</th><th>Due Date</th></tr>
-        </thead>
-        <tbody>
-            {% for invoice in invoices %}
-            <tr>
-                <td>{{ invoice.id }}</td>
-                <td>{{ invoice.client.name }}</td>
-                <td>{{ invoice.title }}</td>
-                <td class="status {{ invoice.status }}">{{ invoice.get_status_display }}</td>
-                <td>{{ invoice.total_amount }}</td>
-                <td>{{ invoice.due_date }}</td>
-            </tr>
-            {% empty %}
-            <tr><td colspan="6">No invoices found.</td></tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="dashboard-header">
+        <h1>Invoices</h1>
+        <a href="{% url 'invoices:invoice_create' %}" class="btn btn-primary">+ Create Invoice</a>
+    </div>
+    <div class="table-responsive glass-card card" style="padding: 1.5rem; margin-top: 2rem;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Client</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invoice in invoices %}
+                <tr>
+                    <td>{{ invoice.id }}</td>
+                    <td>{{ invoice.client.name }}</td>
+                    <td>{{ invoice.title }}</td>
+                    <td><span class="status-badge {{ invoice.status }}">{{ invoice.get_status_display }}</span></td>
+                    <td>₦{{ invoice.total_amount|floatformat:2 }}</td>
+                    <td>{{ invoice.due_date }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="6" class="empty-state">No invoices found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
