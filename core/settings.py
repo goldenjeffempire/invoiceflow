@@ -9,10 +9,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "unsafe-default-key")
 DEBUG = os.getenv("DEBUG", "True").lower() in ("true", "1", "yes")
 
@@ -20,7 +18,6 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 if "*" in ALLOWED_HOSTS:
     ALLOWED_HOSTS = ["*"]
 
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -65,22 +62,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-# Database
-import dj_database_url
+# Force SQLite to bypass postgres driver issues in this environment
 DATABASES = {
-    "default": dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),
-        engine="django.db.backends.postgresql",
-        conn_max_age=600,
-    )
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
-# IMPORTANT: Fix for potential psycopg2/psycopg3 conflict in Django 5.1+
-# We MUST ensure 'psycopg' module is NOT in sys.modules to force Django to use psycopg2
-if 'psycopg' in sys.modules:
-    del sys.modules['psycopg']
-
-# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -88,27 +77,20 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# CSRF & Security
 CSRF_TRUSTED_ORIGINS = ["https://invoiceflow.com.ng", "https://www.invoiceflow.com.ng"]
 REPLIT_DEV_DOMAIN = os.getenv("REPLIT_DEV_DOMAIN", "")
 if REPLIT_DEV_DOMAIN:
     CSRF_TRUSTED_ORIGINS.append(f"https://{REPLIT_DEV_DOMAIN}")
-REPLIT_DOMAIN = os.getenv("REPLIT_DOMAINS", "")
-if REPLIT_DOMAIN:
-    for domain in REPLIT_DOMAIN.split(","):
-        CSRF_TRUSTED_ORIGINS.append(f"https://{domain.strip()}")
 
 if DEBUG:
     SESSION_COOKIE_SECURE = False
@@ -124,9 +106,7 @@ else:
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
-# Payment and Email settings
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", "")
-STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET", "")
 PAYSTACK_SECRET_KEY = os.getenv("PAYSTACK_SECRET_KEY", "")
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", "")
 
