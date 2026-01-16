@@ -5,7 +5,6 @@ from .forms import SignupForm, LoginForm
 from django.core.exceptions import PermissionDenied
 from .decorators import admin_required
 
-
 def signup_view(request):
     if request.user.is_authenticated:
         return redirect('dashboard:home')
@@ -38,3 +37,6 @@ def admin_required(view_func):
             raise PermissionDenied()
         return view_func(request, *args, **kwargs)
     return _wrapped_view
+
+@admin_required
+def admin_dashboard(request):
