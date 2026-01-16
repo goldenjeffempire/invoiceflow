@@ -94,6 +94,14 @@ DATABASES = {
     )
 }
 
+# Fix for potential psycopg2/psycopg3 conflict in Django 5.1+
+import sys
+try:
+    import psycopg2
+    sys.modules['psycopg'] = psycopg2
+except ImportError:
+    pass
+
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
