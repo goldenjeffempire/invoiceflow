@@ -96,14 +96,14 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-collapse mb-2 mb-lg-0 list-unstyled d-flex align-items-center ms-auto">
-                <li><a class="nav-link" href="#features">Features</a></li>
-                <li><a class="nav-link" href="#solutions">Solutions</a></li>
-                <li><a class="nav-link" href="#about">About</a></li>
-                <li class="ms-lg-4">
+            <ul class="navbar-nav mb-2 mb-lg-0 list-unstyled d-flex align-items-center ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#solutions">Solutions</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item ms-lg-4">
                     <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary cta-button">Login</a>
                 </li>
-                <li class="ms-3">
+                <li class="nav-item ms-3">
                     <a href="{% url 'accounts:register' %}" class="btn btn-primary cta-button">Get Started</a>
                 </li>
             </ul>
@@ -192,38 +192,72 @@
     </div>
 </section>
 
+<!-- About Section -->
+<section id="about" class="py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <h2 class="display-5 fw-bold mb-4">Crafted for <span class="text-primary">Nigeria</span></h2>
+                <p class="lead text-muted mb-4">We understand the unique challenges of running a business in Nigeria. From local payment integrations to tax compliance, we've got you covered.</p>
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                        <i class="fas fa-users text-primary fs-4"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-0">Local Support</h5>
+                        <p class="text-muted mb-0">Our team is based in Lagos, ready to help you anytime.</p>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="bg-primary bg-opacity-10 p-3 rounded-3 me-3">
+                        <i class="fas fa-rocket text-primary fs-4"></i>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-0">Fast Onboarding</h5>
+                        <p class="text-muted mb-0">Get started in less than 5 minutes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <img src="{% static 'images/landing/secure.png' %}" alt="Nigeria Business" class="img-fluid rounded-4 shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Footer -->
 <footer class="footer mt-auto">
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-4">
                 <h3 class="fw-bold text-primary mb-4">InvoiceFlow</h3>
-                <p class="text-muted">The #1 billing platform for Nigerian entrepreneurs.</p>
+                <p class="text-muted">The #1 billing platform for Nigerian entrepreneurs and modern businesses.</p>
                 <div class="d-flex gap-3">
-                    <a href="#" class="text-muted fs-4"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-muted fs-4"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-muted fs-4"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://facebook.com/InvoiceFlow" class="text-muted fs-4" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com/invoiceflow.com.ng" class="text-muted fs-4" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@invoiceflow.com.ng" class="text-muted fs-4" target="_blank"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="col-lg-2 offset-lg-2">
                 <h5 class="fw-bold mb-4">Product</h5>
                 <ul class="list-unstyled text-muted">
-                    <li class="mb-2">Features</li>
-                    <li class="mb-2">Pricing</li>
-                    <li>Integrations</li>
+                    <li class="mb-2"><a href="#features" class="text-decoration-none text-muted">Features</a></li>
+                    <li class="mb-2"><a href="#solutions" class="text-decoration-none text-muted">Solutions</a></li>
+                    <li class="mb-2"><a href="#about" class="text-decoration-none text-muted">About Us</a></li>
                 </ul>
             </div>
             <div class="col-lg-4">
                 <h5 class="fw-bold mb-4">Contact Us</h5>
                 <ul class="list-unstyled text-muted">
                     <li class="mb-2"><i class="fas fa-envelope me-2"></i> support@invoiceflow.com.ng</li>
+                    <li class="mb-2"><i class="fas fa-envelope me-2"></i> hello@invoiceflow.com.ng</li>
                     <li class="mb-2"><i class="fas fa-globe me-2"></i> invoiceflow.com.ng</li>
                 </ul>
             </div>
         </div>
         <hr class="my-5">
         <div class="text-center text-muted">
-            <p>&copy; 2026 InvoiceFlow. All rights reserved.</p>
+            <p>&copy; 2026 InvoiceFlow. Built with passion for Nigerian businesses.</p>
         </div>
     </div>
 </footer>
