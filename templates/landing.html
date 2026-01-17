@@ -1,371 +1,470 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}InvoiceFlow | Enterprise Invoicing for Nigeria{% endblock %}
+{% block title %}InvoiceFlow | Enterprise-Grade Invoicing & Payments for Modern Business{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
     :root {
-        --primary: #2563eb;
-        --primary-dark: #1e40af;
-        --secondary: #0f172a;
-        --accent: #38bdf8;
-        --text-main: #1e293b;
-        --text-muted: #64748b;
-        --bg-light: #f8fafc;
-        --glass-bg: rgba(255, 255, 255, 0.8);
-        --glass-border: rgba(255, 255, 255, 0.2);
+        --primary: #0066FF;
+        --primary-dark: #0052CC;
+        --secondary: #0F172A;
+        --accent: #10B981;
+        --text-main: #1E293B;
+        --text-muted: #64748B;
+        --bg-light: #F8FAFC;
+        --white: #FFFFFF;
+        --glass-bg: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.3);
+    }
+
+    [data-theme="dark"] {
+        --primary: #3B82F6;
+        --primary-dark: #2563EB;
+        --secondary: #F1F5F9;
+        --text-main: #F1F5F9;
+        --text-muted: #94A3B8;
+        --bg-light: #020617;
+        --white: #0F172A;
+        --glass-bg: rgba(15, 23, 42, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.1);
     }
 
     body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
         color: var(--text-main);
         background-color: var(--bg-light);
-        overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Animations */
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
+    /* Professional Gradients & Backgrounds */
+    .bg-mesh {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        overflow: hidden;
     }
-
-    @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-20px); }
-        100% { transform: translateY(0px); }
+    .mesh-1 {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(0, 102, 255, 0.08) 0%, transparent 70%);
+        top: -200px;
+        right: -100px;
+        border-radius: 50%;
     }
-
-    .animate-up { animation: fadeInUp 0.8s ease-out forwards; }
-    .float { animation: float 6s ease-in-out infinite; }
+    .mesh-2 {
+        position: absolute;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+        bottom: -300px;
+        left: -200px;
+        border-radius: 50%;
+    }
 
     /* Navigation */
     .navbar {
         background: var(--glass-bg);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--glass-border);
-        padding: 1rem 0;
-        transition: all 0.3s ease;
+        padding: 1.25rem 0;
     }
-
     .navbar-brand {
-        font-size: 1.75rem;
-        letter-spacing: -0.5px;
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: -1px;
     }
-
     .nav-link {
         font-weight: 500;
         color: var(--text-main) !important;
-        margin: 0 1rem;
+        padding: 0.5rem 1.25rem !important;
+        transition: opacity 0.2s;
+    }
+    .nav-link:hover { opacity: 0.7; }
+
+    /* Hero */
+    .hero-section {
+        padding: 12rem 0 8rem;
         position: relative;
     }
-
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--primary);
-        transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after { width: 100%; }
-
-    /* Hero Section */
-    .hero-section {
-        padding: 10rem 0 6rem;
-        background: radial-gradient(circle at 90% 10%, rgba(37, 99, 235, 0.05) 0%, transparent 40%),
-                    radial-gradient(circle at 10% 90%, rgba(56, 189, 248, 0.05) 0%, transparent 40%);
-    }
-
     .hero-title {
-        font-size: 4rem;
-        line-height: 1.1;
-        letter-spacing: -2px;
+        font-size: 4.5rem;
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -3px;
+        margin-bottom: 1.5rem;
+    }
+    .gradient-text {
+        background: linear-gradient(135deg, var(--primary) 0%, #6366F1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .hero-p {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        color: var(--text-muted);
+        max-width: 540px;
+        margin-bottom: 3rem;
     }
 
-    .cta-btn {
-        padding: 1rem 2.5rem;
-        border-radius: 12px;
-        font-weight: 600;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        text-transform: none;
-    }
-
-    .cta-btn-primary {
+    /* Buttons */
+    .btn-primary-custom {
         background: var(--primary);
+        color: white;
         border: none;
-        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+        padding: 1rem 2.5rem;
+        border-radius: 100px;
+        font-weight: 600;
+        box-shadow: 0 10px 25px -5px rgba(0, 102, 255, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    .cta-btn-primary:hover {
-        background: var(--primary-dark);
+    .btn-primary-custom:hover {
         transform: translateY(-2px);
-        box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
+        box-shadow: 0 20px 35px -10px rgba(0, 102, 255, 0.5);
+        color: white;
+    }
+    .btn-secondary-custom {
+        background: var(--white);
+        color: var(--text-main);
+        border: 1px solid var(--glass-border);
+        padding: 1rem 2.5rem;
+        border-radius: 100px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    .btn-secondary-custom:hover {
+        background: var(--bg-light);
+        border-color: var(--primary);
     }
 
-    /* Cards */
-    .feature-card {
-        background: white;
-        border: 1px solid #e2e8f0;
-        border-radius: 24px;
-        padding: 2.5rem;
+    /* Feature Cards */
+    .section-tag {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 0.875rem;
+        color: var(--primary);
+        display: block;
+        margin-bottom: 1rem;
+    }
+    .card-feature {
+        background: var(--white);
+        border: 1px solid var(--glass-border);
+        border-radius: 2rem;
+        padding: 3rem;
         height: 100%;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    .feature-card:hover {
+    .card-feature:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.1);
         border-color: var(--primary);
-        transform: translateY(-12px);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
     }
-
-    .icon-box {
+    .feature-icon {
         width: 64px;
         height: 64px;
-        background: rgba(37, 99, 235, 0.1);
-        border-radius: 16px;
+        background: rgba(0, 102, 255, 0.1);
+        color: var(--primary);
+        border-radius: 1.25rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 1.5rem;
-        color: var(--primary);
         font-size: 1.5rem;
+        margin-bottom: 2rem;
     }
 
-    /* Showcase */
+    /* Image Showcase */
+    .showcase-wrapper {
+        position: relative;
+        border-radius: 2.5rem;
+        overflow: hidden;
+        box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.15);
+        background: var(--white);
+        border: 1px solid var(--glass-border);
+    }
     .showcase-img {
-        border-radius: 32px;
-        box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.12);
-        transition: transform 0.5s ease;
+        width: 100%;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .showcase-wrapper:hover .showcase-img {
+        transform: scale(1.03);
     }
 
-    .showcase-img:hover {
-        transform: scale(1.02);
+    /* Testimonials */
+    .testimonial-card {
+        padding: 3rem;
+        background: var(--white);
+        border-radius: 2rem;
+        border: 1px solid var(--glass-border);
+    }
+    .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
     }
 
     /* Footer */
-    .footer {
+    .footer-main {
+        padding: 10rem 0 4rem;
         background: var(--secondary);
-        color: #94a3b8;
-        padding: 6rem 0 3rem;
+        color: #94A3B8;
     }
-
-    .footer h5 { color: white; margin-bottom: 1.5rem; }
-    .footer-link { color: #94a3b8; text-decoration: none; transition: color 0.2s; }
-    .footer-link:hover { color: var(--accent); }
-
-    .social-icon {
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .footer-heading {
         color: white;
-        transition: all 0.3s;
+        font-weight: 700;
+        margin-bottom: 2rem;
+    }
+    .footer-link {
+        color: #94A3B8;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.75rem;
+        transition: color 0.2s;
+    }
+    .footer-link:hover { color: white; }
+
+    /* Animations */
+    [data-aos] {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-aos].aos-animate {
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    .social-icon:hover {
-        background: var(--primary);
-        transform: translateY(-3px);
+    @media (max-width: 991px) {
+        .hero-title { font-size: 3rem; }
     }
 </style>
+
+<div class="bg-mesh">
+    <div class="mesh-1"></div>
+    <div class="mesh-2"></div>
+</div>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-        <a class="navbar-brand fw-extrabold text-primary" href="#">InvoiceFlow</a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <a class="navbar-brand text-primary" href="#">INVOICEFLOW</a>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navMain">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto me-lg-5">
+                <li class="nav-item"><a class="nav-link" href="#features">Platform</a></li>
                 <li class="nav-item"><a class="nav-link" href="#solutions">Solutions</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
                 <li class="nav-item"><a class="nav-link" href="#security">Security</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
-            <div class="d-flex align-items-center gap-3">
-                <a href="{% url 'accounts:login' %}" class="btn text-primary fw-bold">Sign In</a>
-                <a href="{% url 'accounts:register' %}" class="btn btn-primary cta-btn cta-btn-primary text-white">Get Started</a>
+            <div class="d-flex align-items-center gap-4">
+                <a href="{% url 'accounts:login' %}" class="nav-link p-0">Sign In</a>
+                <a href="{% url 'accounts:register' %}" class="btn btn-primary-custom">Get Started</a>
             </div>
         </div>
     </div>
 </nav>
 
-<!-- Hero -->
+<!-- Hero Section -->
 <section class="hero-section">
     <div class="container">
         <div class="row align-items-center g-5">
-            <div class="col-lg-6 animate-up">
-                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-4 fw-bold">
-                    NEW: AI-Powered Invoice Matching
-                </span>
-                <h1 class="hero-title fw-extrabold mb-4">The Operating System for Your <span class="text-primary">Business Growth</span></h1>
-                <p class="lead text-muted mb-5 fs-4">Automate your entire billing lifecycle. Secure payments, professional invoices, and deep financial insights—all in one place.</p>
+            <div class="col-lg-6" data-aos="fade-up">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-pill mb-4">
+                    <span class="badge bg-primary rounded-pill">New</span>
+                    <span class="small fw-bold">Automated Billing for Global Teams</span>
+                </div>
+                <h1 class="hero-title">The Future of <span class="gradient-text">Business Finance</span></h1>
+                <p class="hero-p">Simplify your invoicing, automate payments, and gain deep financial intelligence. Built for modern enterprises that demand efficiency and scale.</p>
                 <div class="d-flex flex-wrap gap-4">
-                    <a href="{% url 'accounts:register' %}" class="btn btn-primary cta-btn cta-btn-primary btn-lg text-white">Start Free Trial</a>
-                    <a href="#demo" class="btn btn-outline-secondary cta-btn btn-lg d-flex align-items-center gap-2">
-                        <i class="fas fa-play-circle text-primary"></i> Watch Demo
+                    <a href="{% url 'accounts:register' %}" class="btn btn-primary-custom btn-lg">Start Free Trial</a>
+                    <a href="#demo" class="btn btn-secondary-custom btn-lg d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-play fs-6"></i> View Platform Tour
                     </a>
                 </div>
-                <div class="mt-5 d-flex align-items-center gap-4 opacity-50">
-                    <span class="fw-bold small">TRUSTED BY TEAMS AT:</span>
-                    <div class="d-flex gap-4 fs-5 fw-bold grayscale">
-                        <span>LagosTech</span>
-                        <span>MainlandDev</span>
-                        <span>NG-Cloud</span>
-                    </div>
+                <div class="mt-5 pt-4 border-top border-light d-flex align-items-center gap-5 grayscale opacity-50">
+                    <span class="small fw-bold text-uppercase tracking-wider">Trusted by leaders</span>
+                    <i class="fa-brands fa-stripe fs-2"></i>
+                    <i class="fa-brands fa-amazon fs-2"></i>
+                    <i class="fa-brands fa-shopify fs-2"></i>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="float">
-                    <img src="{% static 'images/landing/hero_v2.png' %}" alt="InvoiceFlow Platform" class="img-fluid showcase-img">
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="showcase-wrapper">
+                    <img src="{% static 'images/landing/hero_v2.png' %}" alt="InvoiceFlow Dashboard" class="showcase-img">
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Features Grid -->
-<section id="features" class="py-5">
+<!-- Features -->
+<section id="features" class="py-5 my-5">
     <div class="container py-5">
-        <div class="text-center max-width-700 mx-auto mb-5 animate-up">
-            <h2 class="display-4 fw-bold mb-3">Enterprise Power, <span class="text-primary">Startup Simplicity</span></h2>
-            <p class="text-muted fs-5">Everything you need to manage your business finances like a pro.</p>
+        <div class="row mb-5 justify-content-center text-center">
+            <div class="col-lg-7" data-aos="fade-up">
+                <span class="section-tag">Powerful Features</span>
+                <h2 class="display-4 fw-bold mb-4">Everything you need to <span class="gradient-text">scale globally</span></h2>
+                <p class="lead text-muted">From startup to enterprise, our platform adapts to your billing needs with robust tools and seamless integrations.</p>
+            </div>
         </div>
         <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fas fa-bolt"></i></div>
-                    <h4 class="fw-bold mb-3">Instant Invoicing</h4>
-                    <p class="text-muted">Create and send professional, multi-currency invoices in under 60 seconds with our smart templates.</p>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-feature">
+                    <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="fw-bold mb-3">Instant Billing</h3>
+                    <p class="text-muted mb-0">Create professional, compliant invoices in seconds. Support for 135+ currencies and local tax regulations globally.</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fas fa-credit-card"></i></div>
-                    <h4 class="fw-bold mb-3">Seamless Payments</h4>
-                    <p class="text-muted">Integrated Stripe and Paystack support means your clients can pay instantly with cards or bank transfers.</p>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-feature">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="fw-bold mb-3">Enterprise Security</h3>
+                    <p class="text-muted mb-0">Bank-grade encryption, SOC2 compliance, and multi-factor authentication to keep your financial data protected.</p>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fas fa-chart-pie"></i></div>
-                    <h4 class="fw-bold mb-3">Smart Analytics</h4>
-                    <p class="text-muted">Real-time dashboards show your cash flow, upcoming revenue, and tax liabilities at a glance.</p>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-feature">
+                    <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3 class="fw-bold mb-3">Real-time Insights</h3>
+                    <p class="text-muted mb-0">Advanced analytics and forecasting tools that help you understand your cash flow and predict future revenue.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Stats Section -->
-<section class="py-5 bg-primary text-white text-center">
-    <div class="container py-4">
-        <div class="row g-5">
-            <div class="col-md-3">
-                <h2 class="fw-bold display-5 mb-0">₦2.5B+</h2>
-                <p class="opacity-75">Invoices Processed</p>
-            </div>
-            <div class="col-md-3">
-                <h2 class="fw-bold display-5 mb-0">15k+</h2>
-                <p class="opacity-75">Active Users</p>
-            </div>
-            <div class="col-md-3">
-                <h2 class="fw-bold display-5 mb-0">99.9%</h2>
-                <p class="opacity-75">Uptime Record</p>
-            </div>
-            <div class="col-md-3">
-                <h2 class="fw-bold display-5 mb-0">24/7</h2>
-                <p class="opacity-75">Expert Support</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Showcase 1 -->
-<section id="solutions" class="py-5">
+<!-- Showcase Section -->
+<section id="solutions" class="py-5 bg-mesh-alt position-relative overflow-hidden">
     <div class="container py-5">
         <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                <img src="{% static 'images/landing/automation_v2.png' %}" alt="Automation" class="img-fluid showcase-img">
+            <div class="col-lg-6 order-lg-2" data-aos="fade-left">
+                <div class="showcase-wrapper">
+                    <img src="{% static 'images/landing/automation_v2.png' %}" alt="Automation Suite" class="showcase-img">
+                </div>
             </div>
-            <div class="col-lg-5 offset-lg-1">
-                <h2 class="display-5 fw-bold mb-4">Automation That Actually Works</h2>
-                <p class="text-muted fs-5 mb-5">Say goodbye to chasing late payments. Our automated reminder system does the work for you, so you can focus on building.</p>
-                <div class="mb-4">
-                    <div class="d-flex gap-3 mb-3">
-                        <i class="fas fa-check-circle text-primary fs-4"></i>
-                        <p class="fw-semibold mb-0">Custom recurring billing schedules</p>
-                    </div>
-                    <div class="d-flex gap-3 mb-3">
-                        <i class="fas fa-check-circle text-primary fs-4"></i>
-                        <p class="fw-semibold mb-0">Automatic late fee application</p>
-                    </div>
-                    <div class="d-flex gap-3">
-                        <i class="fas fa-check-circle text-primary fs-4"></i>
-                        <p class="fw-semibold mb-0">Smart email follow-ups</p>
+            <div class="col-lg-5 order-lg-1" data-aos="fade-right">
+                <span class="section-tag">Automation Suite</span>
+                <h2 class="display-5 fw-bold mb-4">Set your payments on <span class="text-primary">autopilot</span></h2>
+                <p class="lead text-muted mb-5">Reduce administrative overhead by 40% with smart workflows that handle reminders, collections, and reconciliation.</p>
+                <ul class="list-unstyled mb-5">
+                    <li class="d-flex align-items-start gap-3 mb-4">
+                        <div class="mt-1 bg-primary bg-opacity-10 p-2 rounded-circle"><i class="fa-solid fa-check text-primary fs-6"></i></div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Smart Reminders</h5>
+                            <p class="text-muted small mb-0">Intelligent follow-up sequences based on customer behavior.</p>
+                        </div>
+                    </li>
+                    <li class="d-flex align-items-start gap-3 mb-4">
+                        <div class="mt-1 bg-primary bg-opacity-10 p-2 rounded-circle"><i class="fa-solid fa-check text-primary fs-6"></i></div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Auto-reconciliation</h5>
+                            <p class="text-muted small mb-0">Match payments to invoices automatically with 99.9% accuracy.</p>
+                        </div>
+                    </li>
+                    <li class="d-flex align-items-start gap-3">
+                        <div class="mt-1 bg-primary bg-opacity-10 p-2 rounded-circle"><i class="fa-solid fa-check text-primary fs-6"></i></div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Recurring Engine</h5>
+                            <p class="text-muted small mb-0">Flexible subscription billing for any business model.</p>
+                        </div>
+                    </li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="btn btn-primary-custom">Explore Automation</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Social Proof -->
+<section class="py-5 my-5">
+    <div class="container py-5">
+        <div class="testimonial-card" data-aos="zoom-in">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-8">
+                    <i class="fa-solid fa-quote-left display-4 text-primary opacity-25 mb-4"></i>
+                    <h3 class="display-6 fw-bold mb-4">"InvoiceFlow has completely transformed how we handle our global B2B operations. What used to take days now takes minutes."</h3>
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop" alt="User" class="avatar">
+                        <div>
+                            <h6 class="fw-bold mb-0">Sarah Jenkins</h6>
+                            <p class="text-muted small mb-0">CFO at TechNova Solutions</p>
+                        </div>
                     </div>
                 </div>
-                <a href="{% url 'accounts:register' %}" class="btn btn-link text-primary fw-bold text-decoration-none p-0 fs-5">
-                    Explore Automation Features <i class="fas fa-arrow-right ms-2"></i>
-                </a>
+                <div class="col-lg-4 text-center">
+                    <div class="p-4 bg-light rounded-4">
+                        <h2 class="display-4 fw-bold text-primary mb-1">450%</h2>
+                        <p class="text-muted small fw-bold text-uppercase tracking-widest mb-0">Efficiency Increase</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer-main">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-4">
-                <h3 class="fw-extrabold text-white mb-4">InvoiceFlow</h3>
-                <p class="mb-4">Empowering Nigerian entrepreneurs with world-class financial tools. Join the movement of modern businesses.</p>
+                <a class="navbar-brand text-white d-block mb-4" href="#">INVOICEFLOW</a>
+                <p class="mb-5" style="max-width: 300px;">Providing enterprise-grade financial infrastructure for the next generation of global businesses.</p>
                 <div class="d-flex gap-3">
-                    <a href="https://facebook.com/InvoiceFlow" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/invoiceflow.com.ng" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="https://tiktok.com/@invoiceflow.com.ng" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="btn btn-dark p-2 rounded-3"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="btn btn-dark p-2 rounded-3"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="btn btn-dark p-2 rounded-3"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
             <div class="col-lg-2 offset-lg-1">
-                <h5>Product</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#features" class="footer-link">Features</a></li>
-                    <li><a href="#" class="footer-link">Pricing</a></li>
-                    <li><a href="#" class="footer-link">API Docs</a></li>
-                </ul>
+                <h6 class="footer-heading">Product</h6>
+                <a href="#" class="footer-link">Features</a>
+                <a href="#" class="footer-link">Pricing</a>
+                <a href="#" class="footer-link">Integrations</a>
+                <a href="#" class="footer-link">Security</a>
             </div>
             <div class="col-lg-2">
-                <h5>Company</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="footer-link">About Us</a></li>
-                    <li><a href="#" class="footer-link">Security</a></li>
-                    <li><a href="#" class="footer-link">Privacy Policy</a></li>
-                </ul>
+                <h6 class="footer-heading">Company</h6>
+                <a href="#" class="footer-link">About Us</a>
+                <a href="#" class="footer-link">Careers</a>
+                <a href="#" class="footer-link">Blog</a>
+                <a href="#" class="footer-link">Contact</a>
             </div>
-            <div id="contact" class="col-lg-3">
-                <h5>Contact</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><i class="fas fa-envelope me-2 text-primary"></i> support@invoiceflow.com.ng</li>
-                    <li class="mb-2"><i class="fas fa-envelope me-2 text-primary"></i> admin@invoiceflow.com.ng</li>
-                    <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-primary"></i> Victoria Island, Lagos</li>
-                </ul>
+            <div class="col-lg-3">
+                <h6 class="footer-heading">Newsletter</h6>
+                <p class="small mb-4">Get the latest insights on business automation.</p>
+                <div class="input-group">
+                    <input type="email" class="form-control bg-dark border-0 text-white" placeholder="Email address">
+                    <button class="btn btn-primary"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
         </div>
-        <hr class="mt-5 border-secondary">
-        <div class="text-center mt-4">
-            <p class="small">&copy; 2026 InvoiceFlow. Built for the future of commerce.</p>
+        <div class="pt-5 mt-5 border-top border-secondary text-center">
+            <p class="small mb-0">&copy; 2026 InvoiceFlow Technologies. All rights reserved.</p>
         </div>
     </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Simple AOS replacement
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('aos-animate');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+</script>
 {% endblock %}
