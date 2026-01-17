@@ -105,17 +105,19 @@
 <body>
     <script>
         // Simple AOS replacement
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('aos-animate');
-                }
-            });
-        }, { threshold: 0.1 });
+        (function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('aos-animate');
+                    }
+                });
+            }, { threshold: 0.1 });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
-        });
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+            });
+        })();
     </script>
     <main class="main-content">
         {% block content %}{% endblock %}
