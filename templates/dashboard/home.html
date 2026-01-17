@@ -1,155 +1,131 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="dashboard-container">
-    <div class="dashboard-header">
-        <div class="welcome-text">
-            <h1>Welcome, {{ user.username }}</h1>
-            <p>Overview of your business performance</p>
+<div class="dashboard-container py-5" data-aos="fade-up">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-bold h2 mb-1">Welcome, {{ user.username }}</h1>
+            <p class="text-muted small">Here's what's happening with your business today</p>
         </div>
-        <div class="quick-actions">
-            <a href="{% url 'invoices:invoice_create' %}" class="btn btn-primary">+ New Invoice</a>
-            <a href="{% url 'expenses:expense_create' %}" class="btn btn-outline">+ Add Expense</a>
+        <div class="d-flex gap-3">
+            <a href="{% url 'invoices:invoice_create' %}" class="btn btn-primary-custom">
+                <i class="fa-solid fa-plus small"></i> New Invoice
+            </a>
+            <a href="{% url 'expenses:expense_create' %}" class="btn btn-secondary-custom">
+                <i class="fa-solid fa-receipt small"></i> Add Expense
+            </a>
         </div>
     </div>
 
-    <div class="stats-grid">
-        <div class="stat-card glass-card">
-            <div class="stat-icon sales">💸</div>
-            <div class="stat-meta">
-                <h3>Revenue</h3>
-                <p class="amount">₦{{ total_sales|floatformat:2 }}</p>
-                <span class="trend positive">↑ 12% vs last month</span>
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="card-feature p-4 border-0 shadow-sm bg-glass h-100">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="icon-box bg-primary bg-opacity-10 text-primary rounded-3" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-money-bill-trend-up"></i>
+                    </div>
+                    <span class="fw-bold small text-uppercase text-muted tracking-wider">Revenue</span>
+                </div>
+                <h3 class="fw-bold mb-1">₦{{ total_sales|floatformat:2 }}</h3>
+                <span class="text-success small fw-bold"><i class="fa-solid fa-arrow-trend-up"></i> 12% increase</span>
             </div>
         </div>
-        <div class="stat-card glass-card">
-            <div class="stat-icon expenses">🧾</div>
-            <div class="stat-meta">
-                <h3>Expenses</h3>
-                <p class="amount">₦{{ total_expenses|floatformat:2 }}</p>
-                <span class="trend negative">↓ 5% vs last month</span>
+        <div class="col-md-3">
+            <div class="card-feature p-4 border-0 shadow-sm bg-glass h-100">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="icon-box bg-danger bg-opacity-10 text-danger rounded-3" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                    <span class="fw-bold small text-uppercase text-muted tracking-wider">Expenses</span>
+                </div>
+                <h3 class="fw-bold mb-1">₦{{ total_expenses|floatformat:2 }}</h3>
+                <span class="text-danger small fw-bold"><i class="fa-solid fa-arrow-trend-down"></i> 5% decrease</span>
             </div>
         </div>
-        <div class="stat-card glass-card">
-            <div class="stat-icon profit">💎</div>
-            <div class="stat-meta">
-                <h3>Net Profit</h3>
-                <p class="amount {% if net_profit >= 0 %}positive{% else %}negative{% endif %}">
+        <div class="col-md-3">
+            <div class="card-feature p-4 border-0 shadow-sm bg-glass h-100">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="icon-box bg-success bg-opacity-10 text-success rounded-3" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <span class="fw-bold small text-uppercase text-muted tracking-wider">Net Profit</span>
+                </div>
+                <h3 class="fw-bold mb-1 {% if net_profit >= 0 %}text-success{% else %}text-danger{% endif %}">
                     ₦{{ net_profit|floatformat:2 }}
-                </p>
-                <span class="trend positive">↑ 8% growth</span>
+                </h3>
+                <span class="text-success small fw-bold"><i class="fa-solid fa-arrow-trend-up"></i> 8% growth</span>
             </div>
         </div>
-        <div class="stat-card glass-card">
-            <div class="stat-icon clients">🛡️</div>
-            <div class="stat-meta">
-                <h3>Active Clients</h3>
-                <p class="count">{{ clients_count }}</p>
-                <span class="trend">Stable network</span>
+        <div class="col-md-3">
+            <div class="card-feature p-4 border-0 shadow-sm bg-glass h-100">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="icon-box bg-info bg-opacity-10 text-info rounded-3" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <span class="fw-bold small text-uppercase text-muted tracking-wider">Clients</span>
+                </div>
+                <h3 class="fw-bold mb-1">{{ clients_count }}</h3>
+                <span class="text-muted small fw-bold">Active network</span>
             </div>
         </div>
     </div>
 
-    <div class="dashboard-grid">
-        <div class="charts-section glass-card card">
-            <div class="card-header">
-                <h2>Performance Overview</h2>
-                <div class="card-actions">
-                    <span class="badge">Monthly</span>
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card-feature p-5 border-0 shadow-sm bg-glass h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="fw-bold mb-0">Performance Overview</h4>
+                    <span class="badge bg-light text-dark rounded-pill px-3">Last 12 Months</span>
+                </div>
+                <div style="height: 350px;">
+                    <canvas id="performanceChart"></canvas>
                 </div>
             </div>
-            <div class="chart-container">
-                <canvas id="performanceChart"></canvas>
-            </div>
         </div>
-
-        <div class="recent-activity card">
-            <div class="card-header">
-                <h2>Recent Invoices</h2>
-                <a href="{% url 'invoices:invoices_list' %}" class="link-sm">View all</a>
-            </div>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Client</th>
-                            <th>Status</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for invoice in recent_invoices %}
-                        <tr>
-                            <td>{{ invoice.id }}</td>
-                            <td>{{ invoice.client.name }}</td>
-                            <td><span class="status-badge {{ invoice.status }}">{{ invoice.get_status_display }}</span></td>
-                            <td>₦{{ invoice.total_amount|floatformat:2 }}</td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="4" class="empty-state">No recent activity.</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+        <div class="col-lg-4">
+            <div class="card-feature p-5 border-0 shadow-sm bg-glass h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="fw-bold mb-0">Recent Invoices</h4>
+                    <a href="{% url 'invoices:invoices_list' %}" class="text-primary small fw-bold text-decoration-none">View All</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <tbody>
+                            {% for invoice in recent_invoices %}
+                            <tr>
+                                <td class="py-3">
+                                    <div class="fw-bold text-main">#{{ invoice.id }}</div>
+                                    <div class="text-muted small">{{ invoice.client.name }}</div>
+                                </td>
+                                <td class="py-3 text-end">
+                                    <div class="fw-bold">₦{{ invoice.total_amount|floatformat:2 }}</div>
+                                    <span class="status-badge {{ invoice.status }} py-0 px-2 rounded-pill fw-bold" style="font-size: 0.65rem;">
+                                        {{ invoice.get_status_display }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="2" class="text-center py-5">
+                                    <p class="text-muted small mb-0">No recent activity</p>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    .dashboard-container { padding: 2rem; max-width: 1400px; margin: 0 auto; }
-    
-    .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; }
-    .welcome-text h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .welcome-text p { color: #6b7280; }
-    .quick-actions { display: flex; gap: 1rem; }
-
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
-    .stat-card { background: white; padding: 1.5rem; border-radius: 1.25rem; border: 1px solid #f3f4f6; display: flex; align-items: center; gap: 1.25rem; transition: transform 0.2s; }
-    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
-    [data-theme="dark"] .stat-card { background: #1f2937; border-color: #374151; }
-    
-    .stat-icon { width: 56px; height: 56px; border-radius: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
-    .stat-icon.sales { background: #eff6ff; }
-    .stat-icon.expenses { background: #fef2f2; }
-    .stat-icon.profit { background: #f0fdf4; }
-    .stat-icon.clients { background: #faf5ff; }
-
-    .stat-meta h3 { font-size: 0.75rem; color: #64748b; margin-bottom: 0.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-    .amount, .count { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; }
-    .trend { font-size: 0.75rem; font-weight: 600; margin-top: 0.25rem; display: block; }
-    .trend.positive { color: #10b981; }
-    .trend.negative { color: #f43f5e; }
-    [data-theme="dark"] .stat-meta h3 { color: #94a3b8; }
-
-    .dashboard-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; }
-    .card { background: white; border-radius: 1.5rem; border: 1px solid #f3f4f6; padding: 1.5rem; }
-    [data-theme="dark"] .card { background: #1f2937; border-color: #374151; }
-    
-    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-    .card-header h2 { font-size: 1.25rem; font-weight: 700; }
-    
-    .chart-container { height: 350px; position: relative; }
-    
-    .status-badge { padding: 0.375rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; text-transform: capitalize; }
-    .status-badge.draft { background: #fef3c7; color: #92400e; }
-    .status-badge.paid { background: #dcfce7; color: #166534; }
-    .status-badge.sent { background: #dbeafe; color: #1e40af; }
-    .status-badge.overdue { background: #fee2e2; color: #991b1b; }
-
-    .table { width: 100%; border-collapse: separate; border-spacing: 0; }
-    .table th { text-align: left; padding: 1rem; font-size: 0.75rem; text-transform: uppercase; color: #6b7280; border-bottom: 1px solid #f3f4f6; }
-    .table td { padding: 1.25rem 1rem; border-bottom: 1px solid #f3f4f6; font-size: 0.875rem; }
-    [data-theme="dark"] .table th, [data-theme="dark"] .table td { border-color: #374151; }
-    .empty-state { text-align: center; color: #9ca3af; padding: 3rem !important; }
-
-    @media (max-width: 1024px) {
-        .dashboard-grid { grid-template-columns: 1fr; }
-        .dashboard-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-        .quick-actions { width: 100%; }
-        .quick-actions .btn { flex: 1; text-align: center; }
-    }
+    .bg-glass { background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--glass-border) !important; }
+    .status-badge.draft { background: rgba(100, 116, 139, 0.1); color: #64748b; }
+    .status-badge.paid { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+    .status-badge.sent { background: rgba(0, 102, 255, 0.1); color: #0066ff; }
+    .status-badge.overdue { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+    .tracking-wider { letter-spacing: 0.05em; }
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -168,24 +144,30 @@
                     {
                         label: 'Sales',
                         data: salesData,
-                        borderColor: '#4f46e5',
-                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        borderColor: '#0066ff',
+                        backgroundColor: 'rgba(0, 102, 255, 0.05)',
                         fill: true,
                         tension: 0.4,
-                        borderWidth: 3,
-                        pointRadius: 4,
-                        pointBackgroundColor: '#4f46e5'
+                        borderWidth: 4,
+                        pointRadius: 0,
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: '#0066ff',
+                        pointHoverBorderColor: '#fff',
+                        pointHoverBorderWidth: 2
                     },
                     {
                         label: 'Expenses',
                         data: expensesData,
                         borderColor: '#ef4444',
-                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        backgroundColor: 'rgba(239, 68, 68, 0.05)',
                         fill: true,
                         tension: 0.4,
-                        borderWidth: 3,
-                        pointRadius: 4,
-                        pointBackgroundColor: '#ef4444'
+                        borderWidth: 4,
+                        pointRadius: 0,
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: '#ef4444',
+                        pointHoverBorderColor: '#fff',
+                        pointHoverBorderWidth: 2
                     }
                 ]
             },
@@ -193,19 +175,45 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { display: false }
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        titleColor: '#1e293b',
+                        bodyColor: '#1e293b',
+                        borderColor: '#e2e8f0',
+                        borderWidth: 1,
+                        padding: 12,
+                        boxPadding: 6,
+                        usePointStyle: true,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    }
                 },
+                hover: { mode: 'index', intersect: false },
                 scales: {
                     y: { 
                         beginAtZero: true,
-                        grid: { color: 'rgba(0,0,0,0.05)' }
+                        grid: { color: 'rgba(0,0,0,0.03)', drawBorder: false },
+                        ticks: { color: '#94a3b8', font: { size: 11 } }
                     },
                     x: {
-                        grid: { display: false }
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8', font: { size: 11 } }
                     }
                 }
             }
         });
     });
 </script>
+{% endblock %}
 {% endblock %}

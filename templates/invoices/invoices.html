@@ -1,37 +1,88 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="dashboard-container">
-    <div class="dashboard-header">
-        <h1>Invoices</h1>
-        <a href="{% url 'invoices:invoice_create' %}" class="btn btn-primary">+ Create Invoice</a>
+<div class="dashboard-container py-5" data-aos="fade-up">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-bold h2 mb-1">Invoices</h1>
+            <p class="text-muted small">Manage and track your billing cycles</p>
+        </div>
+        <a href="{% url 'invoices:invoice_create' %}" class="btn btn-primary-custom">
+            <i class="fa-solid fa-plus small"></i> Create Invoice
+        </a>
     </div>
-    <div class="table-responsive glass-card card" style="padding: 1.5rem; margin-top: 2rem;">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Client</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Total</th>
-                    <th>Due Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for invoice in invoices %}
-                <tr>
-                    <td>{{ invoice.id }}</td>
-                    <td>{{ invoice.client.name }}</td>
-                    <td>{{ invoice.title }}</td>
-                    <td><span class="status-badge {{ invoice.status }}">{{ invoice.get_status_display }}</span></td>
-                    <td>₦{{ invoice.total_amount|floatformat:2 }}</td>
-                    <td>{{ invoice.due_date }}</td>
-                </tr>
-                {% empty %}
-                <tr><td colspan="6" class="empty-state">No invoices found.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
+
+    <div class="card-feature p-0 overflow-hidden border-0 shadow-sm bg-glass">
+        <div class="table-responsive">
+            <table class="table mb-0 align-middle">
+                <thead class="bg-light opacity-75">
+                    <tr>
+                        <th class="ps-4 py-3 small fw-bold text-uppercase tracking-wider">ID</th>
+                        <th class="py-3 small fw-bold text-uppercase tracking-wider">Client</th>
+                        <th class="py-3 small fw-bold text-uppercase tracking-wider">Title</th>
+                        <th class="py-3 small fw-bold text-uppercase tracking-wider">Status</th>
+                        <th class="py-3 small fw-bold text-uppercase tracking-wider text-end">Amount</th>
+                        <th class="py-3 small fw-bold text-uppercase tracking-wider">Due Date</th>
+                        <th class="pe-4 py-3 text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for invoice in invoices %}
+                    <tr class="hover-row">
+                        <td class="ps-4 fw-bold text-primary">#{{ invoice.id }}</td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="avatar-sm bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; font-size: 0.75rem;">
+                                    {{ invoice.client.name|slice:":1"|upper }}
+                                </div>
+                                <span class="fw-semibold">{{ invoice.client.name }}</span>
+                            </div>
+                        </td>
+                        <td class="text-muted">{{ invoice.title }}</td>
+                        <td>
+                            <span class="status-badge {{ invoice.status }} py-1 px-3 small rounded-pill fw-bold">
+                                {{ invoice.get_status_display }}
+                            </span>
+                        </td>
+                        <td class="text-end fw-bold">₦{{ invoice.total_amount|floatformat:2 }}</td>
+                        <td class="text-muted">{{ invoice.due_date|date:"M d, Y" }}</td>
+                        <td class="pe-4 text-end">
+                            <div class="dropdown">
+                                <button class="btn btn-link text-muted p-0" data-bs-toggle="dropdown">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end rounded-3 shadow-sm border-0">
+                                    <li><a class="dropdown-item small py-2" href="#"><i class="fa-solid fa-eye me-2 opacity-50"></i> View Detail</a></li>
+                                    <li><a class="dropdown-item small py-2" href="#"><i class="fa-solid fa-pen me-2 opacity-50"></i> Edit</a></li>
+                                    <li><hr class="dropdown-divider opacity-50"></li>
+                                    <li><a class="dropdown-item small py-2 text-danger" href="#"><i class="fa-solid fa-trash me-2 opacity-50"></i> Delete</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center py-5">
+                            <div class="py-4">
+                                <i class="fa-solid fa-file-invoice display-4 text-light mb-3"></i>
+                                <p class="text-muted">No invoices found. Start by creating your first one!</p>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+<style>
+    .bg-glass { background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--glass-border) !important; }
+    .hover-row:hover { background: rgba(0, 102, 255, 0.02); }
+    .status-badge.draft { background: rgba(100, 116, 139, 0.1); color: #64748b; }
+    .status-badge.paid { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+    .status-badge.sent { background: rgba(0, 102, 255, 0.1); color: #0066ff; }
+    .status-badge.overdue { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+    .tracking-wider { letter-spacing: 0.05em; }
+</style>
 {% endblock %}
