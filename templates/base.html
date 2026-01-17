@@ -19,68 +19,8 @@
     <script src="{% static 'js/ui.js' %}" defer></script>
 </head>
 <body>
-    <header class="main-header glass-card">
-        <div class="header-container">
-            <div class="logo"><a href="{% url 'landing' %}">InvoiceFlow</a></div>
-            <nav class="desktop-nav">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'dashboard:home' %}" class="nav-link {% if request.resolver_match.app_name == 'dashboard' %}active{% endif %}">Overview</a>
-                    <a href="{% url 'invoices:invoices_list' %}" class="nav-link {% if request.resolver_match.app_name == 'invoices' %}active{% endif %}">Invoices</a>
-                    <a href="{% url 'sales:sale_list' %}" class="nav-link {% if request.resolver_match.app_name == 'sales' %}active{% endif %}">Sales</a>
-                    <a href="{% url 'expenses:expense_list' %}" class="nav-link {% if request.resolver_match.app_name == 'expenses' %}active{% endif %}">Expenses</a>
-                    <a href="{% url 'reports:summary' %}" class="nav-link {% if request.resolver_match.app_name == 'reports' %}active{% endif %}">Reports</a>
-                {% else %}
-                    <a href="#solutions" class="nav-link">Solutions</a>
-                    <a href="#features" class="nav-link">Features</a>
-                    <a href="#pricing" class="nav-link">Pricing</a>
-                    <a href="#about" class="nav-link">About</a>
-                {% endif %}
-            </nav>
-            <div class="header-actions">
-                <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌗</button>
-                {% if user.is_authenticated %}
-                    <div class="user-menu">
-                        <a href="{% url 'settings:profile' %}" class="avatar-link">
-                            <span class="avatar">{{ user.username|first|upper }}</span>
-                        </a>
-                        <form action="{% url 'auth:logout' %}" method="POST" class="logout-form">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-sm btn-ghost">Logout</button>
-                        </form>
-                    </div>
-                {% else %}
-                    <a href="{% url 'auth:login' %}" class="btn btn-sm btn-ghost">Login</a>
-                    <a href="{% url 'auth:signup' %}" class="btn btn-sm btn-primary btn-glow">Get Started</a>
-                {% endif %}
-                <button class="mobile-menu-toggle icon-btn" aria-label="Menu">☰</button>
-            </div>
-        </div>
-    </header>
-
-    <style>
-        .main-header { position: sticky; top: 1rem; margin: 0 1rem; padding: 0.5rem 1.5rem; z-index: 1000; border-radius: 1rem; }
-        .header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; height: 56px; }
-        .logo a { font-size: 1.5rem; font-weight: 800; color: var(--primary-color); text-decoration: none; letter-spacing: -0.025em; }
-        .desktop-nav { display: flex; gap: 0.5rem; }
-        .nav-link { padding: 0.5rem 1rem; border-radius: 0.5rem; color: var(--text-color); font-weight: 500; font-size: 0.9375rem; text-decoration: none; transition: all 0.2s; }
-        .nav-link:hover { background: rgba(99, 102, 241, 0.05); color: var(--primary-color); }
-        .nav-link.active { background: rgba(99, 102, 241, 0.1); color: var(--primary-color); font-weight: 600; }
-        .header-actions { display: flex; align-items: center; gap: 1rem; }
-        .user-menu { display: flex; align-items: center; gap: 0.75rem; }
-        .avatar { width: 32px; height: 32px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; }
-        .btn-ghost { background: transparent; color: var(--text-color); }
-        .btn-ghost:hover { background: rgba(0,0,0,0.05); }
-        .icon-btn { background: transparent; border: none; font-size: 1.25rem; cursor: pointer; padding: 0.5rem; border-radius: 0.5rem; }
-        
-        @media (max-width: 1024px) {
-            .desktop-nav { display: none; }
-            .desktop-nav.mobile-active { display: flex !important; flex-direction: column; position: absolute; top: calc(100% + 1rem); left: 0; width: 100%; background: var(--nav-bg); padding: 2rem; border-radius: 1.5rem; backdrop-filter: blur(24px); border: 1px solid var(--glass-border); box-shadow: var(--card-shadow); z-index: 1001; }
-            .nav-link { padding: 1rem; width: 100%; border-bottom: 1px solid var(--glass-border); }
-            .nav-link:last-child { border-bottom: none; }
-        }
-        .main-header.scrolled { background: var(--nav-bg); backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-    </style>
-
-    {% block content %}{% endblock %}
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
 </body>
 </html>
