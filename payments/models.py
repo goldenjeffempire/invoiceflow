@@ -27,7 +27,7 @@ class UserPaymentSettings(models.Model):
 
 # type: ignore
 class Payment(models.Model):
-    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, related_name='payments')
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, related_name='payments_list')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     provider = models.CharField(max_length=50)  # 'stripe' or 'paystack'
@@ -36,4 +36,4 @@ class Payment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.provider} - {self.invoice.id} - {self.status}"
+        return f"{self.provider} - {self.invoice_id} - {self.status}"
