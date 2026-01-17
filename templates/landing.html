@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}InvoiceFlow - Professional Invoice Management{% endblock %}
+
+{% block content %}
+<style>
+    :root {
+        --primary: #2563eb;
+        --secondary: #0f172a;
+        --accent: #38bdf8;
+        --text: #1e293b;
+        --bg: #f8fafc;
+    }
+
+    .hero-section {
+        padding: 8rem 0 4rem;
+        background: radial-gradient(circle at top right, #eff6ff 0%, #ffffff 100%);
+        overflow: hidden;
+    }
+
+    .hero-content {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-image {
+        position: relative;
+        animation: slideInRight 1s ease-out;
+    }
+
+    .hero-image::after {
+        content: '';
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 100%;
+        height: 100%;
+        background: var(--primary);
+        opacity: 0.1;
+        border-radius: 2rem;
+        z-index: -1;
+    }
+
+    .feature-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-radius: 1.5rem;
+        background: #fff;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    }
+
+    .stats-section {
+        background: var(--secondary);
+        color: white;
+        padding: 4rem 0;
+    }
+
+    .cta-button {
+        padding: 1rem 2.5rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(50px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    .nav-link {
+        font-weight: 500;
+        color: var(--text);
+        margin: 0 1rem;
+    }
+
+    .footer {
+        background: #f1f5f9;
+        padding: 4rem 0;
+    }
+</style>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-primary fs-3" href="#">InvoiceFlow</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-collapse mb-2 mb-lg-0 list-unstyled d-flex align-items-center ms-auto">
+                <li><a class="nav-link" href="#features">Features</a></li>
+                <li><a class="nav-link" href="#solutions">Solutions</a></li>
+                <li><a class="nav-link" href="#about">About</a></li>
+                <li class="ms-lg-4">
+                    <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary cta-button">Login</a>
+                </li>
+                <li class="ms-3">
+                    <a href="{% url 'accounts:register' %}" class="btn btn-primary cta-button">Get Started</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 hero-content">
+                <h1 class="display-3 fw-bold mb-4">Master Your Invoicing <span class="text-primary">Workflow</span></h1>
+                <p class="lead mb-5 text-muted">Automate your billing, track payments in real-time, and grow your business with InvoiceFlow. Professional invoicing made simple for Nigerian businesses.</p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'accounts:register' %}" class="btn btn-primary btn-lg cta-button">Start Free Trial</a>
+                    <a href="#demo" class="btn btn-light btn-lg cta-button">Watch Demo</a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0 hero-image">
+                <img src="{% static 'images/landing/hero.png' %}" alt="InvoiceFlow Dashboard" class="img-fluid rounded-4 shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="py-5">
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Everything you need to <span class="text-primary">scale</span></h2>
+            <p class="text-muted">Powerful tools designed for freelancers and small businesses.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 feature-card p-4">
+                    <div class="mb-3 text-primary"><i class="fas fa-magic fa-3x"></i></div>
+                    <h3>Smart Automation</h3>
+                    <p class="text-muted">Recurring invoices and automated payment reminders save you hours of work every week.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 feature-card p-4">
+                    <div class="mb-3 text-primary"><i class="fas fa-shield-alt fa-3x"></i></div>
+                    <h3>Secure Payments</h3>
+                    <p class="text-muted">Integrated with Paystack and Stripe for seamless, secure transactions across Africa and beyond.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 feature-card p-4">
+                    <div class="mb-3 text-primary"><i class="fas fa-chart-line fa-3x"></i></div>
+                    <h3>Deep Analytics</h3>
+                    <p class="text-muted">Gain insights into your revenue trends and outstanding balances with visual reports.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Showcase Section -->
+<section id="solutions" class="bg-light py-5">
+    <div class="container py-5">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6">
+                <img src="{% static 'images/landing/automation.png' %}" alt="Automation" class="img-fluid rounded-4 shadow">
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <h2 class="display-6 fw-bold mb-4">Seamless Automation for Modern Business</h2>
+                <p class="lead text-muted mb-4">Set it and forget it. Our automation engine handles your billing cycle from creation to collection.</p>
+                <ul class="list-unstyled mb-5">
+                    <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i> Custom professional templates</li>
+                    <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i> Automated late fee calculation</li>
+                    <li><i class="fas fa-check-circle text-primary me-2"></i> Multi-currency support (NGN, USD, EUR)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="stats-section text-center">
+    <div class="container">
+        <h2 class="display-4 fw-bold mb-4">Ready to simplify your billing?</h2>
+        <p class="lead mb-5 opacity-75">Join thousands of Nigerian businesses using InvoiceFlow today.</p>
+        <a href="{% url 'accounts:register' %}" class="btn btn-primary btn-lg cta-button px-5">Get Started for Free</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer mt-auto">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <h3 class="fw-bold text-primary mb-4">InvoiceFlow</h3>
+                <p class="text-muted">The #1 billing platform for Nigerian entrepreneurs.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-muted fs-4"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-muted fs-4"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-muted fs-4"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 offset-lg-2">
+                <h5 class="fw-bold mb-4">Product</h5>
+                <ul class="list-unstyled text-muted">
+                    <li class="mb-2">Features</li>
+                    <li class="mb-2">Pricing</li>
+                    <li>Integrations</li>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <h5 class="fw-bold mb-4">Contact Us</h5>
+                <ul class="list-unstyled text-muted">
+                    <li class="mb-2"><i class="fas fa-envelope me-2"></i> support@invoiceflow.com.ng</li>
+                    <li class="mb-2"><i class="fas fa-globe me-2"></i> invoiceflow.com.ng</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="my-5">
+        <div class="text-center text-muted">
+            <p>&copy; 2026 InvoiceFlow. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+{% endblock %}
