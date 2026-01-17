@@ -1,6 +1,35 @@
-<h2>Hello {{ client_name }},</h2>
-<p>You have a new invoice #{{ invoice_id }} from {{ user_name }}.</p>
-<p>Total Amount: {{ total_amount }}</p>
-<p>Due Date: {{ due_date }}</p>
-<p><a href="{{ payment_link }}">Pay Now</a></p>
-<p>Thank you for using InvoiceFlow.</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .email-body { font-family: 'Inter', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px; color: #1e293b; line-height: 1.6; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .logo { font-weight: 900; font-size: 24px; color: #0066ff; text-decoration: none; letter-spacing: -1px; }
+        .card { background: #f8fafc; border-radius: 24px; padding: 40px; border: 1px solid #e2e8f0; }
+        .amount-display { font-size: 32px; font-weight: 800; color: #0066ff; margin: 20px 0; }
+        .btn-cta { display: inline-block; background: #0066ff; color: white !important; padding: 16px 40px; border-radius: 100px; text-decoration: none; font-weight: 700; margin-top: 30px; box-shadow: 0 10px 20px -5px rgba(0, 102, 255, 0.3); }
+        .footer { text-align: center; margin-top: 40px; font-size: 12px; color: #94a3b8; }
+    </style>
+</head>
+<body class="email-body">
+    <div class="header">
+        <a href="#" class="logo">INVOICEFLOW</a>
+    </div>
+    <div class="card">
+        <h2 style="margin-top: 0;">New Invoice from {{ user_name }}</h2>
+        <p>Hello {{ client_name }},</p>
+        <p>You have received a new invoice <strong>#{{ invoice_id }}</strong> for professional services rendered.</p>
+        
+        <div class="amount-display">
+            ₦{{ total_amount }}
+        </div>
+        
+        <p style="margin-bottom: 5px;"><strong>Due Date:</strong> {{ due_date }}</p>
+        
+        <a href="{{ payment_link }}" class="btn-cta">Complete Secure Payment</a>
+    </div>
+    <div class="footer">
+        <p>&copy; 2026 InvoiceFlow Technologies. All rights reserved.<br>Providing secure financial infrastructure for global businesses.</p>
+    </div>
+</body>
+</html>

@@ -1,18 +1,75 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="dashboard-container">
-    <div class="card glass-card">
-        <h1>Profile Settings</h1>
-        <p>Manage your account settings and preferences here.</p>
-        <hr>
-        <div class="settings-section">
-            <h3>Account Information</h3>
-            <p>Username: {{ user.username }}</p>
-            <p>Email: {{ user.email }}</p>
+<div class="dashboard-container py-5" data-aos="fade-up">
+    <div class="mb-5">
+        <h1 class="fw-bold h2 mb-1">Profile Settings</h1>
+        <p class="text-muted small">Manage your personal information and preferences</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="card-feature p-5 border-0 shadow-sm bg-glass text-center h-100">
+                <div class="position-relative d-inline-block mb-4">
+                    <div class="avatar-lg bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold mx-auto" style="width: 100px; height: 100px; font-size: 2.5rem;">
+                        {{ user.username|slice:":1"|upper }}
+                    </div>
+                    <button class="btn btn-sm btn-white shadow-sm position-absolute bottom-0 end-0 rounded-circle border p-2">
+                        <i class="fa-solid fa-camera small"></i>
+                    </button>
+                </div>
+                <h4 class="fw-bold mb-1">{{ user.get_full_name|default:user.username }}</h4>
+                <p class="text-muted small mb-4">{{ user.email }}</p>
+                <div class="d-grid">
+                    <button class="btn btn-secondary-custom">Change Photo</button>
+                </div>
+            </div>
         </div>
-        <div class="settings-section" style="margin-top: 2rem;">
-            <a href="{% url 'payments:payment_settings' %}" class="btn btn-primary">Payment Integration Settings</a>
+        <div class="col-lg-8">
+            <div class="card-feature p-5 border-0 shadow-lg bg-glass">
+                <form method="POST">
+                    {% csrf_token %}
+                    <h5 class="fw-bold mb-4 border-bottom pb-2">Account Information</h5>
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-uppercase text-muted">Username</label>
+                            <input type="text" class="form-control" value="{{ user.username }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small text-uppercase text-muted">Email Address</label>
+                            <input type="email" class="form-control" value="{{ user.email }}">
+                        </div>
+                    </div>
+
+                    <h5 class="fw-bold mb-4 border-bottom pb-2">Platform Preferences</h5>
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-12">
+                            <div class="form-check form-switch p-0 d-flex justify-content-between align-items-center">
+                                <div>
+                                    <label class="form-check-label fw-bold text-main">Email Notifications</label>
+                                    <p class="text-muted small mb-0">Receive weekly financial summaries</p>
+                                </div>
+                                <input class="form-check-input ms-0" type="checkbox" checked>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top">
+                        <a href="{% url 'payments:payment_settings' %}" class="text-primary fw-bold text-decoration-none small">
+                            <i class="fa-solid fa-credit-card me-1"></i> Payment Integration Settings
+                        </a>
+                        <button type="submit" class="btn btn-primary-custom px-5">Update Profile</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+    .form-control { border-radius: 0.75rem; border: 1px solid #e2e8f0; padding: 0.75rem 1rem; }
+    .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1); }
+    [data-theme="dark"] .form-control { background-color: var(--bg-light); border-color: #374151; color: white; }
+    .form-check-input:checked { background-color: var(--primary); border-color: var(--primary); }
+</style>
 {% endblock %}
