@@ -3,36 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { font-family: 'Helvetica', sans-serif; }
-        header { text-align: center; margin-bottom: 2rem; }
-        h1 { color: #4f46e5; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; }
-        th { background-color: #f3f4f6; }
+        @page { size: A4; margin: 0; }
+        body { font-family: 'Helvetica', 'Arial', sans-serif; color: #1e293b; margin: 0; padding: 0; }
+        .invoice-box { padding: 60px; }
+        .header { display: flex; justify-content: space-between; margin-bottom: 60px; }
+        .logo { font-size: 28px; font-weight: 900; color: #0066ff; letter-spacing: -1px; }
+        .status-badge { display: inline-block; padding: 6px 16px; border-radius: 100px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+        .status-paid { background: #dcfce7; color: #166534; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .label { font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; }
+        .value { font-size: 14px; font-weight: 600; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+        th { text-align: left; font-size: 10px; font-weight: 700; color: #94a3b8; text-transform: uppercase; border-bottom: 2px solid #f1f5f9; padding: 12px 0; }
+        td { padding: 20px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+        .total-section { text-align: right; border-top: 2px solid #0066ff; padding-top: 20px; }
+        .total-amount { font-size: 32px; font-weight: 800; color: #0066ff; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Invoice #{{ invoice.id }}</h1>
-        <p>{{ invoice.user.username }} | {{ invoice.user.email }}</p>
-    </header>
-    <p>Client: {{ invoice.client.name }} | Email: {{ invoice.client.email }}</p>
-    <p>Status: {{ invoice.get_status_display }}</p>
-    <table>
-        <thead>
-            <tr><th>Description</th><th>Quantity</th><th>Unit Price</th><th>Total</th></tr>
-        </thead>
-        <tbody>
-            {% for item in invoice.items.all %}
-            <tr>
-                <td>{{ item.description }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.unit_price }}</td>
-                <td>{{ item.total }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <p><strong>Total Amount: {{ invoice.total_amount }}</strong></p>
+    <div class="invoice-box">
+        <div class="header">
+            <div class="logo">INVOICEFLOW</div>
+            <div class="status-badge status-{{ invoice.status }}">
+                {{ invoice.get_status_display }}
+            </div>
+        </div>
+
+        <div class="grid">
+            <div>
+                <div class="label">Billed By</div>
+                <div class="value">{{ invoice.user.get_full_name|default:invoice.user.username }}</div>
+                <div class="value" style="font-weight: 400; color: #64748b;">{{ invoice.user.email }}</div>
+            </div>
+            <div style="text-align: right;">
+                <div class="label">Invoice To</div>
+                <div class="value">{{ invoice.client.name }}</div>
+                <div class="value" style="font-weight: 400; color: #64748b;">{{ invoice.client.email }}</div>
+            </div>
+        </div>
+
+        <div class="grid" style="margin-bottom: 40px;">
+            <div>
+                <div class="label">Invoice Number</div>
+                <div class="value">#INV-{{ invoice.id|stringformat:"05d" }}</div>
+            </div>
+            <div style="text-align: right;">
+                <div class="label">Due Date</div>
+                <div class="value">{{ invoice.due_date|date:"F d, Y" }}</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th style="text-align: center;">Qty</th>
+                    <th style="text-align: right;">Unit Price</th>
+                    <th style="text-align: right;">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in invoice.items.all %}
+                <tr>
+                    <td style="font-weight: 600;">{{ item.description }}</td>
+                    <td style="text-align: center;">{{ item.quantity }}</td>
+                    <td style="text-align: right;">₦{{ item.unit_price|floatformat:2 }}</td>
+                    <td style="text-align: right; font-weight: 700;">₦{{ item.total|floatformat:2 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="total-section">
+            <div class="label">Total Amount Due</div>
+            <div class="total-amount">₦{{ invoice.total_amount|floatformat:2 }}</div>
+        </div>
+
+        <div style="margin-top: 80px; font-size: 10px; color: #94a3b8; text-align: center;">
+            Thank you for your business. Please contact support@invoiceflow.com.ng for any questions.
+        </div>
+    </div>
 </body>
 </html>

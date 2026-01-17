@@ -1,11 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-<div class="auth-container">
-    <h2>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Expense</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="cta-btn">Save Expense</button>
-    </form>
+<div class="dashboard-container py-5" data-aos="fade-up">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-bold h2 mb-1">{% if form.instance.pk %}Edit{% else %}Add{% endif %} Expense</h1>
+            <p class="text-muted small">Record your business expenditures accurately</p>
+        </div>
+        <a href="{% url 'expenses:expense_list' %}" class="btn btn-secondary-custom px-4">
+            <i class="fa-solid fa-arrow-left small"></i> Back to List
+        </a>
+    </div>
+
+    <div class="card-feature p-5 border-0 shadow-lg bg-glass mx-auto" style="max-width: 800px;">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row g-4">
+                <div class="col-12">{{ form|crispy }}</div>
+            </div>
+            <div class="d-flex justify-content-end gap-3 mt-5 pt-4 border-top">
+                <button type="submit" class="btn btn-primary-custom px-5">
+                    <i class="fa-solid fa-floppy-disk small"></i> Save Expense
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
+
+<style>
+    .form-control, .form-select { border-radius: 0.75rem; border: 1px solid #e2e8f0; padding: 0.75rem 1rem; }
+    .form-control:focus, .form-select:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1); }
+</style>
 {% endblock %}

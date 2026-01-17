@@ -1,19 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="dashboard-container">
-    <div class="dashboard-header">
-        <h1>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Client</h1>
-        <a href="{% url 'invoices:clients_list' %}" class="btn btn-outline">Back to List</a>
+<div class="dashboard-container py-5" data-aos="fade-up">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-bold h2 mb-1">{% if form.instance.pk %}Edit{% else %}Add{% endif %} Client</h1>
+            <p class="text-muted small">Manage your customer information</p>
+        </div>
+        <a href="{% url 'invoices:clients_list' %}" class="btn btn-secondary-custom px-4">
+            <i class="fa-solid fa-arrow-left small"></i> Back to List
+        </a>
     </div>
-    <div class="glass-card card" style="padding: 2.5rem; margin-top: 2rem; max-width: 800px;">
+
+    <div class="card-feature p-5 border-0 shadow-lg bg-glass mx-auto" style="max-width: 800px;">
         <form method="POST">
             {% csrf_token %}
-            {{ form|crispy }}
-            <div style="margin-top: 2rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem;">
-                <button type="submit" class="btn btn-primary btn-lg">Save Client</button>
+            <div class="row g-4">
+                <div class="col-12">{{ form|crispy }}</div>
+            </div>
+            <div class="d-flex justify-content-end gap-3 mt-5 pt-4 border-top">
+                <button type="submit" class="btn btn-primary-custom px-5">
+                    <i class="fa-solid fa-user-check small"></i> Save Client
+                </button>
             </div>
         </form>
     </div>
 </div>
+
+<style>
+    .form-control { border-radius: 0.75rem; border: 1px solid #e2e8f0; padding: 0.75rem 1rem; }
+</style>
 {% endblock %}
