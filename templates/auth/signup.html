@@ -1,65 +1,57 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="auth-container">
-    <div class="auth-card glass-card">
-        <div class="auth-header">
-            <h2>Join InvoiceFlow</h2>
-            <p>Start managing your business like a pro today</p>
-        </div>
-        <form method="POST" class="auth-form">
-            {% csrf_token %}
-            {% for field in form %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    <div class="input-wrapper">
-                        {{ field }}
+<div class="auth-page d-flex align-items-center justify-content-center min-vh-100">
+    <div class="bg-mesh">
+        <div class="mesh-1"></div>
+        <div class="mesh-2"></div>
+    </div>
+    <div class="auth-card-wrapper" data-aos="zoom-in">
+        <div class="card-feature p-5 shadow-lg border-0 bg-glass">
+            <div class="text-center mb-5">
+                <a href="/" class="navbar-brand text-primary d-block mb-4">INVOICEFLOW</a>
+                <h2 class="fw-bold h3 mb-2">Create Account</h2>
+                <p class="text-muted">Start managing your business like a pro</p>
+            </div>
+            <form method="POST" class="needs-validation">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold small text-uppercase tracking-wider">{{ field.label }}</label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text bg-light border-end-0 rounded-start-4">
+                                {% if field.name == 'username' %}<i class="fa-solid fa-user text-muted"></i>
+                                {% elif field.name == 'email' %}<i class="fa-solid fa-envelope text-muted"></i>
+                                {% elif 'password' in field.name %}<i class="fa-solid fa-lock text-muted"></i>
+                                {% else %}<i class="fa-solid fa-pen text-muted"></i>{% endif %}
+                            </span>
+                            {{ field }}
+                        </div>
+                        {% if field.errors %}
+                            <p class="text-danger small mt-1">{{ field.errors.0 }}</p>
+                        {% endif %}
+                        {% if field.help_text %}
+                            <p class="text-muted small mt-1 opacity-75">{{ field.help_text|safe }}</p>
+                        {% endif %}
                     </div>
-                    {% if field.errors %}
-                        <p class="field-error">{{ field.errors.0 }}</p>
-                    {% endif %}
-                    {% if field.help_text %}
-                        <p class="help-text">{{ field.help_text|safe }}</p>
-                    {% endif %}
-                </div>
-            {% endfor %}
-            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-        </form>
-        <div class="auth-divider">
-            <span>Already have an account?</span>
-            <a href="{% url 'auth:login' %}" class="link-bold">Sign In</a>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-2">Create Account</button>
+            </form>
+            <div class="text-center mt-5 pt-4 border-top border-light">
+                <p class="text-muted small">Already have an account? <a href="{% url 'accounts:login' %}" class="text-primary fw-bold text-decoration-none">Sign In</a></p>
+            </div>
         </div>
     </div>
 </div>
 
 <style>
-    .auth-container { min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 2rem; background: #f9fafb; }
-    [data-theme="dark"] .auth-container { background: #111827; }
-
-    .auth-card { background: white; padding: 3rem; border-radius: 1.5rem; width: 100%; max-width: 500px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-    [data-theme="dark"] .auth-card { background: #1f2937; border: 1px solid #374151; }
-
-    .auth-header { text-align: center; margin-bottom: 2.5rem; }
-    .auth-header h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
-    .auth-header p { color: #6b7280; }
-
-    .auth-form { display: flex; flex-direction: column; gap: 1.5rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-    .form-group label { font-size: 0.875rem; font-weight: 600; color: #374151; }
-    [data-theme="dark"] .form-group label { color: #d1d5db; }
-
-    .input-wrapper input { width: 100%; padding: 0.875rem 1rem; border: 1px solid #e5e7eb; border-radius: 0.75rem; font-size: 1rem; transition: all 0.2s; }
-    [data-theme="dark"] .input-wrapper input { background: #111827; border-color: #374151; color: white; }
-    .input-wrapper input:focus { border-color: var(--primary-color); outline: none; box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1); }
-
-    .field-error { color: #ef4444; font-size: 0.75rem; margin-top: 0.25rem; }
-    .help-text { color: #9ca3af; font-size: 0.75rem; margin-top: 0.25rem; }
-
-    .btn-block { width: 100%; padding: 1rem; font-weight: 600; border-radius: 0.75rem; border: none; cursor: pointer; transition: all 0.2s; }
-    .btn-primary { background: var(--primary-color); color: white; }
-    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-
-    .auth-divider { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #f3f4f6; text-align: center; font-size: 0.875rem; color: #6b7280; }
-    [data-theme="dark"] .auth-divider { border-color: #374151; }
-    .link-bold { color: var(--primary-color); font-weight: 700; text-decoration: none; margin-left: 0.5rem; }
+    .auth-page { position: relative; overflow: hidden; background: var(--bg-light); }
+    .auth-card-wrapper { width: 100%; max-width: 500px; position: relative; z-index: 10; padding: 1rem; }
+    .bg-glass { background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border) !important; }
+    .input-group-text { border-color: transparent; }
+    .input-group input { border-color: transparent !important; background-color: var(--bs-light) !important; border-top-right-radius: 1rem !important; border-bottom-right-radius: 1rem !important; }
+    .input-group input:focus { background: white !important; border-color: var(--primary) !important; box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1); }
+    [data-theme="dark"] .input-group input:focus { background: var(--bg-light) !important; }
+    .tracking-wider { letter-spacing: 0.05em; }
 </style>
 {% endblock %}

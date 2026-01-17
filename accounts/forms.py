@@ -7,5 +7,19 @@ class SignupForm(UserCreationForm):
         model = User
         fields = UserCreationForm.Meta.fields + ('role',)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({
+                'class': 'form-control bg-light border-start-0 rounded-end-4',
+                'placeholder': field.label
+            })
+
 class LoginForm(AuthenticationForm):
-    pass
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({
+                'class': 'form-control bg-light border-start-0 rounded-end-4',
+                'placeholder': field.label
+            })
