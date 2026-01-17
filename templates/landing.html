@@ -17,6 +17,9 @@
         --white: #FFFFFF;
         --glass-bg: rgba(255, 255, 255, 0.7);
         --glass-border: rgba(255, 255, 255, 0.3);
+        --section-padding: 8rem 0;
+        --border-radius-lg: 2rem;
+        --transition-standard: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     [data-theme="dark"] {
@@ -36,135 +39,83 @@
         color: var(--text-main);
         background-color: var(--bg-light);
         transition: background-color 0.3s ease, color 0.3s ease;
+        line-height: 1.6;
     }
 
-    /* Professional Gradients & Backgrounds */
-    .bg-mesh {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-        overflow: hidden;
-    }
-    .mesh-1 {
-        position: absolute;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(0, 102, 255, 0.08) 0%, transparent 70%);
-        top: -200px;
-        right: -100px;
-        border-radius: 50%;
-    }
-    .mesh-2 {
-        position: absolute;
-        width: 800px;
-        height: 800px;
-        background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
-        bottom: -300px;
-        left: -200px;
-        border-radius: 50%;
-    }
-
-    /* Navigation */
-    .navbar {
-        background: var(--glass-bg);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--glass-border);
-        padding: 1.25rem 0;
-    }
-    .navbar-brand {
-        font-weight: 800;
-        font-size: 1.5rem;
-        letter-spacing: -1px;
-    }
-    .nav-link {
-        font-weight: 500;
-        color: var(--text-main) !important;
-        padding: 0.5rem 1.25rem !important;
-        transition: opacity 0.2s;
-    }
-    .nav-link:hover { opacity: 0.7; }
-
-    /* Hero */
+    /* Enhanced Hero Layout */
     .hero-section {
-        padding: 12rem 0 8rem;
+        padding: 14rem 0 10rem;
         position: relative;
     }
+
     .hero-title {
-        font-size: 4.5rem;
+        font-size: clamp(3rem, 8vw, 5rem);
         font-weight: 900;
         line-height: 1.05;
-        letter-spacing: -3px;
-        margin-bottom: 1.5rem;
-    }
-    .gradient-text {
-        background: linear-gradient(135deg, var(--primary) 0%, #6366F1 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .hero-p {
-        font-size: 1.25rem;
-        line-height: 1.6;
-        color: var(--text-muted);
-        max-width: 540px;
-        margin-bottom: 3rem;
+        letter-spacing: -0.04em;
+        margin-bottom: 2rem;
     }
 
-    /* Buttons */
+    /* Advanced Hover States */
+    .card-feature {
+        background: var(--white);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--border-radius-lg);
+        padding: 3.5rem;
+        height: 100%;
+        transition: var(--transition-standard);
+        cursor: default;
+    }
+
+    .card-feature:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.15);
+        border-color: var(--primary);
+    }
+
     .btn-primary-custom {
         background: var(--primary);
         color: white;
         border: none;
-        padding: 1rem 2.5rem;
+        padding: 1.25rem 3rem;
         border-radius: 100px;
         font-weight: 600;
         box-shadow: 0 10px 25px -5px rgba(0, 102, 255, 0.4);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: var(--transition-standard);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
     }
+
     .btn-primary-custom:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 35px -10px rgba(0, 102, 255, 0.5);
+        transform: scale(1.05);
+        box-shadow: 0 25px 45px -12px rgba(0, 102, 255, 0.6);
         color: white;
     }
+
     .btn-secondary-custom {
         background: var(--white);
         color: var(--text-main);
         border: 1px solid var(--glass-border);
-        padding: 1rem 2.5rem;
+        padding: 1.25rem 3rem;
         border-radius: 100px;
         font-weight: 600;
-        transition: all 0.3s;
+        transition: var(--transition-standard);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
     }
+
     .btn-secondary-custom:hover {
         background: var(--bg-light);
         border-color: var(--primary);
+        transform: scale(1.05);
     }
 
-    /* Feature Cards */
-    .section-tag {
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 700;
-        font-size: 0.875rem;
-        color: var(--primary);
-        display: block;
-        margin-bottom: 1rem;
-    }
-    .card-feature {
-        background: var(--white);
-        border: 1px solid var(--glass-border);
-        border-radius: 2rem;
-        padding: 3rem;
-        height: 100%;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .card-feature:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.1);
-        border-color: var(--primary);
+    /* Accessibility Focus */
+    .btn:focus-visible, .nav-link:focus-visible {
+        outline: 3px solid var(--primary);
+        outline-offset: 4px;
     }
     .feature-icon {
         width: 64px;
@@ -283,15 +234,17 @@
                     <span class="badge bg-primary rounded-pill">New</span>
                     <span class="small fw-bold">Automated Billing for Global Teams</span>
                 </div>
-                <h1 class="hero-title">The Future of <span class="gradient-text">Business Finance</span></h1>
-                <p class="hero-p">Simplify your invoicing, automate payments, and gain deep financial intelligence. Built for modern enterprises that demand efficiency and scale.</p>
-                <div class="d-flex flex-wrap gap-4">
-                    <a href="{% url 'accounts:register' %}" class="btn btn-primary-custom btn-lg">Start Free Trial</a>
-                    <a href="#demo" class="btn btn-secondary-custom btn-lg d-flex align-items-center gap-2">
-                        <i class="fa-solid fa-play fs-6"></i> View Platform Tour
+                <h1 class="hero-title" data-aos="fade-up">The Future of <span class="gradient-text">Business Finance</span></h1>
+                <p class="hero-p" data-aos="fade-up" data-aos-delay="100">Simplify your invoicing, automate payments, and gain deep financial intelligence. Built for modern enterprises that demand efficiency and scale.</p>
+                <div class="d-flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="200">
+                    <a href="{% url 'accounts:register' %}" class="btn btn-primary-custom btn-lg">
+                        Start Free Trial <i class="fa-solid fa-arrow-right fs-6"></i>
+                    </a>
+                    <a href="#demo" class="btn btn-secondary-custom btn-lg">
+                        <i class="fa-solid fa-play fs-6 text-primary"></i> View Platform Tour
                     </a>
                 </div>
-                <div class="mt-5 pt-4 border-top border-light d-flex align-items-center gap-5 grayscale opacity-50">
+                <div class="mt-5 pt-4 border-top border-light d-flex align-items-center gap-5 grayscale opacity-50" data-aos="fade-up" data-aos-delay="300">
                     <span class="small fw-bold text-uppercase tracking-wider">Trusted by leaders</span>
                     <i class="fa-brands fa-stripe fs-2"></i>
                     <i class="fa-brands fa-amazon fs-2"></i>
