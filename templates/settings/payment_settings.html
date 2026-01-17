@@ -1,52 +1,74 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-<div class="dashboard-container">
-    <div class="dashboard-header">
-        <h1>Payment & Bank Settings</h1>
-        <p>Configure your payment gateways and payout information</p>
+<div class="dashboard-container py-5" data-aos="fade-up">
+    <div class="mb-5">
+        <h1 class="fw-bold h2 mb-1">Payment & Bank Settings</h1>
+        <p class="text-muted small">Configure your payment gateways and payout information</p>
     </div>
     
-    <div class="glass-card card" style="padding: 2.5rem; margin-top: 2rem;">
+    <div class="card-feature p-5 border-0 shadow-lg bg-glass">
         <form method="POST">
             {% csrf_token %}
             
             <div class="settings-section">
-                <h3 class="section-title">Stripe Integration</h3>
-                <div class="form-row">
-                    {{ form.stripe_public_key|as_crispy_field }}
-                    {{ form.stripe_secret_key|as_crispy_field }}
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="icon-box bg-primary bg-opacity-10 text-primary rounded-3 p-2">
+                        <i class="fa-brands fa-stripe fs-4"></i>
+                    </div>
+                    <h3 class="fw-bold h5 mb-0">Stripe Integration</h3>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-6">{{ form.stripe_public_key|as_crispy_field }}</div>
+                    <div class="col-md-6">{{ form.stripe_secret_key|as_crispy_field }}</div>
                 </div>
             </div>
 
-            <div class="settings-section" style="margin-top: 3rem;">
-                <h3 class="section-title">Paystack Integration</h3>
-                <div class="form-row">
-                    {{ form.paystack_public_key|as_crispy_field }}
-                    {{ form.paystack_secret_key|as_crispy_field }}
+            <hr class="my-5 opacity-50">
+
+            <div class="settings-section">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="icon-box bg-success bg-opacity-10 text-success rounded-3 p-2">
+                        <i class="fa-solid fa-money-bill-transfer fs-4"></i>
+                    </div>
+                    <h3 class="fw-bold h5 mb-0">Paystack Integration</h3>
                 </div>
-                {{ form.paystack_webhook_url|as_crispy_field }}
+                <div class="row g-4">
+                    <div class="col-md-6">{{ form.paystack_public_key|as_crispy_field }}</div>
+                    <div class="col-md-6">{{ form.paystack_secret_key|as_crispy_field }}</div>
+                </div>
+                <div class="mt-4">{{ form.paystack_webhook_url|as_crispy_field }}</div>
             </div>
 
-            <div class="settings-section" style="margin-top: 3rem;">
-                <h3 class="section-title">Bank Payout Account</h3>
-                <div class="form-row">
-                    {{ form.bank_name|as_crispy_field }}
-                    {{ form.account_number|as_crispy_field }}
+            <hr class="my-5 opacity-50">
+
+            <div class="settings-section">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="icon-box bg-info bg-opacity-10 text-info rounded-3 p-2">
+                        <i class="fa-solid fa-building-columns fs-4"></i>
+                    </div>
+                    <h3 class="fw-bold h5 mb-0">Bank Payout Account</h3>
                 </div>
-                {{ form.account_name|as_crispy_field }}
+                <div class="row g-4">
+                    <div class="col-md-6">{{ form.bank_name|as_crispy_field }}</div>
+                    <div class="col-md-6">{{ form.account_number|as_crispy_field }}</div>
+                </div>
+                <div class="mt-4">{{ form.account_name|as_crispy_field }}</div>
             </div>
 
-            <div style="margin-top: 3rem; border-top: 1px solid var(--glass-border); padding-top: 2rem;">
-                <button type="submit" class="btn btn-primary btn-lg">Save Configuration</button>
+            <div class="mt-5 pt-4 border-top">
+                <button type="submit" class="btn btn-primary-custom px-5">
+                    <i class="fa-solid fa-floppy-disk small"></i> Save Configuration
+                </button>
             </div>
         </form>
     </div>
 </div>
 
 <style>
-    .settings-section { padding-bottom: 2rem; }
-    .section-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary-color); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    @media (max-width: 768px) { .form-row { grid-template-columns: 1fr; } }
+    .form-control { border-radius: 0.75rem; border: 1px solid #e2e8f0; padding: 0.75rem 1rem; }
+    .form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1); }
 </style>
+{% endblock %}
 {% endblock %}

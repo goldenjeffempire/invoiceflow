@@ -1,31 +1,59 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="dashboard-container">
-    <div class="dashboard-header">
-        <h1>Sales</h1>
-        <a href="{% url 'sales:sale_create' %}" class="cta-btn">Add Sale</a>
+<div class="dashboard-container py-5" data-aos="fade-up">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h1 class="fw-bold h2 mb-1">Sales</h1>
+            <p class="text-muted small">Monitor your transaction history and revenue</p>
+        </div>
+        <a href="{% url 'sales:sale_create' %}" class="btn btn-primary-custom">
+            <i class="fa-solid fa-plus small"></i> Add Sale Record
+        </a>
     </div>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for sale in sales %}
-                <tr>
-                    <td>{{ sale.date }}</td>
-                    <td>{{ sale.description }}</td>
-                    <td>₦{{ sale.amount|floatformat:2 }}</td>
-                </tr>
-                {% empty %}
-                <tr><td colspan="3">No sales records found.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
+
+    <div class="card-feature p-0 overflow-hidden border-0 shadow-sm bg-glass">
+        <div class="table-responsive">
+            <table class="table mb-0 align-middle">
+                <thead class="bg-light opacity-75">
+                    <tr>
+                        <th class="ps-4 py-3 small fw-bold text-uppercase tracking-wider">Date</th>
+                        <th class="py-3 small fw-bold text-uppercase tracking-wider">Description</th>
+                        <th class="py-3 small fw-bold text-uppercase tracking-wider text-end">Amount</th>
+                        <th class="pe-4 py-3 text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sale in sales %}
+                    <tr class="hover-row">
+                        <td class="ps-4 text-muted small">{{ sale.date|date:"M d, Y" }}</td>
+                        <td class="fw-semibold text-main">{{ sale.description }}</td>
+                        <td class="text-end fw-bold text-success">₦{{ sale.amount|floatformat:2 }}</td>
+                        <td class="pe-4 text-end">
+                            <div class="d-flex justify-content-end gap-2">
+                                <a href="#" class="btn btn-sm btn-light rounded-3 px-3"><i class="fa-solid fa-eye small"></i></a>
+                                <button class="btn btn-sm btn-light rounded-3 px-3"><i class="fa-solid fa-trash small"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center py-5">
+                            <div class="py-4">
+                                <i class="fa-solid fa-magnifying-glass-dollar display-4 text-light mb-3"></i>
+                                <p class="text-muted">No sales records yet. Time to close some deals!</p>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+<style>
+    .hover-row:hover { background: rgba(16, 185, 129, 0.02); }
+    .tracking-wider { letter-spacing: 0.05em; }
+</style>
 {% endblock %}
