@@ -1,81 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="landing-page">
-    <!-- Hero Section -->
-    <section class="hero glass-hero">
-        <div class="hero-bg-glow"></div>
-        <div class="hero-bg-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
+<div class="landing-page-v4">
+    <!-- Ultra-Modern Hero -->
+    <section class="hero-v4">
+        <div class="hero-canvas">
+            <div class="glow-sphere sphere-1"></div>
+            <div class="glow-sphere sphere-2"></div>
         </div>
-        <div class="container hero-grid">
-            <div class="hero-content" data-aos="fade-right">
-                <div class="badge-pill animate-pulse">
-                    <span class="badge-icon">✨</span> Trusted by 5,000+ Enterprises Globally
+        <div class="container hero-v4-content">
+            <div class="hero-text-stack" data-aos="fade-up">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Now with AI-Powered Reconciliation
                 </div>
-                <h1 class="hero-title">Invoicing for the <br><span class="gradient-text">Digital Era</span></h1>
-                <p class="hero-description">The all-in-one financial ecosystem for high-growth teams. Automate invoicing, reconcile expenses, and master your cash flow with institutional-grade security.</p>
-                <div class="hero-buttons">
-                    <a href="{% url 'auth:signup' %}" class="btn btn-primary btn-lg btn-glow">Get Started Free</a>
-                    <a href="#solutions" class="btn btn-secondary btn-lg">Explore Solutions</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">99.99%</span>
-                        <span class="stat-label">System Uptime</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-divider"></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">₦10B+</span>
-                        <span class="stat-label">Monthly Volume</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-divider"></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">ISO</span>
-                        <span class="stat-label">Certified Security</span>
-                    </div>
+                <h1 class="hero-v4-title">Financial Freedom for <span class="text-gradient">High-Growth Teams.</span></h1>
+                <p class="hero-v4-subtitle">The ultimate enterprise-grade infrastructure for invoicing, expense management, and real-time financial orchestration.</p>
+                <div class="hero-v4-actions">
+                    <a href="{% url 'auth:signup' %}" class="btn-v4 btn-v4-primary">Get Started Free</a>
+                    <a href="#features" class="btn-v4 btn-v4-secondary">View Capabilities</a>
                 </div>
             </div>
-            <div class="hero-canvas" data-aos="zoom-in-left">
-                <div class="mockup-container">
-                    <div class="mockup-header">
-                        <div class="mockup-dots"><span></span><span></span><span></span></div>
-                        <div class="mockup-address-bar">invoiceflow.io/dashboard</div>
+            
+            <div class="hero-v4-visual" data-aos="zoom-out" data-aos-delay="200">
+                <div class="visual-card main-card">
+                    <div class="card-glass-header">
+                        <div class="window-dots"><span></span><span></span><span></span></div>
+                        <div class="window-path">invoiceflow.io/enterprise</div>
                     </div>
-                    <div class="mockup-content">
-                        <img src="{% static 'stock_images/modern_fintech_app_d_d3efe0a4.jpg' %}" alt="InvoiceFlow Dashboard" class="main-mockup">
-                        
-                        <!-- Dynamic Widgets -->
-                        <div class="floating-widget widget-income glass-card" data-aos="fade-up" data-aos-delay="400">
-                            <div class="widget-icon income-bg">📈</div>
-                            <div class="widget-body">
-                                <small>Total Revenue</small>
-                                <strong>₦4,280,000.00</strong>
-                                <span class="trend positive">+14.2%</span>
-                            </div>
+                    <img src="{% static 'stock_images/high-tech_futuristic_dbb89632.jpg' %}" alt="Enterprise Dashboard" class="hero-main-img">
+                    
+                    <!-- Interactive Widgets -->
+                    <div class="v4-widget widget-1" data-aos="fade-left" data-aos-delay="400">
+                        <div class="widget-icon">⚡</div>
+                        <div class="widget-info">
+                            <span class="widget-label">Current Volume</span>
+                            <span class="widget-value">₦12.4M</span>
                         </div>
-                        
-                        <div class="floating-widget widget-payment glass-card" data-aos="fade-left" data-aos-delay="600">
-                            <div class="payment-avatar">JD</div>
-                            <div class="widget-body">
-                                <small>New Payment</small>
-                                <strong>₦125,000.00</strong>
-                                <span class="badge badge-success">Success</span>
-                            </div>
-                        </div>
-
-                        <div class="floating-widget widget-security glass-card" data-aos="fade-up" data-aos-delay="800">
-                            <div class="security-shield">🛡️</div>
-                            <div class="widget-body">
-                                <small>Security Status</small>
-                                <strong>Enterprise Grade</strong>
-                                <span class="status-active">Active</span>
-                            </div>
+                    </div>
+                    <div class="v4-widget widget-2" data-aos="fade-right" data-aos-delay="600">
+                        <div class="widget-icon">🛡️</div>
+                        <div class="widget-info">
+                            <span class="widget-label">Security Shield</span>
+                            <span class="widget-value">Active</span>
                         </div>
                     </div>
                 </div>
@@ -83,241 +50,216 @@
         </div>
     </section>
 
-    <!-- Partners Section -->
-    <section class="partners-section">
+    <!-- Capabilities Showcase -->
+    <section id="features" class="capabilities-v4">
         <div class="container">
-            <p class="partners-title">POWERING FINANCIAL TEAMS AT</p>
-            <div class="partners-carousel">
-                <div class="partners-track">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Paystack_Logo.png" alt="Paystack">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Visa_2021.svg/1200px-Visa_2021.svg.png" alt="Visa">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Paystack_Logo.png" alt="Paystack">
+            <div class="section-v4-header text-center" data-aos="fade-up">
+                <h2 class="v4-title">Institutional-Grade <span class="text-gradient">Capabilities</span></h2>
+                <p class="v4-subtitle">Everything you need to orchestrate global financial operations at scale.</p>
+            </div>
+            
+            <div class="capabilities-grid">
+                <div class="cap-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cap-icon">📄</div>
+                    <h3>Smart Invoicing</h3>
+                    <p>Automated multi-currency billing with intelligent tax calculation and dynamic PDF generation.</p>
+                </div>
+                <div class="cap-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="cap-icon">💸</div>
+                    <h3>Global Liquidity</h3>
+                    <p>Native integration with Stripe and Paystack for instant cross-border payment settlement.</p>
+                </div>
+                <div class="cap-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="cap-icon">🔐</div>
+                    <h3>Zero-Trust Security</h3>
+                    <p>Enterprise-hardened architecture featuring end-to-end encryption and audit logging.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solutions Section -->
-    <section id="solutions" class="solutions-section">
+    <!-- Visual Feature Section -->
+    <section class="visual-feature-v4 alternate">
+        <div class="container visual-grid-v4">
+            <div class="visual-content-v4" data-aos="fade-right">
+                <h2 class="v4-title">Data-Driven <span class="text-gradient">Intelligence</span></h2>
+                <p class="v4-subtitle text-left">Harness the power of real-time analytics to predict cash flow and optimize business performance.</p>
+                <ul class="v4-feature-list">
+                    <li><span>✓</span> Predictive revenue forecasting</li>
+                    <li><span>✓</span> Automated expense reconciliation</li>
+                    <li><span>✓</span> Institutional-grade audit reports</li>
+                </ul>
+                <a href="{% url 'auth:signup' %}" class="btn-v4 btn-v4-link">Start 14-day free trial →</a>
+            </div>
+            <div class="visual-media-v4" data-aos="fade-left">
+                <img src="{% static 'stock_images/professional_busines_04b2cb39.jpg' %}" alt="Analytics" class="img-v4-rounded shadow-v4">
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimalist Pricing -->
+    <section id="pricing" class="pricing-v4">
         <div class="container">
-            <div class="section-header text-center" data-aos="fade-up">
-                <h2 class="section-title">A Unified Suite for <span class="gradient-text">Financial Mastery</span></h2>
-                <p class="section-subtitle">Scale your business globally with our integrated financial infrastructure designed for speed and reliability.</p>
-            </div>
-            <div class="solutions-grid">
-                <div class="solution-card glass-card" data-aos="fade-up">
-                    <div class="solution-icon">⚡</div>
-                    <h3>Automated Invoicing</h3>
-                    <p>Dynamic PDF generation with intelligent tax calculation and multi-language support. Send professional invoices in seconds.</p>
-                    <a href="{% url 'invoices:invoices_list' %}" class="solution-link">Explore Invoicing →</a>
-                </div>
-                <div class="solution-card glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="solution-icon">💎</div>
-                    <h3>Global Payments</h3>
-                    <p>Accept 135+ currencies natively through Stripe and Paystack with instant reconciliation and low transaction fees.</p>
-                    <a href="{% url 'payments:payment_settings' %}" class="solution-link">Setup Payments →</a>
-                </div>
-                <div class="solution-card glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="solution-icon">📊</div>
-                    <h3>Advanced Reporting</h3>
-                    <p>Institutional-grade analytics and sales forecasting powered by real-time data ingestion for smarter decisions.</p>
-                    <a href="{% url 'reports:summary' %}" class="solution-link">View Reports →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="feature-showcase alternate-bg">
-        <div class="container showcase-grid">
-            <div class="showcase-media" data-aos="fade-right">
-                <div class="media-stack">
-                    <img src="{% static 'stock_images/modern_professional__63564d47.jpg' %}" alt="Team Productivity" class="media-main glass-border">
-                    <div class="media-overlay glass-card" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="overlay-header">
-                            <strong>Security Protocol</strong>
-                            <span class="status-indicator"></span>
-                        </div>
-                        <p>HSTS, SSL & Webhook Validation Enabled</p>
+            <div class="pricing-grid-v4">
+                <div class="pricing-card-v4 glass-v4" data-aos="fade-up">
+                    <div class="price-header">
+                        <h4>Professional</h4>
+                        <p class="price">₦4,900<span>/mo</span></p>
                     </div>
-                </div>
-            </div>
-            <div class="showcase-content" data-aos="fade-left">
-                <h2 class="showcase-title">Uncompromising <span class="gradient-text">Security Standards</span></h2>
-                <p class="showcase-text">We've built InvoiceFlow on an enterprise-hardened architecture, ensuring your financial data remains secure, compliant, and always available.</p>
-                <div class="feature-list">
-                    <div class="list-item">
-                        <div class="item-check">✓</div>
-                        <div class="item-body">
-                            <strong>Global Webhook Security</strong>
-                            <p>End-to-end cryptographic validation for all external API callbacks ensuring data integrity across every transaction.</p>
-                        </div>
-                    </div>
-                    <div class="list-item">
-                        <div class="item-check">✓</div>
-                        <div class="item-body">
-                            <strong>ISO-Grade Compliance</strong>
-                            <p>Real-time activity monitoring and automated audit logging across all environment nodes for institutional transparency.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Dashboard Preview Section -->
-    <section class="dashboard-preview-section">
-        <div class="container">
-            <div class="preview-grid" data-aos="fade-up">
-                <div class="preview-content">
-                    <h2 class="section-title">Master Your <span class="gradient-text">Cash Flow</span></h2>
-                    <p class="section-subtitle text-left">Get a bird's-eye view of your business performance with real-time analytics and intelligent forecasting.</p>
-                    <div class="preview-features">
-                        <div class="p-feat">
-                            <span class="p-feat-icon">📉</span>
-                            <div class="p-feat-text">
-                                <strong>Expense Reconciliation</strong>
-                                <p>Automatically categorize and reconcile expenses with smart matching algorithms.</p>
-                            </div>
-                        </div>
-                        <div class="p-feat">
-                            <span class="p-feat-icon">📈</span>
-                            <div class="p-feat-text">
-                                <strong>Intelligent Forecasting</strong>
-                                <p>Monitor sales trends and predict future cash flows with integrated analytics.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="preview-image-container">
-                    <img src="{% static 'stock_images/clean_professional_bus_31168128.jpg' %}" alt="Financial Analytics Dashboard" class="preview-main-img glass-border">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing-section">
-        <div class="container">
-            <div class="section-header text-center" data-aos="fade-up">
-                <h2 class="section-title">Transparent, <span class="gradient-text">Growth-Oriented</span> Pricing</h2>
-                <p class="section-subtitle">No hidden fees. No complex contracts. Just pure financial power.</p>
-            </div>
-            <div class="pricing-grid">
-                <!-- Plan 1 -->
-                <div class="pricing-card glass-card" data-aos="fade-up">
-                    <div class="plan-type">STARTER</div>
-                    <div class="plan-price">₦0<span>/mo</span></div>
-                    <p class="plan-desc">For freelancers and early-stage entrepreneurs.</p>
-                    <ul class="plan-features">
-                        <li>5 Smart Invoices / month</li>
-                        <li>Stripe & Paystack integration</li>
-                        <li>Basic PDF Branding</li>
+                    <ul class="price-features">
+                        <li>Unlimited Invoices</li>
+                        <li>Global Payments</li>
+                        <li>Basic Analytics</li>
                     </ul>
-                    <a href="{% url 'auth:signup' %}" class="btn btn-outline-primary full-width">Get Started</a>
+                    <a href="{% url 'auth:signup' %}" class="btn-v4 btn-v4-outline full-w">Select Plan</a>
                 </div>
-                <!-- Plan 2 (Featured) -->
-                <div class="pricing-card glass-card featured" data-aos="fade-up" data-aos-delay="100">
-                    <div class="featured-tag">MOST POPULAR</div>
-                    <div class="plan-type">PROFESSIONAL</div>
-                    <div class="plan-price">₦4,900<span>/mo</span></div>
-                    <p class="plan-desc">For growing teams and established businesses.</p>
-                    <ul class="plan-features">
-                        <li>Unlimited Smart Invoices</li>
-                        <li>Advanced Sales Analytics</li>
-                        <li>Custom Domain Support</li>
-                        <li>Priority Global Support</li>
-                    </ul>
-                    <a href="{% url 'auth:signup' %}" class="btn btn-primary full-width btn-glow">Start 14-Day Trial</a>
-                </div>
-                <!-- Plan 3 -->
-                <div class="pricing-card glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="plan-type">ENTERPRISE</div>
-                    <div class="plan-price">Custom</div>
-                    <p class="plan-desc">For large organizations with complex needs.</p>
-                    <ul class="plan-features">
-                        <li>Dedicated Account Manager</li>
-                        <li>Custom Webhook Integrations</li>
+                <div class="pricing-card-v4 glass-v4 featured" data-aos="fade-up" data-aos-delay="100">
+                    <div class="featured-ribbon">Most Popular</div>
+                    <div class="price-header">
+                        <h4>Enterprise</h4>
+                        <p class="price">₦12,500<span>/mo</span></p>
+                    </div>
+                    <ul class="price-features">
+                        <li>AI Reconciliation</li>
+                        <li>Custom Webhooks</li>
+                        <li>Dedicated Support</li>
                         <li>SLA Guarantee</li>
-                        <li>On-premise Deployment</li>
                     </ul>
-                    <a href="mailto:sales@invoiceflow.io" class="btn btn-outline-primary full-width">Contact Sales</a>
+                    <a href="{% url 'auth:signup' %}" class="btn-v4 btn-v4-primary full-w">Start Enterprise Trial</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section alternate-bg">
-        <div class="container text-center" data-aos="fade-up">
-            <h2 class="section-title">Built for the <span class="gradient-text">Modern Web</span></h2>
-            <p class="section-subtitle max-w-2xl">InvoiceFlow leverages the latest in Django architecture, WhiteNoise distribution, and glass-morphic design systems to deliver a platform that is as beautiful as it is robust.</p>
-            <div class="tech-stack">
-                <span class="tech-tag">Django 5.1+</span>
-                <span class="tech-tag">PostgreSQL</span>
-                <span class="tech-tag">Stripe SDK</span>
-                <span class="tech-tag">Chart.js</span>
-                <span class="tech-tag">Render Cloud</span>
+    <!-- Simplified Footer -->
+    <footer class="footer-v4">
+        <div class="container footer-v4-grid">
+            <div class="footer-v4-brand">
+                <div class="logo-v4">InvoiceFlow</div>
+                <p>Enterprise financial orchestration.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="final-cta">
-        <div class="container">
-            <div class="cta-wrapper gradient-bg glass-card" data-aos="zoom-in">
-                <h2>Ready to transform your business?</h2>
-                <p>Join over 5,000 businesses globally who trust InvoiceFlow for their financial operations.</p>
-                <div class="cta-buttons">
-                    <a href="{% url 'auth:signup' %}" class="btn btn-white btn-lg">Create Account</a>
-                    <a href="#solutions" class="btn btn-outline-white btn-lg">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <div class="logo">InvoiceFlow</div>
-                <p>Enterprise-grade financial infrastructure for high-growth teams.</p>
-                <div class="social-links">
-                    <a href="#" class="social-icon">𝕏</a>
-                    <a href="#" class="social-icon">🔗</a>
-                    <a href="#" class="social-icon">📸</a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h4>Platform</h4>
-                <a href="#solutions">Solutions</a>
+            <div class="footer-v4-links">
                 <a href="#features">Features</a>
                 <a href="#pricing">Pricing</a>
-            </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <a href="#about">About</a>
-                <a href="#">Contact</a>
-                <a href="#">Privacy Policy</a>
-            </div>
-            <div class="footer-links">
-                <h4>Support</h4>
-                <a href="#">Help Center</a>
-                <a href="#">API Docs</a>
-                <a href="#">System Status</a>
+                <a href="#">Security</a>
+                <a href="#">Terms</a>
             </div>
         </div>
-        <div class="footer-bottom">
+        <div class="footer-v4-bottom">
             <div class="container">
-                <p>© 2026 InvoiceFlow Technologies. All rights reserved.</p>
+                <p>© 2026 InvoiceFlow Technologies Inc.</p>
             </div>
         </div>
     </footer>
 </div>
 
-<!-- AOS Implementation -->
+<style>
+    :root {
+        --v4-primary: #6366f1;
+        --v4-primary-glow: rgba(99, 102, 241, 0.4);
+        --v4-bg: #0f172a;
+        --v4-text: #f8fafc;
+        --v4-text-muted: #94a3b8;
+        --v4-glass: rgba(30, 41, 59, 0.7);
+        --v4-border: rgba(255, 255, 255, 0.1);
+    }
+
+    .landing-page-v4 { background-color: var(--v4-bg); color: var(--v4-text); font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
+    .text-gradient { background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    
+    /* Hero */
+    .hero-v4 { padding: 120px 0 160px; position: relative; }
+    .hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .glow-sphere { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15; }
+    .sphere-1 { width: 400px; height: 400px; background: var(--v4-primary); top: -100px; right: -100px; }
+    .sphere-2 { width: 300px; height: 300px; background: #ec4899; bottom: 0; left: -100px; }
+    
+    .hero-v4-content { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); padding: 6px 16px; border-radius: 100px; font-size: 0.875rem; border: 1px solid var(--v4-border); margin-bottom: 24px; }
+    .badge-dot { width: 6px; height: 6px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; }
+    
+    .hero-v4-title { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em; }
+    .hero-v4-subtitle { font-size: 1.25rem; color: var(--v4-text-muted); line-height: 1.6; margin-bottom: 40px; max-width: 500px; }
+    
+    .hero-v4-actions { display: flex; gap: 16px; }
+    .btn-v4 { padding: 12px 32px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; }
+    .btn-v4-primary { background: var(--v4-primary); color: white; box-shadow: 0 10px 20px var(--v4-primary-glow); }
+    .btn-v4-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 30px var(--v4-primary-glow); }
+    .btn-v4-secondary { background: rgba(255,255,255,0.05); color: white; border: 1px solid var(--v4-border); }
+    .btn-v4-secondary:hover { background: rgba(255,255,255,0.1); }
+    
+    .visual-card { position: relative; border-radius: 20px; overflow: visible; background: #1e293b; border: 1px solid var(--v4-border); box-shadow: 0 40px 80px rgba(0,0,0,0.4); }
+    .card-glass-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--v4-border); }
+    .window-dots { display: flex; gap: 6px; }
+    .window-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+    .window-path { font-size: 0.75rem; color: var(--v4-text-muted); opacity: 0.6; }
+    .hero-main-img { width: 100%; border-radius: 0 0 20px 20px; display: block; filter: brightness(0.9); }
+    
+    .v4-widget { position: absolute; background: var(--v4-glass); backdrop-filter: blur(12px); padding: 12px 20px; border-radius: 16px; border: 1px solid var(--v4-border); display: flex; align-items: center; gap: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .widget-1 { top: 20%; right: -40px; }
+    .widget-2 { bottom: 20%; left: -40px; }
+    .widget-icon { font-size: 1.25rem; }
+    .widget-label { display: block; font-size: 0.6875rem; color: var(--v4-text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .widget-value { display: block; font-size: 1rem; font-weight: 800; color: white; }
+    
+    /* Capabilities */
+    .capabilities-v4 { padding: 100px 0; }
+    .section-v4-header { margin-bottom: 60px; }
+    .v4-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+    .v4-subtitle { font-size: 1.125rem; color: var(--v4-text-muted); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+    .capabilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .cap-card { padding: 40px; background: rgba(255,255,255,0.02); border: 1px solid var(--v4-border); border-radius: 24px; transition: all 0.3s ease; }
+    .cap-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.04); border-color: var(--v4-primary); }
+    .cap-icon { font-size: 2.5rem; margin-bottom: 24px; }
+    .cap-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+    .cap-card p { color: var(--v4-text-muted); line-height: 1.6; }
+    
+    /* Visual Feature */
+    .visual-feature-v4 { padding: 100px 0; }
+    .visual-grid-v4 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .v4-feature-list { list-style: none; padding: 0; margin: 32px 0; }
+    .v4-feature-list li { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; font-weight: 500; }
+    .v4-feature-list li span { color: var(--v4-primary); font-weight: 900; }
+    .btn-v4-link { color: var(--v4-primary); padding: 0; font-weight: 700; }
+    .img-v4-rounded { width: 100%; border-radius: 24px; border: 1px solid var(--v4-border); }
+    
+    /* Pricing */
+    .pricing-v4 { padding: 100px 0; }
+    .pricing-grid-v4 { display: flex; justify-content: center; gap: 32px; }
+    .pricing-card-v4 { padding: 48px; border-radius: 24px; background: var(--v4-glass); border: 1px solid var(--v4-border); width: 340px; position: relative; }
+    .pricing-card-v4.featured { border-color: var(--v4-primary); transform: scale(1.05); }
+    .featured-ribbon { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); background: var(--v4-primary); color: white; padding: 4px 16px; border-radius: 100px; font-size: 0.75rem; font-weight: 700; }
+    .price-header h4 { font-size: 1.125rem; font-weight: 700; color: var(--v4-text-muted); margin-bottom: 16px; }
+    .price { font-size: 2.5rem; font-weight: 800; margin-bottom: 32px; }
+    .price span { font-size: 1rem; color: var(--v4-text-muted); font-weight: 500; }
+    .price-features { list-style: none; padding: 0; margin-bottom: 40px; }
+    .price-features li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: var(--v4-text-muted); }
+    .price-features li::before { content: "•"; color: var(--v4-primary); }
+    .btn-v4-outline { border: 1px solid var(--v4-border); color: white; }
+    .full-w { width: 100%; }
+    
+    /* Footer */
+    .footer-v4 { padding: 80px 0 40px; border-top: 1px solid var(--v4-border); }
+    .footer-v4-grid { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 60px; }
+    .logo-v4 { font-size: 1.25rem; font-weight: 800; color: var(--v4-primary); margin-bottom: 12px; }
+    .footer-v4-links { display: flex; gap: 32px; }
+    .footer-v4-links a { text-decoration: none; color: var(--v4-text-muted); font-size: 0.9375rem; }
+    .footer-v4-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; font-size: 0.875rem; color: var(--v4-text-muted); text-align: center; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .hero-v4-content { grid-template-columns: 1fr; text-align: center; }
+        .hero-v4-subtitle { margin-left: auto; margin-right: auto; }
+        .hero-v4-actions { justify-content: center; }
+        .hero-v4-visual { margin-top: 80px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .capabilities-grid { grid-template-columns: 1fr; }
+        .visual-grid-v4 { grid-template-columns: 1fr; }
+        .pricing-grid-v4 { flex-direction: column; align-items: center; }
+        .pricing-card-v4 { width: 100%; max-width: 400px; }
+    }
+</style>
+
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
@@ -325,187 +267,8 @@
         AOS.init({
             duration: 800,
             once: true,
-            easing: 'ease-out-quad',
-            offset: 100
+            easing: 'ease-out-quad'
         });
-
-        // Sticky Header Effect
-        const header = document.querySelector('.main-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        const desktopNav = document.querySelector('.desktop-nav');
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                desktopNav.classList.toggle('mobile-active');
-            });
-        }
     });
 </script>
-
-<style>
-    /* Professional Typography & Palette */
-    :root {
-        --text-muted: #64748b;
-        --nav-bg: rgba(255, 255, 255, 0.8);
-        --primary-glow: rgba(99, 102, 241, 0.5);
-    }
-
-    [data-theme="dark"] {
-        --text-muted: #94a3b8;
-        --nav-bg: rgba(2, 6, 23, 0.8);
-        --primary-glow: rgba(99, 102, 241, 0.3);
-    }
-
-    .landing-page { overflow-x: hidden; scroll-behavior: smooth; }
-    .max-w-2xl { max-width: 42rem; margin-left: auto; margin-right: auto; }
-    .full-width { width: 100%; }
-    .alternate-bg { background: rgba(255, 255, 255, 0.02); }
-    [data-theme="dark"] .alternate-bg { background: rgba(255, 255, 255, 0.01); }
-
-    /* Hero Refinement */
-    .hero { padding: 160px 0 100px; position: relative; }
-    .hero-bg-glow { position: absolute; top: -100px; right: -100px; width: 600px; height: 600px; background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%); opacity: 0.15; z-index: -1; filter: blur(80px); }
-    .hero-bg-shapes .shape { position: absolute; border-radius: 50%; z-index: -1; filter: blur(60px); opacity: 0.1; }
-    .shape-1 { width: 300px; height: 300px; background: var(--secondary-color); top: 10%; left: -5%; }
-    .shape-2 { width: 250px; height: 250px; background: var(--primary-color); bottom: 20%; right: 10%; }
-
-    .hero-title { font-size: 4.5rem; font-weight: 900; line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 24px; }
-    .hero-description { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; line-height: 1.6; max-width: 540px; }
-    
-    .hero-stats { display: flex; align-items: center; gap: 32px; margin-top: 60px; }
-    .stat-number { display: block; font-size: 1.75rem; font-weight: 800; color: var(--text-color); }
-    .stat-label { font-size: 0.8125rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-    .stat-divider { width: 1px; height: 40px; background: var(--glass-border); display: block; }
-
-    /* Mockup Refinement */
-    .hero-canvas { perspective: 1000px; }
-    .mockup-container { transform: rotateY(-5deg) rotateX(2deg); transition: transform 0.5s ease; background: #0f172a; padding: 6px; border-radius: 20px; box-shadow: 0 50px 100px rgba(0,0,0,0.3); }
-    .mockup-container:hover { transform: rotateY(0) rotateX(0); }
-    .mockup-header { display: flex; align-items: center; padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 16px; }
-    .mockup-address-bar { flex: 1; background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 4px; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-align: center; }
-    .mockup-content { position: relative; overflow: hidden; border-radius: 0 0 16px 16px; }
-    .main-mockup { width: 100%; display: block; filter: brightness(0.9); }
-
-    .floating-widget { position: absolute; display: flex; align-items: center; gap: 12px; padding: 12px 16px; min-width: 200px; z-index: 10; border-radius: 12px; }
-    .widget-income { top: 15%; left: -20%; }
-    .widget-payment { top: 50%; right: -15%; }
-    .widget-security { bottom: 10%; left: 10%; }
-    .widget-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
-    .income-bg { background: rgba(16, 185, 129, 0.1); color: #10b981; }
-    .widget-body { line-height: 1.2; }
-    .widget-body small { display: block; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); }
-    .widget-body strong { display: block; font-size: 1.125rem; font-weight: 800; color: var(--text-color); }
-    .trend { font-size: 0.75rem; font-weight: 700; }
-    .trend.positive { color: #10b981; }
-    .payment-avatar { width: 32px; height: 32px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; }
-    .badge-success { background: rgba(16, 185, 129, 0.15); color: #10b981; padding: 2px 8px; border-radius: 100px; font-size: 0.625rem; font-weight: 800; }
-    .status-active { color: #10b981; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
-    .status-active::before { content: ""; width: 6px; height: 6px; background: currentColor; border-radius: 50%; display: block; }
-
-    /* Partners Carousel */
-    .partners-section { padding: 60px 0; border-y: 1px solid var(--glass-border); background: var(--nav-bg); }
-    .partners-title { text-align: center; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 40px; }
-    .partners-carousel { overflow: hidden; position: relative; }
-    .partners-track { display: flex; gap: 80px; align-items: center; animation: scroll 20s linear infinite; width: max-content; }
-    .partners-track img { height: 30px; filter: grayscale(1) brightness(0.8); opacity: 0.6; transition: opacity 0.3s; }
-    .partners-track img:hover { opacity: 1; filter: grayscale(0); }
-    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-    /* Solutions & Showcase */
-    .section-title { font-size: 3rem; font-weight: 800; margin-bottom: 16px; line-height: 1.1; }
-    .section-subtitle { font-size: 1.125rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.6; }
-    
-    .solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 80px; }
-    .solution-card { padding: 48px 32px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-    .solution-card:hover { transform: translateY(-12px); border-color: var(--primary-color); }
-    .solution-icon { font-size: 3rem; margin-bottom: 32px; display: inline-block; }
-    .solution-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 16px; }
-    .solution-card p { color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
-    .solution-link { font-weight: 700; color: var(--primary-color); text-decoration: none; font-size: 0.9375rem; }
-
-    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; padding: 120px 0; }
-    .media-stack { position: relative; }
-    .media-main { width: 100%; border-radius: 32px; box-shadow: 0 40px 80px rgba(0,0,0,0.1); }
-    .media-overlay { position: absolute; bottom: -30px; right: -30px; width: 280px; padding: 24px; border-radius: 20px; z-index: 5; }
-    .overlay-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .status-indicator { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; }
-    .showcase-text { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 40px; line-height: 1.7; }
-    .feature-list { display: grid; gap: 32px; }
-    .list-item { display: flex; gap: 20px; }
-    .item-check { width: 28px; height: 28px; background: var(--primary-color); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 900; }
-    .item-body strong { font-size: 1.125rem; font-weight: 800; display: block; margin-bottom: 4px; }
-    .item-body p { color: var(--text-muted); font-size: 0.9375rem; }
-
-    /* Pricing */
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 80px; }
-    .pricing-card { padding: 56px 40px; text-align: left; position: relative; transition: all 0.3s ease; }
-    .pricing-card.featured { border: 2px solid var(--primary-color); transform: scale(1.05); z-index: 2; }
-    .featured-tag { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); background: var(--primary-color); color: white; padding: 6px 20px; border-radius: 100px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.05em; }
-    .plan-type { font-size: 0.8125rem; font-weight: 800; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 16px; }
-    .plan-price { font-size: 3.5rem; font-weight: 900; margin-bottom: 12px; }
-    .plan-price span { font-size: 1.125rem; font-weight: 600; color: var(--text-muted); }
-    .plan-desc { color: var(--text-muted); margin-bottom: 40px; font-size: 0.9375rem; height: 3rem; }
-    .plan-features { list-style: none; padding: 0; margin-bottom: 48px; border-top: 1px solid var(--glass-border); padding-top: 32px; }
-    .plan-features li { margin-bottom: 16px; display: flex; align-items: center; gap: 12px; font-size: 0.9375rem; font-weight: 500; }
-    .plan-features li::before { content: "✓"; color: var(--primary-color); font-weight: 900; }
-
-    /* Tech Stack & Final CTA */
-    .tech-stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 48px; }
-    .tech-tag { padding: 10px 24px; border: 1px solid var(--glass-border); border-radius: 100px; font-weight: 700; font-size: 0.875rem; }
-    .final-cta { padding: 120px 0; }
-    .cta-wrapper { padding: 100px 40px; text-align: center; border-radius: 40px; color: white; position: relative; overflow: hidden; }
-    .cta-wrapper h2 { font-size: 3.5rem; font-weight: 900; margin-bottom: 24px; }
-    .cta-wrapper p { font-size: 1.25rem; margin-bottom: 48px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .cta-buttons { display: flex; justify-content: center; gap: 20px; }
-    .btn-white { background: white; color: var(--primary-color); border: none; }
-    .btn-white:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(255,255,255,0.2); }
-    .btn-outline-white { border: 2px solid white; color: white; background: transparent; }
-
-    /* Dashboard Preview Styles */
-    .dashboard-preview-section { padding: 120px 0; border-top: 1px solid var(--glass-border); }
-    .preview-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
-    .preview-main-img { width: 100%; border-radius: 24px; box-shadow: 0 40px 80px rgba(0,0,0,0.2); }
-    .preview-features { display: grid; gap: 32px; margin-top: 48px; }
-    .p-feat { display: flex; gap: 20px; align-items: flex-start; }
-    .p-feat-icon { font-size: 1.5rem; background: var(--glass-border); padding: 12px; border-radius: 12px; }
-    .p-feat-text strong { display: block; font-size: 1.125rem; margin-bottom: 4px; }
-    .p-feat-text p { color: var(--text-muted); font-size: 0.9375rem; }
-    .text-left { text-align: left !important; }
-
-    /* Footer */
-    .main-footer { padding: 100px 0 40px; border-top: 1px solid var(--glass-border); }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 60px; }
-    .footer-brand .logo { font-size: 1.5rem; font-weight: 900; color: var(--primary-color); margin-bottom: 24px; }
-    .footer-brand p { color: var(--text-muted); line-height: 1.6; margin-bottom: 32px; }
-    .social-links { display: flex; gap: 16px; }
-    .social-icon { width: 40px; height: 40px; background: var(--glass-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--text-color); font-size: 1.25rem; transition: background 0.2s; }
-    .footer-links h4 { font-size: 1rem; font-weight: 800; margin-bottom: 32px; }
-    .footer-links a { display: block; margin-bottom: 16px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--primary-color); }
-    .footer-bottom { border-top: 1px solid var(--glass-border); margin-top: 80px; padding-top: 40px; color: var(--text-muted); font-size: 0.875rem; }
-
-    /* Mobile Adaptations */
-    @media (max-width: 1024px) {
-        .hero-grid, .showcase-grid, .solutions-grid, .pricing-grid, .footer-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
-        .hero-title { font-size: 3rem; }
-        .hero-description { margin-left: auto; margin-right: auto; }
-        .hero-buttons, .hero-stats { justify-content: center; }
-        .hero-canvas { transform: none !important; margin-top: 100px; }
-        .widget-income { left: 0; top: -60px; }
-        .widget-payment { right: 0; top: auto; bottom: -40px; }
-        .media-overlay { right: 0; bottom: -60px; width: 100%; position: relative; margin-top: 40px; }
-        .cta-wrapper h2 { font-size: 2.5rem; }
-        .desktop-nav { display: none; }
-        .desktop-nav.mobile-active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--nav-bg); padding: 40px; border-radius: 0 0 24px 24px; backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); }
-        .main-header.scrolled { padding: 0.25rem 1.5rem; background: var(--nav-bg); backdrop-filter: blur(20px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-    }
-</style>
 {% endblock %}
