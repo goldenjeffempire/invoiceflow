@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = UserCreationForm.Meta.fields + ('role',)
+        fields = ("username", "email")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -14,6 +14,14 @@ class SignupForm(UserCreationForm):
                 'class': 'form-control bg-light border-start-0 rounded-end-4',
                 'placeholder': field.label
             })
+        self.fields["email"].required = True
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.role = User.ROLE_STANDARD
+        if commit:
+            user.save()
+        return user
 
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
