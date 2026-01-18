@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}InvoiceFlow | Enterprise Finance Operations for Modern Businesses{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/landing.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="landing-page">
+    <header class="landing-header">
+        <div class="landing-container landing-nav">
+            <a class="branding" href="/">
+                <span class="branding-badge">IF</span>
+                <span>InvoiceFlow</span>
+            </a>
+            <nav class="landing-nav-links" aria-label="Primary">
+                <a href="#platform">Platform</a>
+                <a href="#payments">Payments</a>
+                <a href="#analytics">Analytics</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a class="btn-secondary-custom" href="{% url 'accounts:login' %}">Sign in</a>
+                <a class="btn-primary-custom" href="{% url 'accounts:register' %}">Get started</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="platform">
+        <div class="landing-container hero-grid">
+            <div data-aos>
+                <p class="section-label">InvoiceFlow platform</p>
+                <h1 class="hero-title">Automate invoicing, payouts, and cash flow from a single dashboard.</h1>
+                <p class="hero-subtitle">
+                    InvoiceFlow helps Nigerian businesses create branded invoices, collect payments via Stripe or Paystack,
+                    and track revenue with real-time analytics. Built for scale, security, and speed.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn-primary-custom" href="{% url 'accounts:register' %}">
+                        Start free
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a class="btn-secondary-custom" href="#demo">Book a demo</a>
+                </div>
+                <div class="integrations" style="margin-top:2rem;">
+                    <span class="integration-pill">Stripe Ready</span>
+                    <span class="integration-pill">Paystack Direct Payouts</span>
+                    <span class="integration-pill">SendGrid Email</span>
+                </div>
+            </div>
+            <div class="hero-card" data-aos>
+                <div class="hero-metric">
+                    <div>
+                        <strong>Invoices sent</strong>
+                        <p class="text-muted">This month</p>
+                    </div>
+                    <strong>₦28.4M</strong>
+                </div>
+                <div class="hero-metric">
+                    <div>
+                        <strong>Payment success</strong>
+                        <p class="text-muted">Across channels</p>
+                    </div>
+                    <strong>98.7%</strong>
+                </div>
+                <div class="hero-metric">
+                    <div>
+                        <strong>Avg. time to pay</strong>
+                        <p class="text-muted">Automated reminders</p>
+                    </div>
+                    <strong>2.1 days</strong>
+                </div>
+                <div style="margin-top:2rem;">
+                    <p><strong>Trusted by finance teams</strong></p>
+                    <p class="text-muted">Modern SMEs, agencies, and enterprise operations teams nationwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="payments">
+        <div class="landing-container">
+            <div class="section-heading">
+                <span class="section-label">Payments + Payouts</span>
+                <h2>Get paid faster with secure payment links and automated bank payouts.</h2>
+                <p class="text-muted">Create public payment pages, accept cards or transfers, and push payouts directly to user banks.</p>
+            </div>
+            <div class="card-grid">
+                <div class="feature-card" data-aos>
+                    <div class="feature-icon"><i class="fa-solid fa-credit-card"></i></div>
+                    <h3>Pay Now pages</h3>
+                    <p class="text-muted">Publish branded invoice payment pages with secure “Pay Now” actions.</p>
+                </div>
+                <div class="feature-card" data-aos>
+                    <div class="feature-icon"><i class="fa-solid fa-shield-check"></i></div>
+                    <h3>Verified webhooks</h3>
+                    <p class="text-muted">Stripe + Paystack signatures verified with full idempotency and reconciliation logs.</p>
+                </div>
+                <div class="feature-card" data-aos>
+                    <div class="feature-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <h3>Direct payouts</h3>
+                    <p class="text-muted">Route funds to verified bank accounts without leaving InvoiceFlow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="demo">
+        <div class="landing-container">
+            <div class="section-heading">
+                <span class="section-label">Workflow</span>
+                <h2>Everything finance needs, delivered in three streamlined steps.</h2>
+            </div>
+            <div class="workflow">
+                <div class="workflow-item" data-aos>
+                    <strong>1. Build invoices in minutes</strong>
+                    <p class="text-muted">Create client profiles, line items, taxes, discounts, and branded PDFs instantly.</p>
+                </div>
+                <div class="workflow-item" data-aos>
+                    <strong>2. Send, collect, and automate</strong>
+                    <p class="text-muted">Email invoices via SendGrid, schedule reminders, and accept payments globally.</p>
+                </div>
+                <div class="workflow-item" data-aos>
+                    <strong>3. Track revenue + expenses</strong>
+                    <p class="text-muted">Log sales, expenses, and payouts with analytics dashboards that update in real time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="analytics">
+        <div class="landing-container hero-grid">
+            <div data-aos>
+                <div class="section-heading">
+                    <span class="section-label">Analytics</span>
+                    <h2>Real-time visibility into revenue, cash flow, and outstanding invoices.</h2>
+                    <p class="text-muted">Animated dashboards surface trends, aging reports, and expense categories so you always know what’s next.</p>
+                </div>
+                <div class="card-grid">
+                    <div class="feature-card">
+                        <h3>Revenue intelligence</h3>
+                        <p class="text-muted">Monitor collections, open invoices, and projected cash inflows.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Expense tracking</h3>
+                        <p class="text-muted">Categorize spend, manage budgets, and export reports anytime.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="analytics-preview" data-aos>
+                <h3>Finance command center</h3>
+                <div class="analytics-chart"></div>
+                <div class="card-grid">
+                    <div>
+                        <p class="text-muted">Collections this week</p>
+                        <strong>₦6.8M</strong>
+                    </div>
+                    <div>
+                        <p class="text-muted">Overdue balance</p>
+                        <strong>₦920k</strong>
+                    </div>
+                    <div>
+                        <p class="text-muted">Pending payouts</p>
+                        <strong>₦1.4M</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="faq">
+        <div class="landing-container">
+            <div class="section-heading">
+                <span class="section-label">FAQ</span>
+                <h2>Everything you need to launch with confidence.</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item" data-aos>
+                    <strong>Is InvoiceFlow compliant with Nigerian payment standards?</strong>
+                    <p class="text-muted">Yes. We support Paystack for local collections and Stripe for international cards, with secure webhook verification.</p>
+                </div>
+                <div class="faq-item" data-aos>
+                    <strong>Can I customize invoice branding?</strong>
+                    <p class="text-muted">Absolutely. Upload your logo, set brand colors, and generate polished PDF invoices automatically.</p>
+                </div>
+                <div class="faq-item" data-aos>
+                    <strong>How do email reminders work?</strong>
+                    <p class="text-muted">Schedule automated reminders and follow-ups powered by SendGrid with delivery tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="landing-container">
+            <div class="cta-band" data-aos>
+                <h2>Ready to modernize your finance operations?</h2>
+                <p>Launch InvoiceFlow in minutes and deliver a frictionless billing experience.</p>
+                <div class="hero-actions" style="justify-content:center;">
+                    <a class="btn-secondary-custom" href="{% url 'accounts:register' %}">Start free</a>
+                    <a class="btn-primary-custom" href="mailto:hello@invoiceflow.com.ng">Talk to sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="landing-container footer-grid">
+            <div>
+                <p class="footer-brand">InvoiceFlow</p>
+                <p>Official finance operations platform for modern Nigerian businesses.</p>
+                <p>Email: <a href="mailto:support@invoiceflow.com.ng">support@invoiceflow.com.ng</a></p>
+            </div>
+            <div>
+                <p class="footer-brand">Product</p>
+                <a href="#platform">Platform</a>
+                <a href="#payments">Payments</a>
+                <a href="#analytics">Analytics</a>
+            </div>
+            <div>
+                <p class="footer-brand">Company</p>
+                <a href="https://invoiceflow.com.ng">invoiceflow.com.ng</a>
+                <a href="mailto:hello@invoiceflow.com.ng">hello@invoiceflow.com.ng</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div>
+                <p class="footer-brand">Social</p>
+                <a href="https://www.linkedin.com">LinkedIn</a>
+                <a href="https://twitter.com">X (Twitter)</a>
+                <a href="https://www.instagram.com">Instagram</a>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}
