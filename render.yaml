@@ -8,9 +8,17 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
-      - key: DJANGO_SETTINGS_MODULE
-        value: core.settings
       - key: DEBUG
         value: "False"
+      - key: DJANGO_SETTINGS_MODULE
+        value: core.settings
+      - key: DJANGO_ENV
+        value: prod
       - key: RENDER
         value: "True"
+      - key: ALLOWED_HOSTS
+        value: "invoiceflow.com.ng,www.invoiceflow.com.ng"
+      - key: CSRF_TRUSTED_ORIGINS
+        value: "https://invoiceflow.com.ng,https://www.invoiceflow.com.ng"
+      - key: SITE_URL
+        value: "https://invoiceflow.com.ng"
